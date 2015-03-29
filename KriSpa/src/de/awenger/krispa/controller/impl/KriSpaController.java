@@ -2,7 +2,12 @@ package de.awenger.krispa.controller.impl;
 
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
+import de.awenger.krispa.model.IDataBasis;
+import de.awenger.krispa.model.impl.DataBasis;
 import de.awenger.krispa.util.observer.Observable;
+import java.io.File;
+import java.util.Map;
+import java.util.Properties;
 
 
 /**
@@ -23,28 +28,33 @@ public final class KriSpaController extends Observable
     private ILearningSessionState currentState;
 
     /**
-     * change game state.
      *
-     * @param state GameState
      */
+    private IDataBasis dataBasis = new DataBasis();
+
+    /**
+     *
+     */
+    private Map<String, String> vocabularyMap;
+
     @Override
     public void setCurrentState(final ILearningSessionState state) {
         this.currentState = state;
         notifyObservers();
     }
 
-    /**
-     *
-     * @return current GameState
-     */
     @Override
     public ILearningSessionState getCurrentState() {
         return currentState;
     }
 
-    /**
-     * Changes the IGameState Object.
-     */
+    @Override
+    public void createNewLearningSession() {
+        Properties prop = new Properties();
+        String dir = System.getProperty("user.dir");
+        dataBasis.read(new File(dir + "/KriSpaData.txt"));
+    }
+
     @Override
     public void checkLearningSessionState() {
         // new Game. Initialize with StateInGame
@@ -57,24 +67,22 @@ public final class KriSpaController extends Observable
         }
     }
 
-    /**
-     * creates a new round.
-     */
-    @Override
-    public void createNewLearningSession() {
-        this.currentState = null;
-        notifyObservers();
-    }
-
-    
-    /**
-     * End Game.
-     */
     @Override
     public void endLearningSession() {
 //        if (this.currentState instanceof StateInGame) {
 //            this.currentState.change();
 //        }
+        saveData("/KriSpaData.txt");
+    }
+    
+    /**
+     * saves data to File.
+     * @param fileName FileName in Directory
+     */
+    private void saveData(String fileName) {
+        Properties prop = new Properties();
+        String dir = System.getProperty("user.dir");
+        dataBasis.save(new File(dir + fileName));
     }
 
 }

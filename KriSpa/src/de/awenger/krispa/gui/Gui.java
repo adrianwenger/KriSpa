@@ -28,7 +28,7 @@ public final class Gui extends JFrame implements IObserver {
         controller.addObserver(this);
 
         // initialize WelcomeFrame
-        activateWelcomeFrame();
+        //activateWelcomeFrame();
 
     }
 

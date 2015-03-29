@@ -42,6 +42,8 @@ public final class KriSpa {
         controller = new KriSpaController();
         // create GUI
         new Gui(controller);
+        controller.createNewLearningSession();
+        controller.endLearningSession();
     }
 
     /**

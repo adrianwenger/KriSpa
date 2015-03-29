@@ -1,0 +1,3 @@
+2	table	tisch
+0	cerveza	bier
+0	ola	hallo
