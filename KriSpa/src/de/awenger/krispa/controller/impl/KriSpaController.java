@@ -33,9 +33,14 @@ public final class KriSpaController extends Observable
     private IDataBasis dataBasis = new DataBasis();
 
     /**
-     *
+     * maps to Store specific words to boxes.
      */
-    private Map<String, String> vocabularyMap;
+    private Map<String, String> vocMapCount0, vocMapCount1, vocMapCount2, vocMapCount3, vocMapCount4;
+		
+		
+	public IDataBasis getDataBasis() {
+		return this.dataBasis;
+	}
 
     @Override
     public void setCurrentState(final ILearningSessionState state) {
@@ -53,6 +58,7 @@ public final class KriSpaController extends Observable
         Properties prop = new Properties();
         String dir = System.getProperty("user.dir");
         dataBasis.read(new File(dir + "/KriSpaData.txt"));
+		setCurrentState(new StateStartLearningSession(controller));
     }
 
     @Override
@@ -85,4 +91,33 @@ public final class KriSpaController extends Observable
         dataBasis.save(new File(dir + fileName));
     }
 
+	/**
+	* allocates Vocabulary words to appropriate map.
+	* @param map map to be allocated
+	*
+	*/
+	@Override
+	public void allocateVoc(Map<String, String> map) {
+		if (this.currentState == StateStartLearningSession) {
+			this.vocMapCount0 = map;
+		} else if (this.currentState == StateLearningInProgress_1) {
+			this.vocMapCount1 = map;
+		} else if (this.currentState == StateLearningInProgress_2) {
+			this.vocMapCount2 = map;
+		} else if (this.currentState == StateLearningInProgress_3) {
+			this.vocMapCount3 = map;
+		} else {
+			this.vocMapCount4 = map;
+		}
+		
+	@Override	
+	public Map<String, String> divideDic(int count) {
+		Map<String, String> map = new TreeMap<>();	
+		for(VocabularyKey keys : dataBasis.getDic().keySet()) {
+				if (keys.getCount() == count) {
+					map.put(keys.getKey().getSpanVal, keys.getValue);
+				}
+			}
+		return map;
+	}
 }
