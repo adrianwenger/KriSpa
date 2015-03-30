@@ -13,7 +13,7 @@ This program is based on a card box vocabulary training:
    
    Versions:
    
-   -- 0.1 inital Start of Development: 28.03.2015
+   -- 0.1 initial start of Development: 28.03.2015
 
 
 
