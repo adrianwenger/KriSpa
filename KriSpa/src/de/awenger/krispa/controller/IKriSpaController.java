@@ -1,6 +1,7 @@
 package de.awenger.krispa.controller;
 
 import de.awenger.krispa.util.observer.IObservable;
+import java.util.Map;
 
 
 /**
@@ -38,4 +39,17 @@ public interface IKriSpaController extends IObservable {
      */
     void createNewLearningSession();
 
+    /**
+     * allocates Vocabulary words to appropriate map.
+     *
+     * @param map map to be allocated
+     */
+    void allocateVoc(Map<String, String> map);
+    
+    /**
+     * Divides dic into one of five subMaps (vocMapCount0 ... vocMapCount4)
+     * @param count count
+     * @return TreeMap (e.g. vocMapCount0)
+     */
+    Map<String, String> divideDic(int count);
 }

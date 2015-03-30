@@ -3,19 +3,19 @@ package de.awenger.krispa.gui;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
-
+import javax.swing.SwingUtilities;
 
 
 /**
  *
  * @author Adrian Wenger
  */
-public class ProgressBar extends JFrame{
+public class ProgressBar extends JFrame {
 
-	static final int MY_MINIMUM = 0;
 
-	static final int MY_MAXIMUM = 100;
+    static final int MY_MINIMUM = 0;
 
+    static final int MY_MAXIMUM = 100;
 
     // Variables declaration - do not modify                     
     private JLabel jLabel2;
@@ -27,16 +27,14 @@ public class ProgressBar extends JFrame{
      */
     public ProgressBar() {
         initComponents();
-		displayProgressBar();
-		pack();
+        displayProgressBar();
     }
 
-   
     private void initComponents() {
 
         jProgressBar1 = new JProgressBar();
-		jProgressBar1.setMinimum(MY_MINIMUM);
-		jProgressBar1.setMaximum(MY_MAXIMUM);
+        jProgressBar1.setMinimum(MY_MINIMUM);
+        jProgressBar1.setMaximum(MY_MAXIMUM);
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,26 +63,31 @@ public class ProgressBar extends JFrame{
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))
         );
-    }  
-	
-	private void updateBar(int newValue) {
-		jProgressBar1.setValue(newValue);
-	}
+            
+         pack();
+         this.setLocationRelativeTo(null);
+         this.setVisible(true);
+    }
 
-	
+    private void updateBar(int newValue) {
+        jProgressBar1.setValue(newValue);
+    }
+
     private void displayProgressBar() {
-		for (int i = MY_MINIMUM; i <= MY_MAXIMUM; i++) {
-			final int percent = i;
-			try {
-				SwingUtilities.invokeLater(new Runnable() {
-					public void run() {
-						updateBar(percent);
-					}
-				});
-				java.lang.Thread.sleep(100);
-			} catch (InterruptedException e) {
-				;
-			}
-		}
-   }
+        for (int i = MY_MINIMUM; i <= MY_MAXIMUM; i++) {
+            final int percent = i;
+            try {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        updateBar(percent);
+                    }
+
+                });
+                java.lang.Thread.sleep(25);
+            } catch (InterruptedException e) {
+                ;
+            }
+        }
+    }
+
 }

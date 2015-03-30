@@ -1,6 +1,7 @@
 package de.awenger.krispa.model.impl;
 
 import de.awenger.krispa.model.IDataBasis;
+import de.awenger.krispa.model.IVocabularyKey;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,9 +23,10 @@ public final class DataBasis implements IDataBasis {
     /**
      * dic saves the vocabulary key/value pairs.
      */
-    private final Map<VocabularyKey, String> dic = new HashMap<>();
+    private final Map<IVocabularyKey, String> dic = new HashMap<>();
 
-    public Map<VocabularyKey, String> getDic() {
+    @Override
+    public Map<IVocabularyKey, String> getDic() {
         return dic;
     }
 
@@ -55,7 +57,7 @@ public final class DataBasis implements IDataBasis {
         PrintWriter out = null;
         try {
             out = new PrintWriter(f);
-            for (Map.Entry<VocabularyKey, String> eintrag : dic.entrySet()) {
+            for (Map.Entry<IVocabularyKey, String> eintrag : dic.entrySet()) {
                 String s = eintrag.getKey().getCount() + "\t" + eintrag.getKey().getSpanVal()
                         + "\t" + eintrag.getValue();
                 out.println(s);
@@ -70,7 +72,7 @@ public final class DataBasis implements IDataBasis {
     public boolean insert(int keyCount, String valueSpanValue, String germVal) {
 
         // Create VocabularyKey
-        VocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
+        IVocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
         // Pruefung ob Eintrag bereits vorhanden
         if (!dic.containsKey(key)) {
             // Eintrag hinzufuegen
@@ -83,39 +85,13 @@ public final class DataBasis implements IDataBasis {
     @Override
     public boolean remove(String valueSpanValue, int keyCount, String germVal) {
         // build key
-        VocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
+        IVocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
         // delete from dic
         if (dic.containsKey(key)) {
             dic.remove(valueSpanValue, germVal);
             return true;
         }
         return false;
-    }
-
-//---------------------------------------------------------------------------*/
-
-    /**
-     * inner class to create VocabularyKey Objects.
-     */
-    private static class VocabularyKey {
-
-
-        private final int count;
-        private final String spanVal;
-
-        public VocabularyKey(int count, String spanVal) {
-            this.count = count;
-            this.spanVal = spanVal;
-        }
-
-        public int getCount() {
-            return count;
-        }
-
-        public String getSpanVal() {
-            return spanVal;
-        }
-
     }
 
 }

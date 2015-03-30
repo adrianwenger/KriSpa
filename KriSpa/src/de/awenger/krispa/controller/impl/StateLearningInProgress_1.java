@@ -20,7 +20,7 @@ import de.awenger.krispa.controller.ILearningSessionState;
      *
      * @param cont KriSpaController
      */
-    public StateStartLearningSession(final IKriSpaController cont) {
+    public StateLearningInProgress_1(final IKriSpaController cont) {
         this.controller = cont;
     }
 

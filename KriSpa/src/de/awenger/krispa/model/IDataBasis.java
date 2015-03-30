@@ -1,7 +1,7 @@
 package de.awenger.krispa.model;
 
-import de.awenger.krispa.model.impl.DataBasis;
 import java.io.File;
+import java.util.Map;
 
 
 /**
@@ -24,8 +24,8 @@ public interface IDataBasis {
      * @param f file
      */
     void save(File f);
-    
-     /**
+
+    /**
      * Inserts key/vale pair into dic.
      *
      * @param keyCount count (part of VocabularyKey)
@@ -34,14 +34,21 @@ public interface IDataBasis {
      * @return
      */
     boolean insert(int keyCount, String valueSpanVal, String germVal);
-    
+
     /**
      * removes key/value pairs from dic.
      *
-     * @param valueSpanValue spanishValue 
-     * @param keyCount 
+     * @param valueSpanValue spanishValue
+     * @param keyCount
      * @param germVal GermanValue value
      * @return
      */
-    boolean remove(String valueSpanValue,int keyCount, String germVal);
+    boolean remove(String valueSpanValue, int keyCount, String germVal);
+
+    /**
+     * returns created VocabularyMap dic.
+     * @return HashMap containing vocabulary key/value pairs
+     */
+    Map<IVocabularyKey, String> getDic();
+
 }
