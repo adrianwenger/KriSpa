@@ -77,14 +77,8 @@ public final class KriSpaController extends Observable
     @Override
     public void endLearningSession() {
         if (this.currentState instanceof StateFinish) {
-            this.currentState.change();
+            reallocateVoc();
         }
-        // write divided maps back to dic
-        writeBackToDic(vocMapCount0, 0);
-        writeBackToDic(vocMapCount1, 1);
-        writeBackToDic(vocMapCount2, 2);
-        writeBackToDic(vocMapCount3, 3);
-        writeBackToDic(vocMapCount4, 4);
         saveData("/KriSpaData.txt");
     }
 
@@ -123,6 +117,15 @@ public final class KriSpaController extends Observable
             }
         }
         return map;
+    }
+
+    private void reallocateVoc() {
+        // write divided maps back to dic
+        writeBackToDic(vocMapCount0, 0);
+        writeBackToDic(vocMapCount1, 1);
+        writeBackToDic(vocMapCount2, 2);
+        writeBackToDic(vocMapCount3, 3);
+        writeBackToDic(vocMapCount4, 4);
     }
 
     private void writeBackToDic(Map<String, String> map, int count) {

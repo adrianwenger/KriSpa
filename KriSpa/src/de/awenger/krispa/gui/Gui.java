@@ -27,7 +27,10 @@ public final class Gui extends JFrame implements IObserver {
         this.controller = controller;
         controller.addObserver(this);
 
-        new ProgressBar();
+        controller.createNewLearningSession();
+        
+        controller.endLearningSession();
+        //new ProgressBar();
         // initialize WelcomeFrame
         //activateWelcomeFrame();
 
