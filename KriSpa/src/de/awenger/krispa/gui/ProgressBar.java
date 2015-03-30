@@ -12,6 +12,10 @@ import javax.swing.JProgressBar;
  */
 public class ProgressBar extends JFrame{
 
+	static final int MY_MINIMUM = 0;
+
+	static final int MY_MAXIMUM = 100;
+
 
     // Variables declaration - do not modify                     
     private JLabel jLabel2;
@@ -23,13 +27,16 @@ public class ProgressBar extends JFrame{
      */
     public ProgressBar() {
         initComponents();
+		displayProgressBar();
+		pack();
     }
 
-    
-    @SuppressWarnings("unchecked")
+   
     private void initComponents() {
 
-        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBar1 = new JProgressBar();
+		jProgressBar1.setMinimum(MY_MINIMUM);
+		jProgressBar1.setMaximum(MY_MAXIMUM);
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,17 +65,26 @@ public class ProgressBar extends JFrame{
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))
         );
-
-        displayProgressBar();
-        pack();
     }  
-   public void displayProgressBar() {
-     /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProgressBar().setVisible(true);
-            }
+	
+	private void updateBar(int newValue) {
+		jProgressBar1.setValue(newValue);
+	}
 
-        });
+	
+    private void displayProgressBar() {
+		for (int i = MY_MINIMUM; i <= MY_MAXIMUM; i++) {
+			final int percent = i;
+			try {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						updateBar(percent);
+					}
+				});
+				java.lang.Thread.sleep(100);
+			} catch (InterruptedException e) {
+				;
+			}
+		}
    }
 }
