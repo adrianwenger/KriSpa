@@ -3,6 +3,7 @@ package de.awenger.krispa.gui;
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.util.observer.IObserver;
 import javax.swing.JFrame;
+import javax.swing.JProgressBar;
 
 
 /**
@@ -16,6 +17,11 @@ public final class Gui extends JFrame implements IObserver {
      * To save the IBlackJackController for all of the several UIs.
      */
     private final IKriSpaController controller;
+    
+    /**
+     * progressbar 
+     */
+    private final ProgressBar pbar;
 
     //private MainFrame mainFrame;
     /**
@@ -29,8 +35,9 @@ public final class Gui extends JFrame implements IObserver {
 
         controller.createNewLearningSession();
         
-        controller.endLearningSession();
-        //new ProgressBar();
+        this.pbar = new ProgressBar();
+        this.pbar.dispose();
+        new ConfigurationFrame();
         // initialize WelcomeFrame
         //activateWelcomeFrame();
 

@@ -32,7 +32,7 @@ public final class KriSpaController extends Observable
     /**
      *
      */
-    private IDataBasis dataBasis = new DataBasis();
+    private final IDataBasis dataBasis = new DataBasis();
 
     /**
      * maps to Store specific words to boxes.
@@ -65,7 +65,7 @@ public final class KriSpaController extends Observable
     @Override
     public void checkLearningSessionState() {
         // new Game. Initialize with StateInGame
-        if (this.currentState == null) {
+        if (this.currentState instanceof StateStart) {
             //this.setCurrentState(new StateInGame(this, calcController));
             this.currentState.change();
         } else {
