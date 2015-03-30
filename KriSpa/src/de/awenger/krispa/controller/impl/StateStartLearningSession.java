@@ -8,10 +8,10 @@ import de.awenger.krispa.controller.ILearningSessionState;
  *
  * @author Adrian Wenger
  */
-    public final class StateStartLearningSession implements ILearningSessionState {
+    public final class StateStart implements ILearningSessionState {
 
     /**
-     * BlackJack Controller.
+     * KriSpa Controller.
      */
     private final IKriSpaController controller;
 
@@ -29,8 +29,12 @@ import de.awenger.krispa.controller.ILearningSessionState;
      */
     @Override
     public void change() {
-        // change state to StateEndGame
-        //this.controller.setCurrentState(new StateEndRound(calcController));
+        	
+        // change state to StateLearningInProgress_1
+        this.controller.setCurrentState(new StateLearningInProgress_1(controller));
+		
+		// passes map to allocateVoc
+		this.controller.allocateVoc(this.controller.divideDic(0));
         //this.controller.getCurrentState().change();
     }
 
