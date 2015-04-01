@@ -37,7 +37,7 @@ public final class Gui extends JFrame implements IObserver {
         
         this.pbar = new ProgressBar();
         this.pbar.dispose();
-        new ConfigurationFrame();
+        new ConfigurationFrame(this.controller);
         // initialize WelcomeFrame
         //activateWelcomeFrame();
 

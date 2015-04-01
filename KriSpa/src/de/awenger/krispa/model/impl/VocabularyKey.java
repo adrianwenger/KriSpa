@@ -15,10 +15,12 @@ public class VocabularyKey implements IVocabularyKey{
         this.spanVal = spanVal;
     }
 
+    @Override
     public int getCount() {
         return count;
     }
 
+    @Override
     public String getSpanVal() {
         return spanVal;
     }

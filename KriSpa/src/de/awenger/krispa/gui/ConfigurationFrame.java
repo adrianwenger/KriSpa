@@ -1,8 +1,9 @@
 package de.awenger.krispa.gui;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import de.awenger.krispa.controller.IKriSpaController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,20 +16,29 @@ import javax.swing.JLabel;
 public class ConfigurationFrame extends JFrame implements ActionListener {
 
 
+    /**
+     * KriSpaController.
+     */
+    private final IKriSpaController controller;
+
     // Variables declaration - do not modify                     
     private java.awt.Panel LabelImage;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    
+    public static Map<String, String> map;
 
     // End of variables declaration  
+    
     /**
-     * Creates new form ConfigurationPanel
+     * Creates new form ConfigurationPanel.
+     * @param cont IKriSpaController
      */
-    public ConfigurationFrame() {
+    public ConfigurationFrame(IKriSpaController cont) {
+        this.controller = cont;
         initComponents();
     }
 
@@ -46,6 +56,7 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
         jLabel1.setText("In which direction do you want to learn your vocabels?");
 
         jRadioButton2.setText("German --> Spanish");
+        jRadioButton2.setEnabled(false);
         jRadioButton2.addActionListener(this);
 
         jRadioButton1.setText("Spanish --> German");
@@ -59,7 +70,7 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
         JLabel jLabelObject = new JLabel();
         jLabelObject.setIcon(new ImageIcon("/images/KriSpa_Backround.png"));
         LabelImage.add(jLabelObject);
-        
+
         javax.swing.GroupLayout LabelImgaeLayout = new javax.swing.GroupLayout(LabelImage);
         LabelImage.setLayout(LabelImgaeLayout);
         LabelImgaeLayout.setHorizontalGroup(
@@ -117,10 +128,17 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-         Object source = evt.getSource();
-         if (source == jButton1) {
-             return;
-         }
+        Object source = evt.getSource();
+        if (source == jButton1) {
+            if (jRadioButton1.isEnabled()) {
+                // sets learningDirection: Spanish --> German
+                this.controller.setLearningDirection(true);
+            } else {
+                // sets learningDirection: German --> Spanish
+                this.controller.setLearningDirection(false);
+            }
+            //map = this.controller.getWords();
+        }
     }
 
 }

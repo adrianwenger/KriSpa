@@ -2,13 +2,16 @@ package de.awenger.krispa.controller.impl;
 
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 /**
  *
  * @author Adrian Wenger
  */
-    public final class StateStart implements ILearningSessionState {
+public final class StateStart implements ILearningSessionState {
+
 
     /**
      * KriSpa Controller.
@@ -24,18 +27,22 @@ import de.awenger.krispa.controller.ILearningSessionState;
         this.controller = cont;
     }
 
+    @Override
+    public void divideDic() {
+        Map<String, String> vocMapCount0;
+        vocMapCount0 = this.controller.divideDic(0);
+        this.controller.allocateVoc(vocMapCount0);
+    }
+
     /**
      * now other State available.
      */
     @Override
     public void change() {
-        	
         // change state to StateLearningInProgress_1
         this.controller.setCurrentState(new StateLearningInProgress_1(controller));
-		
-		// passes map to allocateVoc
-		this.controller.allocateVoc(this.controller.divideDic(0));
-        //this.controller.getCurrentState().change();
+        // passes map to allocateVoc
+        this.controller.allocateVoc(this.controller.divideDic(0));
     }
 
 }

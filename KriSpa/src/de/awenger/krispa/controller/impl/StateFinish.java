@@ -34,4 +34,9 @@ import de.awenger.krispa.controller.ILearningSessionState;
 
     }
 
+    @Override
+    public void divideDic() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

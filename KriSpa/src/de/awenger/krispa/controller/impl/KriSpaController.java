@@ -7,8 +7,11 @@ import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.model.impl.DataBasis;
 import de.awenger.krispa.util.observer.Observable;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 import java.util.TreeMap;
 
 
@@ -30,9 +33,14 @@ public final class KriSpaController extends Observable
     private ILearningSessionState currentState;
 
     /**
-     *
+     * saves Databasis reference.
      */
     private final IDataBasis dataBasis = new DataBasis();
+
+    /**
+     * saves learningDirection.
+     */
+    private boolean learningDirection;
 
     /**
      * maps to Store specific words to boxes.
@@ -55,16 +63,25 @@ public final class KriSpaController extends Observable
     }
 
     @Override
-    public void createNewLearningSession() {
-        Properties prop = new Properties();
-        String dir = System.getProperty("user.dir");
-        dataBasis.read(new File(dir + "/KriSpaData.txt"));
-        setCurrentState(new StateStart(this));
+    public boolean isLearningDirection() {
+        return learningDirection;
     }
 
     @Override
-    public void checkLearningSessionState() {
-        // new Game. Initialize with StateInGame
+    public void setLearningDirection(boolean learningDirection) {
+        this.learningDirection = learningDirection;
+    }
+
+    @Override
+    public void createNewLearningSession() {
+        String dir = System.getProperty("user.dir");
+        dataBasis.read(new File(dir + "/KriSpaData.txt"));
+        setCurrentState(new StateStart(this));
+        currentState.divideDic();
+    }
+
+    @Override
+    public void changeCurrentState() {
         if (this.currentState instanceof StateStart) {
             //this.setCurrentState(new StateInGame(this, calcController));
             this.currentState.change();
@@ -111,12 +128,24 @@ public final class KriSpaController extends Observable
     @Override
     public Map<String, String> divideDic(int count) {
         Map<String, String> map = new TreeMap<>();
+        Random random = new Random();
         for (IVocabularyKey keys : this.dataBasis.getDic().keySet()) {
             if (keys.getCount() == count) {
                 map.put(keys.getSpanVal(), dataBasis.getDic().get(keys));
             }
         }
-        return map;
+        // initialize words for specific ILearningSessionState
+        List<String> keys = new ArrayList<>(map.keySet());
+        Map<String, String> map1 = new TreeMap();
+        // add x words to map1 
+        int x = 20;
+        for (int i = 0; i < x; i++) {
+            String randomKey = keys.get(random.nextInt(keys.size()));
+            String value = map.get(randomKey);
+            map1.put(randomKey, value);
+        }
+        // returns map1 with x random key/value pairs
+        return map1;
     }
 
     private void reallocateVoc() {
@@ -131,6 +160,21 @@ public final class KriSpaController extends Observable
     private void writeBackToDic(Map<String, String> map, int count) {
         for (Map.Entry<String, String> entry : map.entrySet()) {
             dataBasis.insert(count, entry.getKey(), entry.getValue());
+        }
+    }
+
+    @Override
+    public Map<String, String> getWords() {
+        if (this.currentState instanceof StateStart) {
+            return this.vocMapCount0;
+        } else if (this.currentState instanceof StateLearningInProgress_1) {
+            return this.vocMapCount1;
+        } else if (this.currentState instanceof StateLearningInProgress_2) {
+            return this.vocMapCount2;
+        } else if (this.currentState instanceof StateLearningInProgress_3) {
+            return this.vocMapCount3;
+        } else {
+            return this.vocMapCount4;
         }
     }
 

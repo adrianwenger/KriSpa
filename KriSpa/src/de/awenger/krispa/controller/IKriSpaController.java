@@ -10,6 +10,17 @@ import java.util.Map;
  */
 public interface IKriSpaController extends IObservable {
 
+    /**
+     * gets learning Direction.
+     * @return learningDirection: true == Spanish --> German / flase == German --> Spanish
+     */
+    boolean isLearningDirection();
+    
+    /**
+     * sets Attribute learningDirection.
+     * @param learningDirection true == Spanish --> German / flase == German --> Spanish
+     */
+    void setLearningDirection(boolean learningDirection);
 
     /**
      * set Learning Session State.
@@ -27,7 +38,7 @@ public interface IKriSpaController extends IObservable {
     /**
      * checks Learning Session state.
      */
-    void checkLearningSessionState();
+    void changeCurrentState();
 
     /**
      * finish Learning Session.
@@ -52,4 +63,10 @@ public interface IKriSpaController extends IObservable {
      * @return TreeMap (e.g. vocMapCount0)
      */
     Map<String, String> divideDic(int count);
+    
+    /**
+     * return subset of the specific maps.
+     * @return map containing x word pairs
+     */
+    Map<String, String> getWords();
 }
