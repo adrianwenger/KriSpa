@@ -15,7 +15,7 @@ import javax.swing.JLabel;
  *
  * @author philippschultheiss
  */
-class WelcomeFrame extends JFrame implements ActionListener {
+class MainFrame extends JFrame implements ActionListener {
 
     private JFrame menuFrame;
 
@@ -39,9 +39,9 @@ class WelcomeFrame extends JFrame implements ActionListener {
      * default background for the menuframe.
      */
     private final ImageIcon backgroundMenu
-            = new ImageIcon(getClass().getResource("background_menu.png"));
+            = new ImageIcon("Images/KriSpa_Backround.png");
 
-    public WelcomeFrame(IKriSpaController controller) {
+    public MainFrame(IKriSpaController controller) {
         this.controller = controller;
 
         this.menuFrame = new JFrame("BlackJack");

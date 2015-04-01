@@ -18,10 +18,6 @@ public final class Gui extends JFrame implements IObserver {
      */
     private final IKriSpaController controller;
     
-    /**
-     * progressbar 
-     */
-    private final ProgressBar pbar;
 
     //private MainFrame mainFrame;
     /**
@@ -35,21 +31,11 @@ public final class Gui extends JFrame implements IObserver {
 
         controller.createNewLearningSession();
         
-        this.pbar = new ProgressBar();
-        this.pbar.dispose();
+        new ProgressBar();
+        
+        // Configuration Frame also initializes MainFrame
         new ConfigurationFrame(this.controller);
-        // initialize WelcomeFrame
-        //activateWelcomeFrame();
-
-    }
-
-    /**
-     * Method to activate the MenuFrame/WelcomeFrame.
-     *
-     * @return WelcomeFrame()
-     */
-    public WelcomeFrame activateWelcomeFrame() {
-        return new WelcomeFrame(controller);
+        
     }
 
     /**

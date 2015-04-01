@@ -28,13 +28,13 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
-    
+
     public static Map<String, String> map;
 
     // End of variables declaration  
-    
     /**
      * Creates new form ConfigurationPanel.
+     *
      * @param cont IKriSpaController
      */
     public ConfigurationFrame(IKriSpaController cont) {
@@ -139,6 +139,8 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
             }
             //map = this.controller.getWords();
         }
+        new MainFrame(controller);
+        dispose();
     }
 
 }

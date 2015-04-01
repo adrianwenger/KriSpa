@@ -63,10 +63,10 @@ public class ProgressBar extends JFrame {
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))
         );
-            
-         pack();
-         this.setLocationRelativeTo(null);
-         this.setVisible(true);
+
+        pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     private void updateBar(int newValue) {
@@ -88,6 +88,7 @@ public class ProgressBar extends JFrame {
                 ;
             }
         }
+        dispose();
     }
 
 }
