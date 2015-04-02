@@ -46,7 +46,9 @@ public interface IKriSpaController extends IObservable {
     void endLearningSession();
 
     /**
-     * create new Learning Session.
+     * create new Learning Session
+     * Reads data KriSpa.txt containing Word pairs into databasis HashMap.
+     * Sets currentState to StateStart();
      */
     void createNewLearningSession();
 
