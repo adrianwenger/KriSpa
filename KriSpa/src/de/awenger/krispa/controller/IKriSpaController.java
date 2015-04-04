@@ -1,7 +1,9 @@
 package de.awenger.krispa.controller;
 
 import de.awenger.krispa.util.observer.IObservable;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -69,4 +71,25 @@ public interface IKriSpaController extends IObservable {
      * @return map containing x word pairs
      */
     Map<String, String> getWords();
+    
+    /**
+     * Minimal number of insertions, deletions and replacements needed for
+     * transforming string a into string b.
+     * @param a String a
+     * @param b String b to be compared with a
+     * @return result of Levenstein distance
+     */
+    int getLevensteinDistance(String a, String b);
+    
+    /**
+     * generate getter for vocMapCount* to get keyset to gui
+     * @return Set
+     */
+    Set<String> getMapKeys();
+    
+    /**
+     * generate getter for vocMapCount* to get values to gui
+     * @return List with values 
+     */
+    List<String> getMapValues();
 }

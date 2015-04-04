@@ -1,5 +1,6 @@
 package de.awenger.krispa.controller.impl;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
 import de.awenger.krispa.model.IDataBasis;
@@ -12,7 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
+import java.util.Set;
 import java.util.TreeMap;
+import org.apache.commons.lang3.StringUtils;
 
 
 /**
@@ -175,6 +178,51 @@ public final class KriSpaController extends Observable
             return this.vocMapCount3;
         } else {
             return this.vocMapCount4;
+        }
+    }
+
+    @Override
+    public int getLevensteinDistance(String a, String b) {
+        int result = StringUtils.getLevenshteinDistance(a, b);
+
+        if (result > 2) {
+            return 2;
+        } else if (result > 1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public Set<String> getMapKeys() {
+        if (currentState instanceof StateStart) {
+            List<String> l = new ArrayList<>();
+            return this.vocMapCount0.keySet();
+        } else if (currentState instanceof StateLearningInProgress_1) {
+            return this.vocMapCount1.keySet();
+        } else if (currentState instanceof StateLearningInProgress_2) {
+            return this.vocMapCount2.keySet();
+        } else if (currentState instanceof StateLearningInProgress_3) {
+            return this.vocMapCount3.keySet();
+        } else {
+            return this.vocMapCount4.keySet();
+        }
+    }
+
+    
+    @Override
+    public List<String> getMapValues() {
+        if (currentState instanceof StateStart) {
+            return (List) this.vocMapCount0.values();
+        } else if (currentState instanceof StateLearningInProgress_1) {
+            return (List) this.vocMapCount1.values();
+        } else if (currentState instanceof StateLearningInProgress_2) {
+            return (List) this.vocMapCount2.values();
+        } else if (currentState instanceof StateLearningInProgress_3) {
+            return (List) this.vocMapCount3.values();
+        } else {
+            return (List)  this.vocMapCount4.values();
         }
     }
 

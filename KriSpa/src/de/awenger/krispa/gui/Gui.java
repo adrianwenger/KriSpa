@@ -3,7 +3,6 @@ package de.awenger.krispa.gui;
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.util.observer.IObserver;
 import javax.swing.JFrame;
-import javax.swing.JProgressBar;
 
 
 /**
