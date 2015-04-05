@@ -17,5 +17,10 @@ public interface ILearningSessionState {
      * divides the dic into the seperate Boxes.
      */
     void divideDic();
+    
+    /**
+     * try to create new vocMapCount* maps. If Exception appears, change state
+     */
+    void checkIfMapEntrys(); 
 
 }

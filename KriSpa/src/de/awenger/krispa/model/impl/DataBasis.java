@@ -70,11 +70,11 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public boolean insert(int keyCount, String valueSpanValue, String germVal) {
-
         // Create VocabularyKey
         IVocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
-        // Pruefung ob Eintrag bereits vorhanden
-        if (!dic.containsKey(key)) {
+        // is entry already existing?
+        boolean valExisting = dic.values().contains(germVal);
+        if (!valExisting) {
             // Eintrag hinzufuegen
             dic.put(key, germVal);
             return true;

@@ -37,12 +37,6 @@ public final class Gui extends JFrame implements IObserver {
         
     }
 
-    /**
-     * Method to activate the MainFrame/PlayFrame.
-     */
-    public void activateMainFrame() {
-        //mainFrame = new MainFrame(this, controller, calcController);
-    }
 
     @Override
     public void update() {

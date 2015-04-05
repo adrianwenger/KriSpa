@@ -12,15 +12,20 @@ import java.util.Set;
  */
 public interface IKriSpaController extends IObservable {
 
+
     /**
      * gets learning Direction.
-     * @return learningDirection: true == Spanish --> German / flase == German --> Spanish
+     *
+     * @return learningDirection: true == Spanish --> German / flase == German
+     * --> Spanish
      */
     boolean isLearningDirection();
-    
+
     /**
      * sets Attribute learningDirection.
-     * @param learningDirection true == Spanish --> German / flase == German --> Spanish
+     *
+     * @param learningDirection true == Spanish --> German / flase == German -->
+     * Spanish
      */
     void setLearningDirection(boolean learningDirection);
 
@@ -45,12 +50,11 @@ public interface IKriSpaController extends IObservable {
     /**
      * finish Learning Session.
      */
-    void endLearningSession();
+    int endLearningSession();
 
     /**
-     * create new Learning Session
-     * Reads data KriSpa.txt containing Word pairs into databasis HashMap.
-     * Sets currentState to StateStart();
+     * create new Learning Session Reads data KriSpa.txt containing Word pairs
+     * into databasis HashMap. Sets currentState to StateStart();
      */
     void createNewLearningSession();
 
@@ -60,38 +64,55 @@ public interface IKriSpaController extends IObservable {
      * @param map map to be allocated
      */
     void allocateVoc(Map<String, String> map);
-    
+
     /**
      * Divides dic into one of five subMaps (vocMapCount0 ... vocMapCount4)
+     *
      * @param count count
      * @return TreeMap (e.g. vocMapCount0)
      */
     Map<String, String> divideDic(int count);
-    
+
     /**
      * return subset of the specific maps.
+     *
      * @return map containing x word pairs
      */
-    Map<String, String> getWords();
-    
+    Map<String, String> getWordMaps();
+
     /**
      * Minimal number of insertions, deletions and replacements needed for
      * transforming string a into string b.
+     *
      * @param a String a
      * @param b String b to be compared with a
      * @return result of Levenstein distance
      */
     int getLevensteinDistance(String a, String b);
-    
+
     /**
      * generate getter for vocMapCount* to get keyset to gui
+     *
      * @return Set
      */
-    Set<String> getMapKeys();
-    
+    Set<String> getSetKeys();
+
     /**
      * generate getter for vocMapCount* to get values to gui
-     * @return List with values 
+     *
+     * @return List with values
      */
-    List<String> getMapValues();
+    List<String> getListValues();
+
+    /**
+     * saves data to File.
+     *
+     * @param fileName FileName in Directory
+     */
+    void saveData(String fileName);
+
+    /**
+     * reallocates key and value pairs to dic in dataBasis.
+     */
+    void reallocateVoc();
 }

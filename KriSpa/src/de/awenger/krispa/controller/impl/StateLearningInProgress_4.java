@@ -24,7 +24,7 @@ public final class StateLearningInProgress_4 implements ILearningSessionState {
      */
     public StateLearningInProgress_4(final IKriSpaController cont) {
         this.controller = cont;
-        divideDic();
+        checkIfMapEntrys();
     }
 
     @Override
@@ -41,6 +41,15 @@ public final class StateLearningInProgress_4 implements ILearningSessionState {
     public void change() {
         // change state to StateLearningFinished
         this.controller.setCurrentState(new StateFinish(controller));
+    }
+    
+    @Override
+    public void checkIfMapEntrys() {
+        try {
+            divideDic();
+        } catch (Exception ex) {
+           change();
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package de.awenger.krispa.controller.impl;
 
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -9,7 +10,8 @@ import java.util.Map;
  *
  * @author Adrian Wenger
  */
-    public final class StateLearningInProgress_1 implements ILearningSessionState {
+public final class StateLearningInProgress_1 implements ILearningSessionState {
+
 
     /**
      * KriSpa Controller.
@@ -23,7 +25,7 @@ import java.util.Map;
      */
     public StateLearningInProgress_1(final IKriSpaController cont) {
         this.controller = cont;
-        divideDic();
+        checkIfMapEntrys();
     }
 
     @Override
@@ -40,6 +42,15 @@ import java.util.Map;
     public void change() {
         // change state to StateLearningInProgress_2
         this.controller.setCurrentState(new StateLearningInProgress_2(controller));
+    }
+
+    @Override
+    public void checkIfMapEntrys() {
+        try {
+            divideDic();
+        } catch (Exception ex) {
+           change();
+        }
     }
 
 }

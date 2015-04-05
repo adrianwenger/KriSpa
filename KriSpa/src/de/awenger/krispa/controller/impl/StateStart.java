@@ -3,7 +3,6 @@ package de.awenger.krispa.controller.impl;
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
 import java.util.Map;
-import java.util.TreeMap;
 
 
 /**
@@ -25,6 +24,7 @@ public final class StateStart implements ILearningSessionState {
      */
     public StateStart(final IKriSpaController cont) {
         this.controller = cont;
+        divideDic();
     }
 
     @Override
@@ -43,6 +43,11 @@ public final class StateStart implements ILearningSessionState {
         this.controller.setCurrentState(new StateLearningInProgress_1(controller));
         // passes map to allocateVoc
         this.controller.allocateVoc(this.controller.divideDic(0));
+    }
+
+    @Override
+    public void checkIfMapEntrys() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

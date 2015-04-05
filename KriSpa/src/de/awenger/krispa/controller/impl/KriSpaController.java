@@ -1,6 +1,5 @@
 package de.awenger.krispa.controller.impl;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
 import de.awenger.krispa.model.IDataBasis;
@@ -9,6 +8,7 @@ import de.awenger.krispa.model.impl.DataBasis;
 import de.awenger.krispa.util.observer.Observable;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -48,8 +48,13 @@ public final class KriSpaController extends Observable
     /**
      * maps to Store specific words to boxes.
      */
-    private Map<String, String> vocMapCount0, vocMapCount1, vocMapCount2, vocMapCount3, vocMapCount4;
+    private Map<String, String> vocMapCount0 = new HashMap<>();
+    private Map<String, String> vocMapCount1 = new HashMap<>();
+    private Map<String, String> vocMapCount2 = new HashMap<>();
+    private Map<String, String> vocMapCount3 = new HashMap<>();
+    private Map<String, String> vocMapCount4 = new HashMap<>();
 
+    
     public IDataBasis getDataBasis() {
         return this.dataBasis;
     }
@@ -85,29 +90,18 @@ public final class KriSpaController extends Observable
 
     @Override
     public void changeCurrentState() {
-        if (this.currentState instanceof StateStart) {
-            //this.setCurrentState(new StateInGame(this, calcController));
-            this.currentState.change();
-        } else {
-            // check if GameState will change
-            this.currentState.change();
-        }
+        this.currentState.change();
     }
 
     @Override
-    public void endLearningSession() {
-        if (this.currentState instanceof StateFinish) {
-            reallocateVoc();
-        }
-        saveData("/KriSpaData.txt");
+    public int endLearningSession() {
+        setCurrentState(new StateFinish(this));
+        this.getCurrentState().change();
+        return 1;
     }
 
-    /**
-     * saves data to File.
-     *
-     * @param fileName FileName in Directory
-     */
-    private void saveData(String fileName) {
+    @Override
+    public void saveData(String fileName) {
         Properties prop = new Properties();
         String dir = System.getProperty("user.dir");
         dataBasis.save(new File(dir + fileName));
@@ -137,37 +131,56 @@ public final class KriSpaController extends Observable
                 map.put(keys.getSpanVal(), dataBasis.getDic().get(keys));
             }
         }
-        // initialize words for specific ILearningSessionState
-        List<String> keys = new ArrayList<>(map.keySet());
-        Map<String, String> map1 = new TreeMap();
-        // add x words to map1 
-        int x = 20;
-        for (int i = 0; i < x; i++) {
-            String randomKey = keys.get(random.nextInt(keys.size()));
-            String value = map.get(randomKey);
-            map1.put(randomKey, value);
+        // if empty 
+        if (map.isEmpty()) {
+            return null;
+        } else {
+            // initialize words for specific ILearningSessionState
+            List<String> keys = new ArrayList<>(map.keySet());
+            Map<String, String> map1 = new TreeMap();
+            // add x words to map1 
+            int x = 20;
+            for (int i = 0; i < x; i++) {
+                String randomKey = keys.get(random.nextInt(keys.size()));
+                String value = map.get(randomKey);
+                map1.put(randomKey, value);
+            }
+            // returns map1 with x random key/value pairs
+            return map1;
         }
-        // returns map1 with x random key/value pairs
-        return map1;
     }
 
-    private void reallocateVoc() {
+    @Override
+    public void reallocateVoc() {
         // write divided maps back to dic
-        writeBackToDic(vocMapCount0, 0);
-        writeBackToDic(vocMapCount1, 1);
-        writeBackToDic(vocMapCount2, 2);
-        writeBackToDic(vocMapCount3, 3);
-        writeBackToDic(vocMapCount4, 4);
+        if (!vocMapCount0.isEmpty()) {
+            writeBackToDic(vocMapCount0, 0);
+        }
+        if (!vocMapCount1.isEmpty()) {
+            writeBackToDic(vocMapCount1, 1);
+        }
+        if (!vocMapCount2.isEmpty()) {
+            writeBackToDic(vocMapCount2, 2);
+        }
+        if (!vocMapCount3.isEmpty()) {
+            writeBackToDic(vocMapCount3, 3);
+        }
+        if (!vocMapCount4.isEmpty()) {
+            writeBackToDic(vocMapCount4, 4);
+        }
     }
 
     private void writeBackToDic(Map<String, String> map, int count) {
+        // first clear current dic
+        this.dataBasis.getDic().clear();
+        // than save data back
         for (Map.Entry<String, String> entry : map.entrySet()) {
             dataBasis.insert(count, entry.getKey(), entry.getValue());
         }
     }
 
     @Override
-    public Map<String, String> getWords() {
+    public Map<String, String> getWordMaps() {
         if (this.currentState instanceof StateStart) {
             return this.vocMapCount0;
         } else if (this.currentState instanceof StateLearningInProgress_1) {
@@ -195,9 +208,8 @@ public final class KriSpaController extends Observable
     }
 
     @Override
-    public Set<String> getMapKeys() {
+    public Set<String> getSetKeys() {
         if (currentState instanceof StateStart) {
-            List<String> l = new ArrayList<>();
             return this.vocMapCount0.keySet();
         } else if (currentState instanceof StateLearningInProgress_1) {
             return this.vocMapCount1.keySet();
@@ -210,20 +222,33 @@ public final class KriSpaController extends Observable
         }
     }
 
-    
     @Override
-    public List<String> getMapValues() {
+    public List<String> getListValues() {
+        List<String> list = new ArrayList<>();
+
         if (currentState instanceof StateStart) {
-            return (List) this.vocMapCount0.values();
+            for (String val : vocMapCount0.values()) {
+                list.add(val);
+            }
         } else if (currentState instanceof StateLearningInProgress_1) {
-            return (List) this.vocMapCount1.values();
+            for (String val : vocMapCount1.values()) {
+                list.add(val);
+            }
         } else if (currentState instanceof StateLearningInProgress_2) {
-            return (List) this.vocMapCount2.values();
+            for (String val : vocMapCount2.values()) {
+                list.add(val);
+            }
         } else if (currentState instanceof StateLearningInProgress_3) {
-            return (List) this.vocMapCount3.values();
+            for (String val : vocMapCount3.values()) {
+                list.add(val);
+            }
         } else {
-            return (List)  this.vocMapCount4.values();
+            for (String val : vocMapCount4.values()) {
+                list.add(val);
+            }
         }
+        return list;
+
     }
 
 }

@@ -33,6 +33,7 @@ public class ProgressBar extends JFrame {
     private void initComponents() {
 
         jProgressBar1 = new JProgressBar();
+        jProgressBar1.setStringPainted(true);
         jProgressBar1.setMinimum(MY_MINIMUM);
         jProgressBar1.setMaximum(MY_MAXIMUM);
         jLabel2 = new javax.swing.JLabel();
@@ -83,12 +84,13 @@ public class ProgressBar extends JFrame {
                     }
 
                 });
-                java.lang.Thread.sleep(25);
+                java.lang.Thread.sleep(5);
             } catch (InterruptedException e) {
                 ;
             }
         }
         dispose();
+        
     }
 
 }
