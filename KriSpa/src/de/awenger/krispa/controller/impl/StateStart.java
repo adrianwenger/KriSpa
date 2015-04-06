@@ -24,7 +24,6 @@ public final class StateStart implements ILearningSessionState {
      */
     public StateStart(final IKriSpaController cont) {
         this.controller = cont;
-        divideDic();
     }
 
     @Override

@@ -25,7 +25,6 @@ public final class StateLearningInProgress_1 implements ILearningSessionState {
      */
     public StateLearningInProgress_1(final IKriSpaController cont) {
         this.controller = cont;
-        checkIfMapEntrys();
     }
 
     @Override

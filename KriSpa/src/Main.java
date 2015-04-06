@@ -39,7 +39,8 @@ public class Main extends javax.swing.JFrame {
         jLabelStage5 = new javax.swing.JLabel();
         jLabelFlagImage = new javax.swing.JLabel();
         jButtonSolve = new javax.swing.JButton();
-        jButtonGo = new javax.swing.JButton();
+        jTextFieldResult = new javax.swing.JTextField();
+        jTextFieldProgress = new javax.swing.JTextField();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
@@ -49,8 +50,10 @@ public class Main extends javax.swing.JFrame {
         setTitle("KriSpa -- Vocabulary Platform");
 
         jLabelGermanWord.setBackground(new java.awt.Color(204, 204, 204));
+        jLabelGermanWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGermanWord.setBorder(javax.swing.BorderFactory.createTitledBorder("German Word"));
 
+        jTextFieldSpanishMeaning.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldSpanishMeaning.setText("....");
         jTextFieldSpanishMeaning.setBorder(javax.swing.BorderFactory.createTitledBorder("Spanish Meaning"));
         jTextFieldSpanishMeaning.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +74,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelLearningInProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +140,26 @@ public class Main extends javax.swing.JFrame {
 
         jButtonSolve.setText("solve");
 
-        jButtonGo.setText("go!");
+        jTextFieldResult.setBackground(new java.awt.Color(204, 204, 204));
+        jTextFieldResult.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
+        jTextFieldResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldResultActionPerformed(evt);
+            }
+        });
+
+        jTextFieldProgress.setEditable(false);
+        jTextFieldProgress.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        jTextFieldProgress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldProgress.setText("0/20");
+        jTextFieldProgress.setAutoscrolls(false);
+        jTextFieldProgress.setBorder(javax.swing.BorderFactory.createTitledBorder("progress"));
+        jTextFieldProgress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldProgressActionPerformed(evt);
+            }
+        });
 
         jMenuFile.setText("File");
 
@@ -156,53 +178,56 @@ public class Main extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelGermanWord, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jButtonSolve)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonGo)))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabelFlagImage)))
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                                .addGap(33, 33, 33)
+                                .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jTextFieldProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                    .addComponent(jLabelGermanWord, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldResult, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelFlagImage, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
                                 .addComponent(jLabelGermanWord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSolve)
-                            .addComponent(jButtonGo))
-                        .addContainerGap(45, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelFlagImage)
-                        .addGap(14, 14, 14))))
+                            .addComponent(jTextFieldResult))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelFlagImage))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))))
         );
 
         pack();
@@ -211,6 +236,14 @@ public class Main extends javax.swing.JFrame {
     private void jTextFieldSpanishMeaningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSpanishMeaningActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSpanishMeaningActionPerformed
+
+    private void jTextFieldResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldResultActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldResultActionPerformed
+
+    private void jTextFieldProgressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProgressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldProgressActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,7 +282,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonGo;
     private javax.swing.JButton jButtonSolve;
     private javax.swing.JLabel jLabelFlagImage;
     private javax.swing.JLabel jLabelGermanWord;
@@ -265,6 +297,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemSave;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelStage;
+    private javax.swing.JTextField jTextFieldProgress;
+    private javax.swing.JTextField jTextFieldResult;
     private javax.swing.JTextField jTextFieldSpanishMeaning;
     // End of variables declaration//GEN-END:variables
 }

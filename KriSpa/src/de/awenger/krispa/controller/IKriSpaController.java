@@ -1,5 +1,6 @@
 package de.awenger.krispa.controller;
 
+import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.util.observer.IObservable;
 import java.util.List;
 import java.util.Map;
@@ -115,4 +116,10 @@ public interface IKriSpaController extends IObservable {
      * reallocates key and value pairs to dic in dataBasis.
      */
     void reallocateVoc();
+    
+    /**
+     * saves recieved map back to correspondending vocMapCount*.
+     * @param map map processed in MainFrame
+     */
+    void setWordMaps( Map<IVocabularyKey, String> map);
 }

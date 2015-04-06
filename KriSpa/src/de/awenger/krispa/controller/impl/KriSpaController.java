@@ -53,6 +53,11 @@ public final class KriSpaController extends Observable
     private Map<String, String> vocMapCount2 = new HashMap<>();
     private Map<String, String> vocMapCount3 = new HashMap<>();
     private Map<String, String> vocMapCount4 = new HashMap<>();
+    private Map<IVocabularyKey, String> vocMapCount0_SaveBack = new HashMap<>();
+    private Map<IVocabularyKey, String> vocMapCount1_SaveBack = new HashMap<>();
+    private Map<IVocabularyKey, String> vocMapCount2_SaveBack = new HashMap<>();
+    private Map<IVocabularyKey, String> vocMapCount3_SaveBack = new HashMap<>();
+    private Map<IVocabularyKey, String> vocMapCount4_SaveBack = new HashMap<>();
 
     
     public IDataBasis getDataBasis() {
@@ -91,6 +96,7 @@ public final class KriSpaController extends Observable
     @Override
     public void changeCurrentState() {
         this.currentState.change();
+        this.currentState.checkIfMapEntrys();
     }
 
     @Override
@@ -154,28 +160,28 @@ public final class KriSpaController extends Observable
     public void reallocateVoc() {
         // write divided maps back to dic
         if (!vocMapCount0.isEmpty()) {
-            writeBackToDic(vocMapCount0, 0);
+            writeBackToDic(vocMapCount0_SaveBack, 0);
         }
         if (!vocMapCount1.isEmpty()) {
-            writeBackToDic(vocMapCount1, 1);
+            writeBackToDic(vocMapCount1_SaveBack, 1);
         }
         if (!vocMapCount2.isEmpty()) {
-            writeBackToDic(vocMapCount2, 2);
+            writeBackToDic(vocMapCount2_SaveBack, 2);
         }
         if (!vocMapCount3.isEmpty()) {
-            writeBackToDic(vocMapCount3, 3);
+            writeBackToDic(vocMapCount3_SaveBack, 3);
         }
         if (!vocMapCount4.isEmpty()) {
-            writeBackToDic(vocMapCount4, 4);
+            writeBackToDic(vocMapCount4_SaveBack, 4);
         }
     }
 
-    private void writeBackToDic(Map<String, String> map, int count) {
+    private void writeBackToDic(Map<IVocabularyKey, String> map, int count) {
         // first clear current dic
         this.dataBasis.getDic().clear();
         // than save data back
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            dataBasis.insert(count, entry.getKey(), entry.getValue());
+        for (Map.Entry<IVocabularyKey, String> entry : map.entrySet()) {
+            dataBasis.insert(count, entry.getKey().getSpanVal(), entry.getValue());
         }
     }
 
@@ -191,6 +197,21 @@ public final class KriSpaController extends Observable
             return this.vocMapCount3;
         } else {
             return this.vocMapCount4;
+        }
+    }
+    
+    @Override
+    public void setWordMaps( Map<IVocabularyKey, String> map) {
+        if (this.currentState instanceof StateStart) {
+            this.vocMapCount0_SaveBack = map;
+        } else if (this.currentState instanceof StateLearningInProgress_1) {
+            this.vocMapCount1_SaveBack = map;
+        } else if (this.currentState instanceof StateLearningInProgress_2) {
+           this.vocMapCount2_SaveBack = map;
+        } else if (this.currentState instanceof StateLearningInProgress_3) {
+            this.vocMapCount3_SaveBack = map;
+        } else {
+            this.vocMapCount4_SaveBack = map;
         }
     }
 

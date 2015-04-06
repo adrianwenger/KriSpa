@@ -5,11 +5,16 @@ import de.awenger.krispa.controller.impl.StateLearningInProgress_1;
 import de.awenger.krispa.controller.impl.StateLearningInProgress_2;
 import de.awenger.krispa.controller.impl.StateLearningInProgress_3;
 import de.awenger.krispa.controller.impl.StateLearningInProgress_4;
+import de.awenger.krispa.controller.impl.StateStart;
+import de.awenger.krispa.model.IVocabularyKey;
+import de.awenger.krispa.model.impl.VocabularyKey;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,13 +30,13 @@ class MainFrame extends JFrame implements ActionListener {
     // import map key/value pairs to gui
     private List<String> listKeys = new ArrayList<>();
     private List<String> listValues = new ArrayList<>();
-    private static int listLength;
+    private int listLength;
+    private Map<IVocabularyKey, String> mapProcessedWords = new HashMap<>();
+    private String[] arrayTextAreaValues;
+    private int arrayTextAreaValuesCount = 0;
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButtonGo;
     private javax.swing.JButton jButtonSolve;
-    private javax.swing.JButton jButtonQuestionNo;
-    private javax.swing.JButton jButtonQuestionYes;
     private javax.swing.JLabel jLabelFlagImage;
     private javax.swing.JLabel jLabelGermanWord;
     private javax.swing.JLabel jLabelLearningInProgress;
@@ -40,8 +45,7 @@ class MainFrame extends JFrame implements ActionListener {
     private javax.swing.JLabel jLabelStage3;
     private javax.swing.JLabel jLabelStage4;
     private javax.swing.JLabel jLabelStage5;
-    private javax.swing.JLabel jLabelResult;
-    private javax.swing.JLabel JLabelInfoCorrectWord;
+    private javax.swing.JTextArea jTextAreaResult;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenuItem jMenuItemExit;
@@ -49,12 +53,12 @@ class MainFrame extends JFrame implements ActionListener {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelStage;
     private javax.swing.JTextField jTextFieldSpanishMeaning;
-    private javax.swing.JLabel jLabelQuestionMoveOnCorrectly;
-
-    // End of variables declaration
+    private javax.swing.JTextField jTextFieldProgress;
     private final IKriSpaController controller;
     private String germanMeaning;
     private String spanishMeaning;
+    private int progressCount = 0;
+    // End of variables declaration
 
     public MainFrame(IKriSpaController controller) {
         this.controller = controller;
@@ -67,32 +71,29 @@ class MainFrame extends JFrame implements ActionListener {
         jTextFieldSpanishMeaning = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabelLearningInProgress = new javax.swing.JLabel();
-        jLabelResult = new javax.swing.JLabel();
         jPanelStage = new javax.swing.JPanel();
         jLabelStage1 = new javax.swing.JLabel();
         jLabelStage2 = new javax.swing.JLabel();
         jLabelStage3 = new javax.swing.JLabel();
         jLabelStage4 = new javax.swing.JLabel();
         jLabelStage5 = new javax.swing.JLabel();
-        JLabelInfoCorrectWord = new javax.swing.JLabel();
-        jLabelQuestionMoveOnCorrectly = new javax.swing.JLabel();
         jLabelFlagImage = new javax.swing.JLabel();
         jButtonSolve = new javax.swing.JButton();
-        jButtonGo = new javax.swing.JButton();
-        jButtonQuestionNo = new javax.swing.JButton();
-        jButtonQuestionYes = new javax.swing.JButton();
+        jTextAreaResult = new javax.swing.JTextArea();
+        jTextFieldProgress = new javax.swing.JTextField();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
         jMenuItemExit = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KriSpa -- Vocabulary Platform");
 
         jLabelGermanWord.setBackground(new java.awt.Color(204, 204, 204));
+        jLabelGermanWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGermanWord.setBorder(javax.swing.BorderFactory.createTitledBorder("German Word"));
-        jLabelGermanWord.setText("test");
 
+        jTextFieldSpanishMeaning.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldSpanishMeaning.setText("....");
         jTextFieldSpanishMeaning.setBorder(javax.swing.BorderFactory.createTitledBorder("Spanish Meaning"));
 
@@ -108,7 +109,7 @@ class MainFrame extends JFrame implements ActionListener {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelLearningInProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +124,6 @@ class MainFrame extends JFrame implements ActionListener {
         jLabelStage1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage1.setText("       Stage1");
         jLabelStage1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabelStage1.setBackground(Color.BLUE);
 
         jLabelStage2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage2.setText("       Stage2");
@@ -176,30 +176,23 @@ class MainFrame extends JFrame implements ActionListener {
         jButtonSolve.setText("solve");
         jButtonSolve.addActionListener(this);
 
-        jButtonGo.setText("Go!");
-        jButtonGo.addActionListener(this);
-        jButtonGo.setVisible(false);
+        jTextAreaResult.setBackground(new java.awt.Color(204, 204, 204));
+        jTextAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
 
-        jButtonQuestionNo.setText("No");
-        jButtonQuestionNo.setVisible(false);
-        jButtonQuestionNo.addActionListener(this);
-
-        jButtonQuestionYes.setText("Yes");
-        jButtonQuestionYes.setVisible(false);
-        jButtonQuestionYes.addActionListener(this);
+        jTextFieldProgress.setEditable(false);
+        jTextFieldProgress.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        jTextFieldProgress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldProgress.setText("0/20");
+        jTextFieldProgress.setAutoscrolls(false);
+        jTextFieldProgress.setBorder(javax.swing.BorderFactory.createTitledBorder("progress"));
 
         jMenuFile.setText("File");
 
         jMenuItemSave.setText("save...");
-        jMenuItemSave.addActionListener(this);
         jMenuFile.add(jMenuItemSave);
 
         jMenuItemExit.setText("exit");
-        jMenuItemExit.addActionListener(this);
         jMenuFile.add(jMenuItemExit);
-
-        jLabelQuestionMoveOnCorrectly.setText("Do you want to move on and commit as correct?");
-        jLabelQuestionMoveOnCorrectly.setVisible(false);
 
         jMenuBar.add(jMenuFile);
 
@@ -210,61 +203,56 @@ class MainFrame extends JFrame implements ActionListener {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addContainerGap()
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabelGermanWord, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addGap(53, 53, 53)
-                                                                        .addComponent(jButtonSolve)
-                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(jButtonGo)))
-                                                        .addComponent(jButtonQuestionNo)
-                                                        .addComponent(jButtonQuestionYes)
-                                                        .addComponent(jLabelQuestionMoveOnCorrectly)
-                                                        .addComponent(JLabelInfoCorrectWord)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(jLabelFlagImage)))
-                                        .addGap(34, 34, 34))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addContainerGap())))
+                                                        .addGap(33, 33, 33)
+                                                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                        .addGap(55, 55, 55)
+                                                        .addComponent(jTextFieldProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                                                .addComponent(jLabelGermanWord, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                        .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(45, 45, 45)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextAreaResult, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabelFlagImage, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(81, 81, 81))
+                                .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(layout.createSequentialGroup()
-                                                        .addGap(53, 53, 53)
                                                         .addComponent(jLabelGermanWord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(18, 18, 18)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addGap(45, 45, 45)
-                                                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(14, 14, 14)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jButtonSolve)
-                                                .addComponent(jLabelQuestionMoveOnCorrectly)
-                                                .addComponent(JLabelInfoCorrectWord)
-                                                .addComponent(jButtonGo))
-                                        .addComponent(jButtonQuestionNo)
-                                        .addComponent(jButtonQuestionYes)
-                                        .addContainerGap(45, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelFlagImage)
-                                        .addGap(14, 14, 14))))
+                                                .addComponent(jTextAreaResult))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelFlagImage))
+                                .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(40, 40, 40))))
         );
 
         pack();
@@ -272,7 +260,7 @@ class MainFrame extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        start();
+        initialize();
     }
 
     @Override
@@ -284,15 +272,25 @@ class MainFrame extends JFrame implements ActionListener {
             exit();
         } else if (source.equals(jButtonSolve)) {
             solve();
-            clearScreen();
-        } else if (source.equals(jButtonGo)) {
-            clearScreen();
-
-        } else if (source.equals(jButtonQuestionNo)) {
-
-        } else if (source.equals(jButtonQuestionYes)) {
-
         }
+    }
+
+    /**
+     * initializes MainFrame.
+     */
+    private void initialize() {
+        // get Map Content
+        for (String key : controller.getSetKeys()) {
+            listKeys.add(key);
+        }
+
+        listValues = controller.getListValues();
+        listLength = listKeys.size();
+        arrayTextAreaValues = new String[listLength];
+
+        this.jLabelStage1.setBackground(Color.BLUE);
+
+        moveToNextWord();
     }
 
     /**
@@ -312,14 +310,11 @@ class MainFrame extends JFrame implements ActionListener {
             // words matches exactly
             resultCorrect();
         } else if (result == 1) {
-            resultNearlyCorrect();
             // words nearly matches
-            this.jButtonSolve.setVisible(false);
-            this.jButtonGo.setVisible(true);
+            resultNearlyCorrect();
         } else {
+            // not match
             resultWrong();
-            // not match 
-
         }
         moveToNextWord();
     }
@@ -332,48 +327,13 @@ class MainFrame extends JFrame implements ActionListener {
         }
     }
 
-    private void resultCorrect() {
-        this.jLabelResult.setText("correct");
-        this.jLabelResult.setBackground(Color.GREEN);
-        this.jLabelResult.setVisible(true);
-        this.jButtonGo.setVisible(true);
-    }
-
-    private void resultNearlyCorrect() {
-        this.jLabelResult.setText("nearly...");
-        this.jLabelResult.setBackground(Color.ORANGE);
-        this.jLabelResult.setVisible(true);
-        this.jLabelQuestionMoveOnCorrectly.setVisible(true);
-        this.jButtonSolve.setVisible(false);
-        this.jButtonQuestionNo.setVisible(true);
-        this.jButtonQuestionYes.setVisible(true);
-    }
-
-    private void resultWrong() {
-        this.jLabelResult.setText("wrong");
-        this.jLabelResult.setBackground(Color.RED);
-        this.jButtonGo.setVisible(true);
-        this.JLabelInfoCorrectWord.setVisible(true);
-    }
-
-    /**
-     * get MapContent and save it to lokal static attributes.
-     */
-    private void getMapContent() {
-        for (String key : controller.getSetKeys()) {
-            listKeys.add(key);
-        }
-
-        listValues = controller.getListValues();
-        listLength = listKeys.size() - 1;
-    }
-
     /**
      * moves to next word pair and sets values to Label and textfield.
      */
     private void moveToNextWord() {
-        clearScreen();
         getWords();
+        increaseProgress();
+        filljTextAreaResult();
         jLabelGermanWord.setText(germanMeaning);
         jTextFieldSpanishMeaning.setText("...");
         jTextFieldSpanishMeaning.requestFocus();
@@ -385,8 +345,14 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void getWords() {
         if (listLength > 0) {
+            int index;
             Random rand = new Random();
-            int index = rand.nextInt(listLength);
+            if (listLength == 1) {
+                index = rand.nextInt(listLength);
+            } else {
+                index = rand.nextInt(listLength - 1);
+            }
+
             germanMeaning = listValues.get(index);
             listValues.remove(index);
 
@@ -395,42 +361,113 @@ class MainFrame extends JFrame implements ActionListener {
 
             listLength--;
         } else {
-            // wordlist processed change state to new learningSession
-            this.controller.changeCurrentState();
-            if (this.controller.getCurrentState() instanceof StateLearningInProgress_1) {
-                this.jLabelStage2.setBackground(Color.BLUE);
-                this.jLabelStage1.setBackground(Color.GRAY);
-            } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_2) {
-                this.jLabelStage3.setBackground(Color.BLUE);
-                this.jLabelStage2.setBackground(Color.GRAY);
-            } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_3) {
-                this.jLabelStage4.setBackground(Color.BLUE);
-                this.jLabelStage3.setBackground(Color.GRAY);
-            } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_4) {
-                this.jLabelStage5.setBackground(Color.BLUE);
-                this.jLabelStage4.setBackground(Color.GRAY);
-            }
+            moveStage();
+            initialize();
         }
 
     }
 
     /**
-     * clears the screen to process new word.
+     * increases progress.
      */
-    private void clearScreen() {
-        this.JLabelInfoCorrectWord.setVisible(false);
-        this.jButtonGo.setVisible(false);
-        this.jButtonQuestionNo.setVisible(false);
-        this.jButtonQuestionYes.setVisible(false);
-        this.jLabelQuestionMoveOnCorrectly.setVisible(false);
-
-        this.jButtonSolve.setVisible(true);
+    private void increaseProgress() {
+        progressCount++;
+        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/20");
     }
 
-    private void start() {
-        getMapContent();
-        getWords();
-        this.jLabelGermanWord.setText(germanMeaning);
+    /**
+     * saves correct Answers into temp Map.
+     */
+    private void resultCorrect() {
+        int count;
+        // increase correct answers
+        arrayTextAreaValuesCount++;
+        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " correct \n";
+        if (controller.getCurrentState() instanceof StateStart) {
+            count = 1;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
+            count = 2;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_2) {
+            count = 3;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_3) {
+            count = 4;
+        } else {
+            count = 99;
+        }
+        // print results to Text Area
+        mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
+    }
+
+    private void resultNearlyCorrect() {
+        int answer = JOptionPane.showConfirmDialog(this, "correct answer: " + "\t" + spanishMeaning + "\n" + "your answer: \t\b" + this.jTextFieldSpanishMeaning.getText() + "\n\n" + "Do you want to save as correct", "nearly Correct!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (answer == JOptionPane.YES_OPTION) {
+            resultCorrect();
+        } else {
+            resultWrong();
+        }
+    }
+
+    /**
+     * fills TextArea with already processed results.
+     */
+    private void filljTextAreaResult() {
+        for (int i = 0; i < arrayTextAreaValuesCount; i++) {
+            this.jTextAreaResult.append(arrayTextAreaValues[i]);
+        }
+    }
+
+    /**
+     * saves processed words back to processedWords.
+     */
+    private void resultWrong() {
+        int count;
+        arrayTextAreaValuesCount++;
+        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " wrong \n";
+        if (controller.getCurrentState() instanceof StateStart) {
+            count = 0;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
+            count = 1;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_2) {
+            count = 2;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_3) {
+            count = 3;
+        } else {
+            count = 4;
+        }
+        this.mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
+
+    }
+
+    /**
+     * move stage to next level. Set different values to 0 and change
+     * CurrentState.
+     */
+    private void moveStage() {
+        int count = 0;
+        progressCount = 0;
+        arrayTextAreaValuesCount = 0;
+        filljTextAreaResult();
+        this.controller.setWordMaps(mapProcessedWords);
+        mapProcessedWords.clear();
+        // wordlist processed change state to new learningSession
+        this.controller.changeCurrentState();
+        if (this.controller.getCurrentState() instanceof StateLearningInProgress_1) {
+            this.jLabelStage2.setBackground(Color.BLUE);
+            this.jLabelStage1.setBackground(Color.GRAY);
+        } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_2) {
+            this.jLabelStage3.setBackground(Color.BLUE);
+            this.jLabelStage2.setBackground(Color.GRAY);
+        } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_3) {
+            this.jLabelStage4.setBackground(Color.BLUE);
+            this.jLabelStage3.setBackground(Color.GRAY);
+        } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_4) {
+            this.jLabelStage5.setBackground(Color.BLUE);
+            this.jLabelStage4.setBackground(Color.GRAY);
+            if (count > 0) {
+                controller.endLearningSession();
+            }
+            count++;
+        }
     }
 
 }

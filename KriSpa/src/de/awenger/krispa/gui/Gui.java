@@ -30,7 +30,7 @@ public final class Gui extends JFrame implements IObserver {
 
         controller.createNewLearningSession();
         
-        new ProgressBar();
+        //new ProgressBar();
         
         // Configuration Frame also initializes MainFrame
         new ConfigurationFrame(this.controller);
