@@ -59,7 +59,6 @@ public final class KriSpaController extends Observable
     private Map<IVocabularyKey, String> vocMapCount3_SaveBack = new HashMap<>();
     private Map<IVocabularyKey, String> vocMapCount4_SaveBack = new HashMap<>();
 
-    
     public IDataBasis getDataBasis() {
         return this.dataBasis;
     }
@@ -90,7 +89,7 @@ public final class KriSpaController extends Observable
         String dir = System.getProperty("user.dir");
         dataBasis.read(new File(dir + "/KriSpaData.txt"));
         setCurrentState(new StateStart(this));
-        currentState.divideDic();
+        this.currentState.checkIfMapEntrys();
     }
 
     @Override
@@ -161,28 +160,30 @@ public final class KriSpaController extends Observable
 
     @Override
     public void reallocateVoc() {
+        // first clear actula records
+        dataBasis.getDic().clear();
         // write divided maps back to dic
         if (!vocMapCount0.isEmpty()) {
-            writeBackToDic(vocMapCount0_SaveBack, 0);
+            writeBackToDic(vocMapCount0_SaveBack);
         }
         if (!vocMapCount1.isEmpty()) {
-            writeBackToDic(vocMapCount1_SaveBack, 1);
+            writeBackToDic(vocMapCount1_SaveBack);
         }
         if (!vocMapCount2.isEmpty()) {
-            writeBackToDic(vocMapCount2_SaveBack, 2);
+            writeBackToDic(vocMapCount2_SaveBack);
         }
         if (!vocMapCount3.isEmpty()) {
-            writeBackToDic(vocMapCount3_SaveBack, 3);
+            writeBackToDic(vocMapCount3_SaveBack);
         }
         if (!vocMapCount4.isEmpty()) {
-            writeBackToDic(vocMapCount4_SaveBack, 4);
+            writeBackToDic(vocMapCount4_SaveBack);
         }
     }
 
-    private void writeBackToDic(Map<IVocabularyKey, String> map, int count) {
+    private void writeBackToDic(Map<IVocabularyKey, String> map) {
         // than save data back
         for (Map.Entry<IVocabularyKey, String> entry : map.entrySet()) {
-            dataBasis.insert(count, entry.getKey().getSpanVal(), entry.getValue());
+            dataBasis.insert(entry.getKey().getCount(), entry.getKey().getSpanVal(), entry.getValue());
         }
     }
 
@@ -200,19 +201,21 @@ public final class KriSpaController extends Observable
             return this.vocMapCount4;
         }
     }
-    
+
     @Override
-    public void setWordMaps( Map<IVocabularyKey, String> map) {
-        if (this.currentState instanceof StateStart) {
-            this.vocMapCount0_SaveBack.putAll(map);
-        } else if (this.currentState instanceof StateLearningInProgress_1) {
-            this.vocMapCount1_SaveBack.putAll(map);
-        } else if (this.currentState instanceof StateLearningInProgress_2) {
-           this.vocMapCount2_SaveBack.putAll(map);
-        } else if (this.currentState instanceof StateLearningInProgress_3) {
-            this.vocMapCount3_SaveBack.putAll(map);
-        } else {
-            this.vocMapCount4_SaveBack.putAll(map);
+    public void setWordMaps(Map<IVocabularyKey, String> map) {
+        if (!map.isEmpty()) {
+            if (this.currentState instanceof StateStart) {
+                this.vocMapCount0_SaveBack.putAll(map);
+            } else if (this.currentState instanceof StateLearningInProgress_1) {
+                this.vocMapCount1_SaveBack.putAll(map);
+            } else if (this.currentState instanceof StateLearningInProgress_2) {
+                this.vocMapCount2_SaveBack.putAll(map);
+            } else if (this.currentState instanceof StateLearningInProgress_3) {
+                this.vocMapCount3_SaveBack.putAll(map);
+            } else {
+                this.vocMapCount4_SaveBack.putAll(map);
+            }
         }
     }
 

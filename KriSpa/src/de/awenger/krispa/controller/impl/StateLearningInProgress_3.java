@@ -29,9 +29,7 @@ public final class StateLearningInProgress_3 implements ILearningSessionState {
 
     @Override
     public void divideDic() {
-        Map<String, String> vocMapCount3;
-        vocMapCount3 = this.controller.divideDic(3);
-        this.controller.allocateVoc(vocMapCount3);
+        this.controller.allocateVoc(this.controller.divideDic(3));
     }
 
     /**

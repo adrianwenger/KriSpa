@@ -33,7 +33,7 @@ public final class StateFinish implements ILearningSessionState {
     public void change() {
         this.controller.reallocateVoc();
         this.controller.saveData("/KriSpaData.txt");
-        System.exit(0);
+        //System.exit(0);
 
     }
 

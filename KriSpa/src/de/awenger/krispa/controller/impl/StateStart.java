@@ -2,7 +2,6 @@ package de.awenger.krispa.controller.impl;
 
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
-import java.util.Map;
 
 
 /**
@@ -28,9 +27,7 @@ public final class StateStart implements ILearningSessionState {
 
     @Override
     public void divideDic() {
-        Map<String, String> vocMapCount0;
-        vocMapCount0 = this.controller.divideDic(0);
-        this.controller.allocateVoc(vocMapCount0);
+        this.controller.allocateVoc(this.controller.divideDic(0));
     }
 
     /**
@@ -40,13 +37,15 @@ public final class StateStart implements ILearningSessionState {
     public void change() {
         // change state to StateLearningInProgress_1
         this.controller.setCurrentState(new StateLearningInProgress_1(controller));
-        // passes map to allocateVoc
-        //this.controller.allocateVoc(this.controller.divideDic(0));
     }
 
     @Override
     public void checkIfMapEntrys() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            divideDic();
+        } catch (Exception ex) {
+            change();
+        }
     }
 
 }

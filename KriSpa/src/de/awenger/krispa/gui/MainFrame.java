@@ -279,18 +279,21 @@ class MainFrame extends JFrame implements ActionListener {
      * initializes MainFrame.
      */
     private void initialize() {
-        // get Map Content
-        for (String key : controller.getSetKeys()) {
-            listKeys.add(key);
-        }
-
-        listValues = controller.getListValues();
-        listLength = listKeys.size();
-        arrayTextAreaValues = new String[listLength];
-
         this.jLabelStage1.setBackground(Color.BLUE);
+        try {
+            // get Map Content
+            for (String key : controller.getSetKeys()) {
+                listKeys.add(key);
 
-        moveToNextWord();
+                listValues = controller.getListValues();
+                listLength = listKeys.size();
+                arrayTextAreaValues = new String[listLength];
+                moveToNextWord();
+            }
+        } catch (Exception ex) {
+            moveStage();
+            moveToNextWord();
+        }
     }
 
     /**
