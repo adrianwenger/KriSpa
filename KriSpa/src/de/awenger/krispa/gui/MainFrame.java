@@ -453,16 +453,12 @@ class MainFrame extends JFrame implements ActionListener {
         this.controller.changeCurrentState();
         if (this.controller.getCurrentState() instanceof StateLearningInProgress_1) {
             this.jLabelStage2.setBackground(Color.BLUE);
-            this.jLabelStage1.setBackground(Color.GRAY);
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_2) {
             this.jLabelStage3.setBackground(Color.BLUE);
-            this.jLabelStage2.setBackground(Color.GRAY);
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_3) {
             this.jLabelStage4.setBackground(Color.BLUE);
-            this.jLabelStage3.setBackground(Color.GRAY);
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_4) {
             this.jLabelStage5.setBackground(Color.BLUE);
-            this.jLabelStage4.setBackground(Color.GRAY);
             if (count > 0) {
                 controller.endLearningSession();
             }

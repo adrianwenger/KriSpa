@@ -146,6 +146,9 @@ public final class KriSpaController extends Observable
             Map<String, String> map1 = new TreeMap();
             // add x words to map1 
             int x = 20;
+            if (map.size() < x) {
+                x = map.size();
+            }
             for (int i = 0; i < x; i++) {
                 String randomKey = keys.get(random.nextInt(keys.size()));
                 String value = map.get(randomKey);
@@ -177,8 +180,6 @@ public final class KriSpaController extends Observable
     }
 
     private void writeBackToDic(Map<IVocabularyKey, String> map, int count) {
-        // first clear current dic
-        this.dataBasis.getDic().clear();
         // than save data back
         for (Map.Entry<IVocabularyKey, String> entry : map.entrySet()) {
             dataBasis.insert(count, entry.getKey().getSpanVal(), entry.getValue());
@@ -203,15 +204,15 @@ public final class KriSpaController extends Observable
     @Override
     public void setWordMaps( Map<IVocabularyKey, String> map) {
         if (this.currentState instanceof StateStart) {
-            this.vocMapCount0_SaveBack = map;
+            this.vocMapCount0_SaveBack.putAll(map);
         } else if (this.currentState instanceof StateLearningInProgress_1) {
-            this.vocMapCount1_SaveBack = map;
+            this.vocMapCount1_SaveBack.putAll(map);
         } else if (this.currentState instanceof StateLearningInProgress_2) {
-           this.vocMapCount2_SaveBack = map;
+           this.vocMapCount2_SaveBack.putAll(map);
         } else if (this.currentState instanceof StateLearningInProgress_3) {
-            this.vocMapCount3_SaveBack = map;
+            this.vocMapCount3_SaveBack.putAll(map);
         } else {
-            this.vocMapCount4_SaveBack = map;
+            this.vocMapCount4_SaveBack.putAll(map);
         }
     }
 

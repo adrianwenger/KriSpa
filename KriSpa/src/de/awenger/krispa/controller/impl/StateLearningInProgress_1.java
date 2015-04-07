@@ -2,7 +2,6 @@ package de.awenger.krispa.controller.impl;
 
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.ILearningSessionState;
-import java.io.IOException;
 import java.util.Map;
 
 

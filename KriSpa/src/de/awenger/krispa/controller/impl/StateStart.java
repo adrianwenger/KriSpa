@@ -41,7 +41,7 @@ public final class StateStart implements ILearningSessionState {
         // change state to StateLearningInProgress_1
         this.controller.setCurrentState(new StateLearningInProgress_1(controller));
         // passes map to allocateVoc
-        this.controller.allocateVoc(this.controller.divideDic(0));
+        //this.controller.allocateVoc(this.controller.divideDic(0));
     }
 
     @Override
