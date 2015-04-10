@@ -124,6 +124,7 @@ class MainFrame extends JFrame implements ActionListener {
         jLabelStage1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage1.setText("       Stage1");
         jLabelStage1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+		jLabelStage1.setBackground(Color.BLUE);
 
         jLabelStage2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage2.setText("       Stage2");
@@ -279,59 +280,30 @@ class MainFrame extends JFrame implements ActionListener {
      * initializes MainFrame.
      */
     private void initialize() {
-        this.jLabelStage1.setBackground(Color.BLUE);
         try {
-            // get Map Content
-            for (String key : controller.getSetKeys()) {
-                listKeys.add(key);
-
-                listValues = controller.getListValues();
-                listLength = listKeys.size();
-                arrayTextAreaValues = new String[listLength];
-                moveToNextWord();
-            }
+			getMapContent();
+			moveToNextWord();
         } catch (Exception ex) {
             moveStage();
-            moveToNextWord();
+            initialize();
         }
     }
+	
+	/**
+	* get MapContent
+	* move through KeySet and save Keys and Values in Lists
+	*/
+	private void getMapContent() {
+		for (String key : controller.getSetKeys()) {
+			listKeys.add(key);
+		}
+		listValues = controller.getListValues();
+		listLength = listKeys.size();
+		arrayTextAreaValues = new String[listLength];
+	}
 
-    /**
-     * solves current round
-     *
-     * checks if the words in spanish value is inserted correctly. To compare
-     * the words the Levenstein* distance will be determined. If the return
-     * value is 0 --> words matches properly 1--> words nearly matches (1 letter
-     * does not match) 2--> words do not match (2 or more letters does not
-     * match)
-     */
-    private void solve() {
-        // checks if assumed result is correct
-        int result = this.controller.getLevensteinDistance(this.jTextFieldSpanishMeaning.getText(), spanishMeaning);
-
-        if (result == 0) {
-            // words matches exactly
-            resultCorrect();
-        } else if (result == 1) {
-            // words nearly matches
-            resultNearlyCorrect();
-        } else {
-            // not match
-            resultWrong();
-        }
-        moveToNextWord();
-    }
-
-    private void exit() {
-        int answer = JOptionPane.showConfirmDialog(this, "You want to quit?", "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (answer == JOptionPane.YES_OPTION) {
-            this.controller.endLearningSession();
-            System.exit(0);
-        }
-    }
-
-    /**
-     * moves to next word pair and sets values to Label and textfield.
+	/**
+     * moves to next word pair and sets values to jLabelGermanWord and initializes jTextFieldSpanishMeaning .
      */
     private void moveToNextWord() {
         getWords();
@@ -369,78 +341,8 @@ class MainFrame extends JFrame implements ActionListener {
         }
 
     }
-
-    /**
-     * increases progress.
-     */
-    private void increaseProgress() {
-        progressCount++;
-        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/20");
-    }
-
-    /**
-     * saves correct Answers into temp Map.
-     */
-    private void resultCorrect() {
-        int count;
-        // increase correct answers
-        arrayTextAreaValuesCount++;
-        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " correct \n";
-        if (controller.getCurrentState() instanceof StateStart) {
-            count = 1;
-        } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
-            count = 2;
-        } else if (controller.getCurrentState() instanceof StateLearningInProgress_2) {
-            count = 3;
-        } else if (controller.getCurrentState() instanceof StateLearningInProgress_3) {
-            count = 4;
-        } else {
-            count = 99;
-        }
-        // print results to Text Area
-        mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
-    }
-
-    private void resultNearlyCorrect() {
-        int answer = JOptionPane.showConfirmDialog(this, "correct answer: " + "\t" + spanishMeaning + "\n" + "your answer: \t\b" + this.jTextFieldSpanishMeaning.getText() + "\n\n" + "Do you want to save as correct", "nearly Correct!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (answer == JOptionPane.YES_OPTION) {
-            resultCorrect();
-        } else {
-            resultWrong();
-        }
-    }
-
-    /**
-     * fills TextArea with already processed results.
-     */
-    private void filljTextAreaResult() {
-        for (int i = 0; i < arrayTextAreaValuesCount; i++) {
-            this.jTextAreaResult.append(arrayTextAreaValues[i]);
-        }
-    }
-
-    /**
-     * saves processed words back to processedWords.
-     */
-    private void resultWrong() {
-        int count;
-        arrayTextAreaValuesCount++;
-        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " wrong \n";
-        if (controller.getCurrentState() instanceof StateStart) {
-            count = 0;
-        } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
-            count = 1;
-        } else if (controller.getCurrentState() instanceof StateLearningInProgress_2) {
-            count = 2;
-        } else if (controller.getCurrentState() instanceof StateLearningInProgress_3) {
-            count = 3;
-        } else {
-            count = 4;
-        }
-        this.mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
-
-    }
-
+	
+	
     /**
      * move stage to next level. Set different values to 0 and change
      * CurrentState.
@@ -468,5 +370,116 @@ class MainFrame extends JFrame implements ActionListener {
             count++;
         }
     }
+	
+	
+    /**
+     * solves current round
+     *
+     * checks if the words in spanish value is inserted correctly. To compare
+     * the words the Levenstein* distance will be determined. If the return
+     * value is 0 --> words matches properly 1--> words nearly matches (1 letter
+     * does not match) 2--> words do not match (2 or more letters does not
+     * match)
+     */
+    private void solve() {
+        // checks if assumed result is correct
+        int result = this.controller.getLevensteinDistance(this.jTextFieldSpanishMeaning.getText(), spanishMeaning);
+
+        if (result == 0) {
+            // words matches exactly
+            resultCorrect();
+        } else if (result == 1) {
+            // words nearly matches
+            resultNearlyCorrect();
+        } else {
+            // not match
+            resultWrong();
+        }
+        moveToNextWord();
+    } 
+
+    /**
+     * increases progress.
+     */
+    private void increaseProgress() {
+        progressCount++;
+        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + listLength);
+    }
+
+    /**
+     * saves correct Answers into temp Map.
+     */
+    private void resultCorrect() {
+        int count;
+        // increase correct answers
+        arrayTextAreaValuesCount++;
+        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " correct \n";
+        if (controller.getCurrentState() instanceof StateStart) {
+            count = 1;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
+            count = 2;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_2) {
+            count = 3;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_3) {
+            count = 4;
+        } else {
+            count = 99;
+        }
+        mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
+    }
+
+	/**
+	* if result is nearly correct ask User if he want to set this word as correct or wrong.
+	*/
+    private void resultNearlyCorrect() {
+        int answer = JOptionPane.showConfirmDialog(this, "correct answer: " + "\t" + spanishMeaning + "\n" + "your answer: \t\b" + this.jTextFieldSpanishMeaning.getText() + "\n\n" + "Do you want to save as correct", "nearly Correct!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (answer == JOptionPane.YES_OPTION) {
+            resultCorrect();
+        } else {
+            resultWrong();
+        }
+    }
+
+    /**
+     * saves processed words back to processedWords.
+     */
+    private void resultWrong() {
+        int count;
+        arrayTextAreaValuesCount++;
+        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " wrong \n";
+        if (controller.getCurrentState() instanceof StateStart) {
+            count = 0;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
+            count = 1;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_2) {
+            count = 2;
+        } else if (controller.getCurrentState() instanceof StateLearningInProgress_3) {
+            count = 3;
+        } else {
+            count = 4;
+        }
+        this.mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
+    }
+	
+	/**
+     * fills TextArea with already processed results.
+     */
+    private void filljTextAreaResult() {
+        for (int i = 0; i < arrayTextAreaValuesCount; i++) {
+            this.jTextAreaResult.append(arrayTextAreaValues[i]);
+        }
+    }
+	
+	/**
+	* exit Gui.
+	*/
+	private void exit() {
+        int answer = JOptionPane.showConfirmDialog(this, "You want to quit?", "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (answer == JOptionPane.YES_OPTION) {
+            this.controller.endLearningSession();
+            System.exit(0);
+        }
+    }
 
 }
+
