@@ -23,7 +23,6 @@ public final class StateFinish implements ILearningSessionState {
      */
     public StateFinish(final IKriSpaController cont) {
         this.controller = cont;
-        change();
     }
 
     /**
@@ -33,18 +32,16 @@ public final class StateFinish implements ILearningSessionState {
     public void change() {
         this.controller.reallocateVoc();
         this.controller.saveData("/KriSpaData.txt");
-        //System.exit(0);
-
     }
 
     @Override
     public void divideDic() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
     public void checkIfMapEntrys() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }

@@ -94,8 +94,12 @@ public final class KriSpaController extends Observable
 
     @Override
     public void changeCurrentState() {
-        this.currentState.change();
-        this.currentState.checkIfMapEntrys();
+        if (currentState instanceof StateFinish) {
+            this.currentState.change();
+        } else {
+            this.currentState.change();
+            this.currentState.checkIfMapEntrys();
+        }
     }
 
     @Override
@@ -136,25 +140,25 @@ public final class KriSpaController extends Observable
                 map.put(keys.getSpanVal(), dataBasis.getDic().get(keys));
             }
         }
-        // if empty 
         if (map.isEmpty()) {
             return null;
         } else {
+            return map;
             // initialize words for specific ILearningSessionState
-            List<String> keys = new ArrayList<>(map.keySet());
-            Map<String, String> map1 = new TreeMap();
-            // add x words to map1 
-            int x = 20;
-            if (map.size() < x) {
-                x = map.size();
-            }
-            for (int i = 0; i < x; i++) {
-                String randomKey = keys.get(random.nextInt(keys.size()));
-                String value = map.get(randomKey);
-                map1.put(randomKey, value);
-            }
-            // returns map1 with x random key/value pairs
-            return map1;
+//            List<String> keys = new ArrayList<>(map.keySet());
+//            Map<String, String> map1 = new TreeMap();
+//            // add x words to map1 
+//            int x = 20;
+//            if (map.size() < x) {
+//                x = map.size();
+//            }
+//            for (int i = 0; i < x; i++) {
+//                String randomKey = keys.get(random.nextInt(keys.size()));
+//                String value = map.get(randomKey);
+//                map1.put(randomKey, value);
+//            }
+//            // returns map1 with x random key/value pairs
+//            return map1;
         }
     }
 
@@ -163,19 +167,19 @@ public final class KriSpaController extends Observable
         // first clear actula records
         dataBasis.getDic().clear();
         // write divided maps back to dic
-        if (!vocMapCount0.isEmpty()) {
+        if (vocMapCount0 != null && !vocMapCount0.isEmpty()) {
             writeBackToDic(vocMapCount0_SaveBack);
         }
-        if (!vocMapCount1.isEmpty()) {
+        if (vocMapCount1 != null && !vocMapCount1.isEmpty()) {
             writeBackToDic(vocMapCount1_SaveBack);
         }
-        if (!vocMapCount2.isEmpty()) {
+        if (vocMapCount2 != null && !vocMapCount2.isEmpty()) {
             writeBackToDic(vocMapCount2_SaveBack);
         }
-        if (!vocMapCount3.isEmpty()) {
+        if (vocMapCount3 != null && !vocMapCount3.isEmpty()) {
             writeBackToDic(vocMapCount3_SaveBack);
         }
-        if (!vocMapCount4.isEmpty()) {
+        if (vocMapCount4 != null && !vocMapCount4.isEmpty()) {
             writeBackToDic(vocMapCount4_SaveBack);
         }
     }
@@ -187,20 +191,6 @@ public final class KriSpaController extends Observable
         }
     }
 
-    @Override
-    public Map<String, String> getWordMaps() {
-        if (this.currentState instanceof StateStart) {
-            return this.vocMapCount0;
-        } else if (this.currentState instanceof StateLearningInProgress_1) {
-            return this.vocMapCount1;
-        } else if (this.currentState instanceof StateLearningInProgress_2) {
-            return this.vocMapCount2;
-        } else if (this.currentState instanceof StateLearningInProgress_3) {
-            return this.vocMapCount3;
-        } else {
-            return this.vocMapCount4;
-        }
-    }
 
     @Override
     public void setWordMaps(Map<IVocabularyKey, String> map) {
@@ -233,21 +223,6 @@ public final class KriSpaController extends Observable
     }
 
     @Override
-    public Set<String> getSetKeys() {
-        if (currentState instanceof StateStart) {
-            return this.vocMapCount0.keySet();
-        } else if (currentState instanceof StateLearningInProgress_1) {
-            return this.vocMapCount1.keySet();
-        } else if (currentState instanceof StateLearningInProgress_2) {
-            return this.vocMapCount2.keySet();
-        } else if (currentState instanceof StateLearningInProgress_3) {
-            return this.vocMapCount3.keySet();
-        } else {
-            return this.vocMapCount4.keySet();
-        }
-    }
-
-    @Override
     public List<String> getListValues() {
         List<String> list = new ArrayList<>();
 
@@ -274,6 +249,41 @@ public final class KriSpaController extends Observable
         }
         return list;
 
+    }
+
+    @Override
+    public int removeKey(String key) {
+        if (currentState instanceof StateStart) {
+            this.vocMapCount0.remove(key);
+            return this.vocMapCount0.size();
+        } else if (currentState instanceof StateLearningInProgress_1) {
+            this.vocMapCount1.remove(key);
+            return this.vocMapCount1.size();
+        } else if (currentState instanceof StateLearningInProgress_2) {
+            this.vocMapCount2.remove(key);
+            return this.vocMapCount2.size();
+        } else if (currentState instanceof StateLearningInProgress_3) {
+            this.vocMapCount3.remove(key);
+            return this.vocMapCount3.size();
+        } else {
+            this.vocMapCount4.remove(key);
+            return this.vocMapCount4.size();
+        }
+    }
+
+    @Override
+    public Map<String, String> getMap() {
+        if (currentState instanceof StateStart) {
+            return this.vocMapCount0;
+        } else if (currentState instanceof StateLearningInProgress_1) {
+            return this.vocMapCount1;
+        } else if (currentState instanceof StateLearningInProgress_2) {
+            return this.vocMapCount2;
+        } else if (currentState instanceof StateLearningInProgress_3) {
+            return this.vocMapCount3;
+        } else {
+            return this.vocMapCount4;
+        }
     }
 
 }

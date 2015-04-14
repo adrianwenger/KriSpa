@@ -13,9 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -34,6 +36,7 @@ class MainFrame extends JFrame implements ActionListener {
     private Map<IVocabularyKey, String> mapProcessedWords = new HashMap<>();
     private String[] arrayTextAreaValues;
     private int arrayTextAreaValuesCount = 0;
+    private int stageCount = 0;
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonSolve;
@@ -58,6 +61,7 @@ class MainFrame extends JFrame implements ActionListener {
     private String germanMeaning;
     private String spanishMeaning;
     private int progressCount = 0;
+    private int vocMapLength;
     // End of variables declaration
 
     public MainFrame(IKriSpaController controller) {
@@ -124,7 +128,7 @@ class MainFrame extends JFrame implements ActionListener {
         jLabelStage1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage1.setText("       Stage1");
         jLabelStage1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-		jLabelStage1.setBackground(Color.BLUE);
+        //jLabelStage1.setBackground(Color.BLUE);
 
         jLabelStage2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage2.setText("       Stage2");
@@ -270,7 +274,7 @@ class MainFrame extends JFrame implements ActionListener {
         if (source.equals(jMenuItemSave)) {
             this.controller.endLearningSession();
         } else if (source.equals(jMenuItemExit)) {
-            exit();
+            exit("Do you want to quit KriSpa?");
         } else if (source.equals(jButtonSolve)) {
             solve();
         }
@@ -281,44 +285,68 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void initialize() {
         try {
-			getMapContent();
-			moveToNextWord();
+            if (!(controller.getCurrentState() instanceof StateLearningInProgress_4) || stageCount == 1) {
+                listLength = 1;
+            }
+            moveToNextWord();
         } catch (Exception ex) {
             moveStage();
             initialize();
         }
-    }
-	
-	/**
-	* get MapContent
-	* move through KeySet and save Keys and Values in Lists
-	*/
-	private void getMapContent() {
-		for (String key : controller.getSetKeys()) {
-			listKeys.add(key);
-		}
-		listValues = controller.getListValues();
-		listLength = listKeys.size();
-		arrayTextAreaValues = new String[listLength];
-	}
 
-	/**
-     * moves to next word pair and sets values to jLabelGermanWord and initializes jTextFieldSpanishMeaning .
+    }
+
+    /**
+     * moves to next word pair and sets values to jLabelGermanWord and
+     * initializes jTextFieldSpanishMeaning .
      */
     private void moveToNextWord() {
-        getWords();
-        increaseProgress();
-        filljTextAreaResult();
-        jLabelGermanWord.setText(germanMeaning);
-        jTextFieldSpanishMeaning.setText("...");
-        jTextFieldSpanishMeaning.requestFocus();
+        if (listLength > 1) {
+            if (getWords()) {
+                //increaseProgress();
+                //filljTextAreaResult();
+                jLabelGermanWord.setText(germanMeaning);
+                jTextFieldSpanishMeaning.setText("...");
+                jTextFieldSpanishMeaning.requestFocus();
+            } else {
+                moveStage();
+            }
+        } else {
+            getMapContent();
+            if (getWords()) {
+                //increaseProgress();
+                //filljTextAreaResult();
+                jLabelGermanWord.setText(germanMeaning);
+                jTextFieldSpanishMeaning.setText("...");
+                jTextFieldSpanishMeaning.requestFocus();
+            } else {
+                moveStage();
+                initialize();
+            }
+
+        }
+    }
+
+    /**
+     * get MapContent move through KeySet and save Keys and Values in Lists
+     */
+    private void getMapContent() {
+        if (!controller.getMap().isEmpty()) {
+            for (String key : controller.getMap().keySet()) {
+                listKeys.add(key);
+                listValues.add(controller.getMap().get(key));
+            }
+            listLength = listKeys.size();
+            this.controller.getMap().clear();
+            //arrayTextAreaValues = new String[listLength];
+        }
     }
 
     /**
      * get one specific key/value pair and save them to attributes
      *
      */
-    private void getWords() {
+    private boolean getWords() {
         if (listLength > 0) {
             int index;
             Random rand = new Random();
@@ -335,43 +363,46 @@ class MainFrame extends JFrame implements ActionListener {
             listKeys.remove(index);
 
             listLength--;
+            return true;
         } else {
-            moveStage();
-            initialize();
+            return false;
         }
 
     }
-	
-	
+
     /**
      * move stage to next level. Set different values to 0 and change
      * CurrentState.
      */
     private void moveStage() {
-        int count = 0;
         progressCount = 0;
         arrayTextAreaValuesCount = 0;
         filljTextAreaResult();
         this.controller.setWordMaps(mapProcessedWords);
         mapProcessedWords.clear();
         // wordlist processed change state to new learningSession
-        this.controller.changeCurrentState();
-        if (this.controller.getCurrentState() instanceof StateLearningInProgress_1) {
+        if (this.controller.getCurrentState() instanceof StateStart) {
+            this.controller.changeCurrentState();
+            this.jLabelStage1.setBackground(Color.BLUE);
+        } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_1) {
+            this.controller.changeCurrentState();
             this.jLabelStage2.setBackground(Color.BLUE);
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_2) {
+            this.controller.changeCurrentState();
             this.jLabelStage3.setBackground(Color.BLUE);
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_3) {
+            this.controller.changeCurrentState();
             this.jLabelStage4.setBackground(Color.BLUE);
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_4) {
-            this.jLabelStage5.setBackground(Color.BLUE);
-            if (count > 0) {
+            if (stageCount > 0) {
+                this.jLabelStage5.setBackground(Color.BLUE);
                 controller.endLearningSession();
+                exit("You finished your learning session" + "\n" + "Do you now want to quit KriSpa?");
             }
-            count++;
+            stageCount++;
         }
     }
-	
-	
+
     /**
      * solves current round
      *
@@ -396,7 +427,7 @@ class MainFrame extends JFrame implements ActionListener {
             resultWrong();
         }
         moveToNextWord();
-    } 
+    }
 
     /**
      * increases progress.
@@ -413,7 +444,7 @@ class MainFrame extends JFrame implements ActionListener {
         int count;
         // increase correct answers
         arrayTextAreaValuesCount++;
-        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " correct \n";
+        //arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " correct \n";
         if (controller.getCurrentState() instanceof StateStart) {
             count = 1;
         } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
@@ -428,9 +459,10 @@ class MainFrame extends JFrame implements ActionListener {
         mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
     }
 
-	/**
-	* if result is nearly correct ask User if he want to set this word as correct or wrong.
-	*/
+    /**
+     * if result is nearly correct ask User if he want to set this word as
+     * correct or wrong.
+     */
     private void resultNearlyCorrect() {
         int answer = JOptionPane.showConfirmDialog(this, "correct answer: " + "\t" + spanishMeaning + "\n" + "your answer: \t\b" + this.jTextFieldSpanishMeaning.getText() + "\n\n" + "Do you want to save as correct", "nearly Correct!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (answer == JOptionPane.YES_OPTION) {
@@ -446,7 +478,7 @@ class MainFrame extends JFrame implements ActionListener {
     private void resultWrong() {
         int count;
         arrayTextAreaValuesCount++;
-        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " wrong \n";
+        //arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " wrong \n";
         if (controller.getCurrentState() instanceof StateStart) {
             count = 0;
         } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
@@ -460,8 +492,8 @@ class MainFrame extends JFrame implements ActionListener {
         }
         this.mapProcessedWords.put(new VocabularyKey(count, spanishMeaning), germanMeaning);
     }
-	
-	/**
+
+    /**
      * fills TextArea with already processed results.
      */
     private void filljTextAreaResult() {
@@ -469,12 +501,12 @@ class MainFrame extends JFrame implements ActionListener {
             this.jTextAreaResult.append(arrayTextAreaValues[i]);
         }
     }
-	
-	/**
-	* exit Gui.
-	*/
-	private void exit() {
-        int answer = JOptionPane.showConfirmDialog(this, "You want to quit?", "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+    /**
+     * exit Gui.
+     */
+    private void exit(String question) {
+        int answer = JOptionPane.showConfirmDialog(this, question, "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (answer == JOptionPane.YES_OPTION) {
             this.controller.endLearningSession();
             System.exit(0);
@@ -482,4 +514,3 @@ class MainFrame extends JFrame implements ActionListener {
     }
 
 }
-

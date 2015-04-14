@@ -75,13 +75,6 @@ public interface IKriSpaController extends IObservable {
     Map<String, String> divideDic(int count);
 
     /**
-     * return subset of the specific maps.
-     *
-     * @return map containing x word pairs
-     */
-    Map<String, String> getWordMaps();
-
-    /**
      * Minimal number of insertions, deletions and replacements needed for
      * transforming string a into string b.
      *
@@ -90,13 +83,6 @@ public interface IKriSpaController extends IObservable {
      * @return result of Levenstein distance
      */
     int getLevensteinDistance(String a, String b);
-
-    /**
-     * generate getter for vocMapCount* to get keyset to gui
-     *
-     * @return Set
-     */
-    Set<String> getSetKeys();
 
     /**
      * generate getter for vocMapCount* to get values to gui
@@ -122,4 +108,16 @@ public interface IKriSpaController extends IObservable {
      * @param map map processed in MainFrame
      */
     void setWordMaps( Map<IVocabularyKey, String> map);
+
+    /**
+     * removes key after being processed in MainFrame.
+     * @param key 
+     */
+    int removeKey(String key);
+    
+    /**
+     * returns vocMapsCount* maps.
+     * @return vocMapCount*
+     */
+    Map<String, String> getMap();
 }
