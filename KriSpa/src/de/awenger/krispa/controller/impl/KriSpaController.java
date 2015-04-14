@@ -167,21 +167,11 @@ public final class KriSpaController extends Observable
         // first clear actula records
         dataBasis.getDic().clear();
         // write divided maps back to dic
-        if (vocMapCount0 != null && !vocMapCount0.isEmpty()) {
-            writeBackToDic(vocMapCount0_SaveBack);
-        }
-        if (vocMapCount1 != null && !vocMapCount1.isEmpty()) {
-            writeBackToDic(vocMapCount1_SaveBack);
-        }
-        if (vocMapCount2 != null && !vocMapCount2.isEmpty()) {
-            writeBackToDic(vocMapCount2_SaveBack);
-        }
-        if (vocMapCount3 != null && !vocMapCount3.isEmpty()) {
-            writeBackToDic(vocMapCount3_SaveBack);
-        }
-        if (vocMapCount4 != null && !vocMapCount4.isEmpty()) {
-            writeBackToDic(vocMapCount4_SaveBack);
-        }
+        writeBackToDic(vocMapCount0_SaveBack);
+        writeBackToDic(vocMapCount1_SaveBack);
+        writeBackToDic(vocMapCount2_SaveBack);
+        writeBackToDic(vocMapCount3_SaveBack);
+        writeBackToDic(vocMapCount4_SaveBack);
     }
 
     private void writeBackToDic(Map<IVocabularyKey, String> map) {
@@ -190,7 +180,6 @@ public final class KriSpaController extends Observable
             dataBasis.insert(entry.getKey().getCount(), entry.getKey().getSpanVal(), entry.getValue());
         }
     }
-
 
     @Override
     public void setWordMaps(Map<IVocabularyKey, String> map) {
@@ -284,6 +273,11 @@ public final class KriSpaController extends Observable
         } else {
             return this.vocMapCount4;
         }
+    }
+    
+    @Override
+    public void activate99ers() {
+        System.out.println("not implemented at the moment");
     }
 
 }

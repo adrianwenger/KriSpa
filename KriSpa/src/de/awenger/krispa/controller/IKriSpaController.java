@@ -4,7 +4,6 @@ import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.util.observer.IObservable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 
 /**
@@ -120,4 +119,9 @@ public interface IKriSpaController extends IObservable {
      * @return vocMapCount*
      */
     Map<String, String> getMap();
+
+    /**
+     * activates already finished vocabularys and sets them to 0.
+     */
+    public void activate99ers();
 }

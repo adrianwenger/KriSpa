@@ -9,15 +9,14 @@ import de.awenger.krispa.controller.impl.StateStart;
 import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.model.impl.VocabularyKey;
 import java.awt.Color;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -30,10 +29,10 @@ class MainFrame extends JFrame implements ActionListener {
 
 
     // import map key/value pairs to gui
-    private List<String> listKeys = new ArrayList<>();
-    private List<String> listValues = new ArrayList<>();
+    private final List<String> listKeys = new ArrayList<>();
+    private final List<String> listValues = new ArrayList<>();
     private int listLength;
-    private Map<IVocabularyKey, String> mapProcessedWords = new HashMap<>();
+    private final Map<IVocabularyKey, String> mapProcessedWords = new HashMap<>();
     private String[] arrayTextAreaValues;
     private int arrayTextAreaValuesCount = 0;
     private int stageCount = 0;
@@ -51,8 +50,10 @@ class MainFrame extends JFrame implements ActionListener {
     private javax.swing.JTextArea jTextAreaResult;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuFile;
+    private javax.swing.JMenu jMenuEdit;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemSave;
+    private javax.swing.JMenuItem jMenuItemEditSettings;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelStage;
     private javax.swing.JTextField jTextFieldSpanishMeaning;
@@ -87,8 +88,10 @@ class MainFrame extends JFrame implements ActionListener {
         jTextFieldProgress = new javax.swing.JTextField();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
+        jMenuEdit = new javax.swing.JMenu();
         jMenuItemSave = new javax.swing.JMenuItem();
         jMenuItemExit = new javax.swing.JMenuItem();
+        jMenuItemEditSettings = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KriSpa -- Vocabulary Platform");
@@ -192,6 +195,7 @@ class MainFrame extends JFrame implements ActionListener {
         jTextFieldProgress.setBorder(javax.swing.BorderFactory.createTitledBorder("progress"));
 
         jMenuFile.setText("File");
+        jMenuEdit.setText("Edit");
 
         jMenuItemSave.setText("save...");
         jMenuFile.add(jMenuItemSave);
@@ -199,7 +203,11 @@ class MainFrame extends JFrame implements ActionListener {
         jMenuItemExit.setText("exit");
         jMenuFile.add(jMenuItemExit);
 
+        jMenuEdit.add(jMenuItemEditSettings);
+        
+        
         jMenuBar.add(jMenuFile);
+        jMenuBar.add(jMenuEdit);
 
         setJMenuBar(jMenuBar);
 
@@ -272,9 +280,11 @@ class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source.equals(jMenuItemSave)) {
-            this.controller.endLearningSession();
+            exit("KriSpa saved! Do you want to quit?");
         } else if (source.equals(jMenuItemExit)) {
             exit("Do you want to quit KriSpa?");
+        } else if (source.equals(jMenuItemEditSettings)) {
+            controller.activate99ers();
         } else if (source.equals(jButtonSolve)) {
             solve();
         }
@@ -285,15 +295,14 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void initialize() {
         try {
-            if (!(controller.getCurrentState() instanceof StateLearningInProgress_4) || stageCount == 1) {
-                listLength = 1;
-            }
+//            if (!(controller.getCurrentState() instanceof StateLearningInProgress_4) || stageCount == 1) {
+//                listLength = 1;
+//            }
             moveToNextWord();
         } catch (Exception ex) {
             moveStage();
             initialize();
         }
-
     }
 
     /**
@@ -338,7 +347,7 @@ class MainFrame extends JFrame implements ActionListener {
             }
             listLength = listKeys.size();
             this.controller.getMap().clear();
-            //arrayTextAreaValues = new String[listLength];
+            arrayTextAreaValues = new String[listLength];
         }
     }
 
@@ -396,7 +405,6 @@ class MainFrame extends JFrame implements ActionListener {
         } else if (this.controller.getCurrentState() instanceof StateLearningInProgress_4) {
             if (stageCount > 0) {
                 this.jLabelStage5.setBackground(Color.BLUE);
-                controller.endLearningSession();
                 exit("You finished your learning session" + "\n" + "Do you now want to quit KriSpa?");
             }
             stageCount++;

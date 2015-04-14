@@ -1,5 +1,5 @@
-0	taxi	bussle
-1	cerveza	bier
+1	taxi	bussle
 2	ola	hallo
 3	adios	tschüss
-4	amore	liebe
+2	cerveza	bier
+99	amore	liebe
