@@ -54,6 +54,7 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public void save(File f) {
+        //f.copy(f.getPath(), f.getPath().concat("/temp").concat(System.getProperty(null)), preserveFileDate);
         PrintWriter out = null;
         try {
             out = new PrintWriter(f);

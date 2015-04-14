@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
 import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
 
@@ -53,11 +52,11 @@ public final class KriSpaController extends Observable
     private Map<String, String> vocMapCount2 = new HashMap<>();
     private Map<String, String> vocMapCount3 = new HashMap<>();
     private Map<String, String> vocMapCount4 = new HashMap<>();
-    private Map<IVocabularyKey, String> vocMapCount0_SaveBack = new HashMap<>();
-    private Map<IVocabularyKey, String> vocMapCount1_SaveBack = new HashMap<>();
-    private Map<IVocabularyKey, String> vocMapCount2_SaveBack = new HashMap<>();
-    private Map<IVocabularyKey, String> vocMapCount3_SaveBack = new HashMap<>();
-    private Map<IVocabularyKey, String> vocMapCount4_SaveBack = new HashMap<>();
+    private final Map<IVocabularyKey, String> vocMapCount0_SaveBack = new HashMap<>();
+    private final Map<IVocabularyKey, String> vocMapCount1_SaveBack = new HashMap<>();
+    private final Map<IVocabularyKey, String> vocMapCount2_SaveBack = new HashMap<>();
+    private final Map<IVocabularyKey, String> vocMapCount3_SaveBack = new HashMap<>();
+    private final Map<IVocabularyKey, String> vocMapCount4_SaveBack = new HashMap<>();
 
     public IDataBasis getDataBasis() {
         return this.dataBasis;
