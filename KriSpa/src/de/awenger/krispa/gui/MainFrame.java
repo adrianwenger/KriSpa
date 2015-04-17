@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 
 /**
@@ -57,11 +59,12 @@ class MainFrame extends JFrame implements ActionListener {
     private javax.swing.JPanel jPanelStage;
     private javax.swing.JTextField jTextFieldSpanishMeaning;
     private javax.swing.JTextField jTextFieldProgress;
+
     private final IKriSpaController controller;
     private String germanMeaning;
     private String spanishMeaning;
     private int progressCount = 0;
-    private int vocMapLength;
+    private int result;
     // End of variables declaration
 
     public MainFrame(IKriSpaController controller) {
@@ -100,7 +103,6 @@ class MainFrame extends JFrame implements ActionListener {
         jLabelGermanWord.setBorder(javax.swing.BorderFactory.createTitledBorder("German Word"));
 
         jTextFieldSpanishMeaning.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldSpanishMeaning.setText("....");
         jTextFieldSpanishMeaning.setBorder(javax.swing.BorderFactory.createTitledBorder("Spanish Meaning"));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -186,6 +188,11 @@ class MainFrame extends JFrame implements ActionListener {
 
         jTextAreaResult.setBackground(new java.awt.Color(204, 204, 204));
         jTextAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
+        jTextAreaResult.setEditable(false);
+        jTextAreaResult.setRows(12);
+        JScrollPane scrollPanel = new JScrollPane(jTextAreaResult);
+        scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         jTextFieldProgress.setEditable(false);
         jTextFieldProgress.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
@@ -238,7 +245,7 @@ class MainFrame extends JFrame implements ActionListener {
                                                         .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(45, 45, 45)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextAreaResult, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabelFlagImage, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())
         );
@@ -259,7 +266,7 @@ class MainFrame extends JFrame implements ActionListener {
                                                         .addComponent(jLabelGermanWord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(jTextAreaResult))
+                                                .addComponent(scrollPanel))
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabelFlagImage))
                                 .addGroup(layout.createSequentialGroup()
@@ -312,10 +319,9 @@ class MainFrame extends JFrame implements ActionListener {
     private void moveToNextWord() {
         if (listLength > 1) {
             if (getWords()) {
-                //increaseProgress();
-                //filljTextAreaResult();
+                increaseProgress();
+                filljTextAreaResult();
                 jLabelGermanWord.setText(germanMeaning);
-                jTextFieldSpanishMeaning.setText("...");
                 jTextFieldSpanishMeaning.requestFocus();
             } else {
                 moveStage();
@@ -323,10 +329,9 @@ class MainFrame extends JFrame implements ActionListener {
         } else {
             getMapContent();
             if (getWords()) {
-                //increaseProgress();
-                //filljTextAreaResult();
+                increaseProgress();
+                filljTextAreaResult();
                 jLabelGermanWord.setText(germanMeaning);
-                jTextFieldSpanishMeaning.setText("...");
                 jTextFieldSpanishMeaning.requestFocus();
             } else {
                 moveStage();
@@ -364,7 +369,6 @@ class MainFrame extends JFrame implements ActionListener {
             } else {
                 index = rand.nextInt(listLength - 1);
             }
-
             germanMeaning = listValues.get(index);
             listValues.remove(index);
 
@@ -393,7 +397,6 @@ class MainFrame extends JFrame implements ActionListener {
                 JOptionPane.WARNING_MESSAGE);
         progressCount = 0;
         arrayTextAreaValuesCount = 0;
-        filljTextAreaResult();
         this.controller.setWordMaps(mapProcessedWords);
         mapProcessedWords.clear();
         // wordlist processed change state to new learningSession
@@ -449,7 +452,7 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void increaseProgress() {
         progressCount++;
-        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + listLength);
+        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + "20");
     }
 
     /**
@@ -459,7 +462,8 @@ class MainFrame extends JFrame implements ActionListener {
         int count;
         // increase correct answers
         arrayTextAreaValuesCount++;
-        //arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " correct \n";
+        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " - correct";
+        result = 1;
         if (controller.getCurrentState() instanceof StateStart) {
             count = 1;
         } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
@@ -479,7 +483,8 @@ class MainFrame extends JFrame implements ActionListener {
      * correct or wrong.
      */
     private void resultNearlyCorrect() {
-        int answer = JOptionPane.showConfirmDialog(this, "correct answer: " + "\t" + spanishMeaning + "\n" + "your answer: \t\b" + this.jTextFieldSpanishMeaning.getText() + "\n\n" + "Do you want to save as correct", "nearly Correct!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int answer = JOptionPane.showConfirmDialog(this, "correct answer: " + "\t" + spanishMeaning + "\n" + "your answer: \t\b" + this.jTextFieldSpanishMeaning.getText() + "\n\n" + "Do you want to save as correct", "Answer nearly Correct!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        result = 0;
         if (answer == JOptionPane.YES_OPTION) {
             resultCorrect();
         } else {
@@ -493,7 +498,11 @@ class MainFrame extends JFrame implements ActionListener {
     private void resultWrong() {
         int count;
         arrayTextAreaValuesCount++;
-        //arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " wrong \n";
+        arrayTextAreaValues[arrayTextAreaValuesCount - 1] = germanMeaning + " - wrong";
+        result = 2;
+        // show message to user
+        JOptionPane.showMessageDialog(null,
+                "Correct answer: \n" + spanishMeaning, "Answer wrong!!!", JOptionPane.WARNING_MESSAGE);
         if (controller.getCurrentState() instanceof StateStart) {
             count = 0;
         } else if (controller.getCurrentState() instanceof StateLearningInProgress_1) {
@@ -512,8 +521,18 @@ class MainFrame extends JFrame implements ActionListener {
      * fills TextArea with already processed results.
      */
     private void filljTextAreaResult() {
+        // clears TextArea 
+        jTextAreaResult.setText("");
+        // fill TextArea
         for (int i = 0; i < arrayTextAreaValuesCount; i++) {
-            this.jTextAreaResult.append(arrayTextAreaValues[i]);
+            this.jTextAreaResult.append(arrayTextAreaValues[i] + "\n");
+            if (result == 0) {
+                jTextAreaResult.setForeground(Color.ORANGE);
+            } else if (result == 1) {
+                jTextAreaResult.setForeground(Color.GREEN);
+            } else {
+                jTextAreaResult.setForeground(Color.RED);
+            }
         }
     }
 
