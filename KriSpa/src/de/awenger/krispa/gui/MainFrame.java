@@ -9,7 +9,6 @@ import de.awenger.krispa.controller.impl.StateStart;
 import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.model.impl.VocabularyKey;
 import java.awt.Color;
-import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -183,6 +182,7 @@ class MainFrame extends JFrame implements ActionListener {
 
         jButtonSolve.setText("solve");
         jButtonSolve.addActionListener(this);
+        this.getRootPane().setDefaultButton(jButtonSolve);
 
         jTextAreaResult.setBackground(new java.awt.Color(204, 204, 204));
         jTextAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
@@ -204,8 +204,7 @@ class MainFrame extends JFrame implements ActionListener {
         jMenuFile.add(jMenuItemExit);
 
         jMenuEdit.add(jMenuItemEditSettings);
-        
-        
+
         jMenuBar.add(jMenuFile);
         jMenuBar.add(jMenuEdit);
 
@@ -277,6 +276,7 @@ class MainFrame extends JFrame implements ActionListener {
     }
 
     @Override
+
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source.equals(jMenuItemSave)) {
@@ -384,6 +384,13 @@ class MainFrame extends JFrame implements ActionListener {
      * CurrentState.
      */
     private void moveStage() {
+        // increase Stage Counter
+        stageCount++;
+        // show message to user
+        JOptionPane.showMessageDialog(null,
+                "You reached Stage" + stageCount,
+                "Info",
+                JOptionPane.WARNING_MESSAGE);
         progressCount = 0;
         arrayTextAreaValuesCount = 0;
         filljTextAreaResult();

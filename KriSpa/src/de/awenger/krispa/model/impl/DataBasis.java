@@ -7,6 +7,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.LineNumberReader;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -54,7 +62,18 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public void save(File f) {
-        //f.copy(f.getPath(), f.getPath().concat("/temp").concat(System.getProperty(null)), preserveFileDate);
+        // First copy old KriSpaData.txt to .../temp directory, including Dat/Time Stamp
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+        String source = f.getPath();
+        String destination = f.getParent().concat("/temp/KriSpaData_").concat(dateFormat.format(cal.getTime()).concat(".txt"));
+        try {
+            Files.copy(Paths.get(source), Paths.get(destination), REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(DataBasis.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Save Data to KriSpaData.txt
         PrintWriter out = null;
         try {
             out = new PrintWriter(f);

@@ -142,29 +142,29 @@ public final class KriSpaController extends Observable
         if (map.isEmpty()) {
             return null;
         } else {
-            return map;
-            // initialize words for specific ILearningSessionState
-//            List<String> keys = new ArrayList<>(map.keySet());
-//            Map<String, String> map1 = new TreeMap();
-//            // add x words to map1 
-//            int x = 20;
-//            if (map.size() < x) {
-//                x = map.size();
-//            }
-//            for (int i = 0; i < x; i++) {
-//                String randomKey = keys.get(random.nextInt(keys.size()));
-//                String value = map.get(randomKey);
-//                map1.put(randomKey, value);
-//            }
-//            // returns map1 with x random key/value pairs
-//            return map1;
+             //initialize words for specific ILearningSessionState
+            List<String> keys = new ArrayList<>(map.keySet());
+            Map<String, String> map1 = new TreeMap();
+            // add x words to map1 
+            int x = 20;
+            if (map.size() < x) {
+                x = map.size();
+            }
+            for (int i = 0; i < x; i++) {
+                String randomKey = keys.get(random.nextInt(keys.size()));
+                String value = map.get(randomKey);
+                map1.put(randomKey, value);
+                map.remove(randomKey);
+            }
+            // returns map1 with x random key/value pairs
+            return map1;
         }
     }
 
     @Override
     public void reallocateVoc() {
         // first clear actula records
-        dataBasis.getDic().clear();
+        //dataBasis.getDic().clear();
         // write divided maps back to dic
         writeBackToDic(vocMapCount0_SaveBack);
         writeBackToDic(vocMapCount1_SaveBack);

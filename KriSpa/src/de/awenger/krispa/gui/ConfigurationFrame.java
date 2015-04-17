@@ -84,6 +84,7 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
 
         jButtonStart.setText("Start");
         jButtonStart.addActionListener(this);
+        this.getRootPane().setDefaultButton(jButtonStart);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -121,7 +122,6 @@ public class ConfigurationFrame extends JFrame implements ActionListener {
         );
 
         pack();
-        this.jButtonStart.requestFocus();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
