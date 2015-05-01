@@ -2,19 +2,26 @@ package de.awenger.krispa.model.impl;
 
 import de.awenger.krispa.model.IDataBasis;
 import de.awenger.krispa.model.IVocabularyKey;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -40,13 +47,15 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public void read(File f) {
-        LineNumberReader in = null;
         try {
             dic.clear();
+            BufferedReader in = null;
+            in = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.ISO_8859_1.name()));
             in = new LineNumberReader(new FileReader(f));
             String line;
             while ((line = in.readLine()) != null) {
                 String[] sf = line.split("\t");
+
                 if (sf.length == 2) {
                     insert(0, sf[0], sf[1]); // count = 0
                 } else if (sf.length == 3) {
@@ -74,13 +83,13 @@ public final class DataBasis implements IDataBasis {
         }
 
         // Save Data to KriSpaData.txt
-        PrintWriter out = null;
+        BufferedWriter out = null;
         try {
-            out = new PrintWriter(f);
+            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.ISO_8859_1.name()));
             for (Map.Entry<IVocabularyKey, String> eintrag : dic.entrySet()) {
                 String s = eintrag.getKey().getCount() + "\t" + eintrag.getKey().getSpanVal()
-                        + "\t" + eintrag.getValue();
-                out.println(s);
+                        + "\t" + eintrag.getValue()+ "\n";
+                out.write(s);
             }
             out.close();
         } catch (IOException ex) {
