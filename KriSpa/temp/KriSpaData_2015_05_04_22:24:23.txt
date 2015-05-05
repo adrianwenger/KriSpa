@@ -1,0 +1,661 @@
+0	es que	denn, weil
+0	antes de	vor
+0	alto/a	hoch, gro?
+0	por la tarde	nachmittags, am Nachmittag
+0	la canci?n	Lied
+0	como	da, weil
+0	nada	nichts
+0	en todo el mundo	auf der ganzen Welt
+0	la secretaria	Sekret?rin
+0	porque	weil
+0	el pincho	Appetithappen
+0	la boda	Hochzeit
+0	felicidades	Herzlichen Gl?ckwunsch
+0	el cantante	S?nger
+0	un fuerte abrazo	ganz liebe Gr??e (im Brief)
+0	gracias	danke
+0	por ejemplo	zum Beispiel
+0	el estr?s	Stress
+0	el ama de casa	Hausfrau
+0	cari?o	Schatz, Liebling
+0	la broma	Witz, Scherz
+0	la habitante	Einwohnerin
+0	diferente	verschieden, unterschiedlich
+0	el asado	Braten
+0	la nacionalidad	Nationalit?t
+0	el chico	Junge
+0	hasta pronto	Bis bald.
+0	basta	genug, es reicht
+0	el puerto	Hafen
+0	si	ob, wenn
+0	seguro/a	sicher
+0	en	in
+0	el argentino	Argentinier
+0	la reina	K?nigin
+0	el politico	Politiker
+0	el apellido	Nachname
+0	la taxista	Taxifahrerin
+0	el santo	Heiliger
+0	buenas tardes	Guten Tag, Guten Abend
+0	no	nein, nicht
+0	bueno/a	gut
+0	la barra	Stange, Theke
+0	favorito/a	Lieblings-
+0	rodar	rollen
+0	qu? tal	Wie geht's
+0	austria	?sterreich
+0	asimismo	ebenfalls, auch
+0	la fabrica	Fabrik
+0	la periodista	Journalistin
+0	la estrella	Stern
+0	la perluqueria	Friseur(salon)
+0	si	ja
+0	la jefa	Chefin
+0	el minidiccionario	Miniw?rterbuch
+0	el hijo	Sohn
+0	mira	Schau mal!
+0	conocer	etw./jdn. kennen, kennen lernen
+0	qu? va	?berhaupt nicht!
+0	religioso/a	religi?s
+0	despu?s de	nach, hinter
+0	poco/a	wenig
+0	mucho gusto	Sehr erfreut!
+0	la edad	Alter
+0	el banco	Bank
+0	todos/as	alle
+0	leer	lesen
+0	la revista	Zeitschrift
+0	el nieto	Enkel
+0	el due?o	Eigent?mer
+0	el mercado	Markt
+0	espa?a	Spanien
+0	el/la f?tbolista	Fu?baller/in
+0	el hermano	Bruder
+0	soy	Ich bin
+0	verde	gr?n
+0	el estudiante	Student
+0	la escuela de idiomas	Sprachenschule
+0	el pueblo	Dorf
+0	el taxista	Taxifahrer
+0	el fot?grafo	Fotograf
+0	la abogada	Rechtsanw?ltin
+0	la cosa	Sache, Ding
+0	el pesado	Langweiler
+0	salir	ausgehen, hinausgehen
+0	la tapa	Deckel, Tapa
+0	feliz cumplea?os	Herzlichen Gl?ckwunsch zum Geburtstag.
+0	el cava	spanischer Sekt
+0	habar por tel?fono	telefonieren
+0	el presentador	Moderator
+0	ir	gehen, fahren
+0	la universidad	Universit?t
+0	cuanto/a	wie viel...?
+0	desayunar	fr?hst?cken
+0	jugar	spielen
+0	ir de tiendas	einen Einkaufsbummel machen
+0	esperar	warten, hoffen
+0	la pintora	Malerin
+0	este/esta	diese/r/s
+0	la profesora	Lehrerin
+0	la novia	feste Freundin
+0	la muerte	Tod
+0	gordo/a	dick
+0	de verdad	wirklich
+0	general	allgemein
+0	el mes	Monat
+0	el regalo	Geschenk
+0	el sur	S?den
+0	la farmacia	Apotheke
+0	espa?ol/a	spanisch
+0	hoy	heute
+0	la m?dica	?rztin
+0	alquilar	etw. mieten, ausleihen
+0	el cliente	Kunde
+0	el pintor	Maler
+0	la contaminaci?n	Verschmutzung
+0	especialmente	besonders
+0	el rey	K?nig
+0	aprender	etw. (er)lernen
+0	primero/a	erste/r/s
+0	principal	haupts?chlich, Haupt-
+0	la gente	Leute
+0	me llamo	ich hei?e
+0	la pesada	Langweilerin
+0	por las noches	abends, nachts
+0	divertido/a	lustig, witzig
+0	el centro	Zentrum
+0	el origen	Ursprung
+0	barato/a	billig
+0	C?mo se dice en espa?ol	Wie sagt man...auf Spanisch
+0	la fiesta	Feier, Party
+0	la jueza	Richterin
+0	s?	ich wei?, kann
+0	la monta?a	Berg
+0	la cita	Verabredung, Termin
+0	el tinto	Rotwein
+0	formal	formell, h?flich
+0	la palabra	Wort
+0	mal	schlecht
+0	algunos/as	einige, manche
+0	el padre	Vater
+0	por qu?	warum?
+0	en el norte de	im Norden von
+0	el cocinero	Koch
+0	beber	trinken
+0	querer	lieben, wollen
+0	el narcotrafico	Drogenhandel
+0	la latina	Lateinamerikanerin
+0	tomar el sol	sich sonnen
+0	la ?poca	Epoche
+0	la bebida	Getr?nk
+0	industrial	industriell, Industrie-
+0	incluso	sogar
+0	el centro hist?rico	Altstadt
+0	qu? pasa	was ist los?
+0	el mediodia	Mittag
+0	la palmera	Palme
+0	al due?a	Eigent?merin
+0	la int?rprete	Dolmetscherin
+0	el edificio	Geb?ude
+0	rico/a	reich
+0	hasta	bis
+0	el trabajo	Arbeit
+0	por la noche	abends, am Abend
+0	la desempleada	Arbeitslose
+0	mayor	gr??er, ?lter
+0	la dentista	Zahn?rztin
+0	la argentina	Argentinierin
+0	la forma	Form
+0	vivir	leben, wohnen
+0	el disfraz	Verkleidung
+0	el campo	Land, Feld
+0	el caf?	Kaffee
+0	la cocinera	K?chin
+0	turistico/a	touristisch
+0	el norte	Norden
+0	el mar	Meer
+0	el boquer?n	Sardelle
+0	la deportista	Sportlerin
+0	pagar	(etw.) bezahlen, zahlen
+0	el vino blanco	Wei?wein
+0	tipico/a	typisch
+0	el estadio de f?tbol	Fu?ballstadion
+0	hasta luego	Bis sp?ter!
+0	el traductor	?bersetzer
+0	el oeste	Westen
+0	popular	beliebt, popul?r
+0	a	nach
+0	la leche	Milch
+0	el fin	Ende
+0	la jirafa	Giraffe
+0	escribir	(etw.) schreiben
+0	feliz	gl?cklich
+0	muchas veces	oft
+0	por	f?r, pro
+0	el mejill?n	Miesmuschel
+0	pasear	spazieren gehen
+0	la aceituna	Olive
+0	el lugar de trabajo	Arbeitsst?tte
+0	latinoamericano/a	lateinamerikanisch
+0	la vendedora	Verk?uferin
+0	el secretario	Sekret?r
+0	la guitarra	Gitarre
+0	segundo/a	zweite/r/s
+0	el vino	Wein
+0	la culebra	Schlange
+0	snao/a	gesund
+0	ser verdad	stimmen
+0	bienvenidos	Herzlich Willkommen
+0	el pulpo	Krake, Oktupus
+0	agosto	August
+0	el martes	Dienstag
+0	guapo/a	h?bsch
+0	bastante	ziemlich
+0	mirar	sehen, ansehen
+0	enero	Januar
+0	la playa	Strand
+0	solo/a	allein
+0	la tienda	Laden, Gesch?ft
+0	la pelicula	Film
+0	el peri?dico	Zeitung
+0	perdone	Verzeihung
+0	octubre	Oktober
+0	el empleado	Angestellter
+0	nuevo/a	neu
+0	la hora	Stunde, Zeit, Uhrzeit
+0	ir a casa de 	zu jdm. gehen
+0	la clase	Klasse, Unterricht
+0	celebrar	feiern
+0	protegido/a	gesch?tzt
+0	la bicicleta	Fahrrad
+0	casado/a	verheiratet
+0	oye	H?r mal!
+0	la comida	Essen, Mittagessen
+0	el beso	Kuss
+0	el hombre	Mann, Mensch
+0	qui?n	Wer?
+0	en casa	zu Hause
+0	activo/a	aktiv
+0	por la ma?ana	morgens, am Morgen
+0	la torre	Turm
+0	el chica	M?dchen
+0	de tapas	auf Tapastour
+0	familiar	Familien, famili?r
+0	am?rica	Amerika
+0	el ingl?s	Englisch
+0	almenia	Deutschland
+0	latinoam?rica	Lateinamerika
+0	en	in, auf
+0	el espa?ol	Spanisch
+0	preparar	Turnhalle, Fitnessstudio
+0	la lista	Liste
+0	imaginarse	sich etw. vorstellen
+0	cenar	zu Abend essen
+0	el tel?fono	Telefon
+0	la panaderia	B?ckerei
+0	entonces	dann, also
+0	el vendedor	Verk?ufer
+0	la fundaci?n	Stiftung
+0	la empleada	Angestellte
+0	el repaso	Wiederholung
+0	el novio	fester Freund
+0	todavia	noch
+0	trabajar por cuenta propia	selbstst?ndig sein
+0	ad?nde	wohin
+0	escuchar	h?ren, anh?ren
+0	la enfermera	Krankenpflegerin
+0	nacional	national
+0	la cantante	S?ngerin
+0	suiza	Schweiz
+0	el trafico	Verkehr
+0	chatear	chatten
+0	para	f?r, nach
+0	exquisito/a	ausgezeichnet, k?stlich
+0	pero	aber
+0	lleno/a	voll
+0	el mensaje	Meldung, SMS
+0	correcto/a	richtig
+0	alto/a	null
+0	la empresa	Firma
+0	el jardin	Garten
+0	el m?dico	Arzt
+0	el sabado	Samstag
+0	el enfermero	Krankenpfleger
+0	impaciente	ungeduldig
+0	argentino/a	argentinisch
+0	estimado/a	sehr geehrte/r
+0	al abrazo	Umarmung
+0	la fecha	Datum
+0	tonto/a	dumm
+0	enre	zwischen unter
+0	la croqueta	Krokette
+0	trabaja	er/sie/es arbeitet, Sie arbeiten
+0	el barrio	Viertel
+0	el jueves	Donnerstag
+0	recordar	sich an etw. erinnern
+0	de d?nde	Woher?
+0	aburrido/a	langweilig
+0	la cerveza	Bier
+0	el m?canico	Mechaniker
+0	el ambiente	Stimmung, Atmosph?re
+0	el peluquero	Friseur
+0	solo	nur
+0	hispanoam?rica	Hispanoamerika
+0	ya	schon
+0	la novela	Roman
+0	la m?canica	Mechanikerin
+0	el vecino	Nachbar
+0	navegar en Internet	im Internet surfen
+0	decubrir	etw. entdecken
+0	falso/a	falsch
+0	el documento	Dokument
+0	el carril	Schiene
+0	el sol	Sonne
+0	turquia	T?rkei
+0	oiga	H?ren Sie! Hallo!
+0	el fot?grafa	Fotografin
+0	el inmigrante	Einwandererin
+0	buenas noches	Guten Abend, Gute Nacht
+0	el arbol	Baum
+0	el viernes	Freitag
+0	los paders	Eltern
+0	a	nach, zu
+0	el f?tbol	Fu?ball
+0	a ver	mal sehen
+0	hasta ma?ana	Bis morgen!
+0	el calmar	Tintenfisch
+0	el este	Osten
+0	qu? van a tomar	Was werden Sie nehmen?
+0	cocinar	kochen
+0	junto/a	zusammen
+0	el panadero	B?cker
+0	el lunes	Montag
+0	la semana	Woche
+0	la presentadora	Moderatorin
+0	el n?mero	Nummer, Zahl
+0	la atracci?n turistica	Sehensw?rdigkeit
+0	por fin	endlich
+0	tambi?n	auch
+0	mundo	Welt
+0	inteligente	intelligent
+0	lejos	weit weg
+0	por favor	bitte
+0	significa	er/sie/es bedeutet
+0	comentar	kommentieren
+0	buenos dias	Guten Morgen, Guten Tag
+0	qu?	wie..!
+0	el perro	Hund
+0	el representante	Vertreter
+0	el actor	Schauspieler
+0	la sorpresa	?berraschung
+0	el conquistador	Eroberer
+0	la invitada	Gast weibl.
+0	el aperitivo	Aperitif. Appetithappen.
+0	la independencia	Unabh?ngigkeit
+0	diciembre	Dezember
+0	?ltimo/a	letze/r/s
+0	el amigo	Freund
+0	menos mal	zum Gl?ck!
+0	la arquitecta	Architektin
+0	la propina	Trinkgeld
+0	la sopa	Suppe
+0	frio/a	kalt
+0	igualmente	gleicherma?en, ebenfalls
+0	la parrilla	Grillrost, Grill
+0	sin	ohne
+0	mucho/a	viel
+0	per supuesto	selbstverst?ndlich
+0	Italia	Italien
+0	atentamente	mit freundlichen Gr??en (im Brief)
+0	viajar	reisen
+0	siempre	immer
+0	malo/a	schlecht, krank
+0	el rio	Fluss
+0	la profesi?n	Beruf
+0	ahi	da, dort
+0	el jam?n	Schinken
+0	la verdura	Gem?se
+0	la calle	Stra?e
+0	la costa	K?ste
+0	nunca	nie
+0	el nacimiento	Geburt
+0	el deporte	Sport
+0	donde	wo
+0	interesante	interessant
+0	tiene	er/sie/es hat, Sie haben
+0	la verdad	Wahrheit
+0	descansar	sich ausruhen
+0	el marido	Ehemann
+0	la isla	Insel
+0	la vecina	Nachbarin
+0	tranquilo/a	ruhig
+0	caliente	hei?
+0	la urbanizaci?n	Siedlung
+0	timido/a	sch?chtern, zur?ckhaltend
+0	el arte	Kunst
+0	creer	glauben
+0	como	wie
+0	la estudiante	Studentin
+0	el dia a dia	Alltag
+0	conocido/a	bekannt
+0	muy	sehr
+0	el lado	Seite
+0	regular	normal, mittelm??ig, es geht so
+0	peque?o/a	klein
+0	la libertad	Freiheit
+0	la hija	Tochter
+0	la escritora	Schriftstellerin
+0	sincero/a	aufrichtig, ehrlich
+0	feo/a	h?sslich
+0	la cliente	Kundin
+0	la naturaleza	Natur
+0	la clinica	Klinik
+0	la plaza	Platz
+0	ingl?s/esa	englisch
+0	la m?sica	Musik
+0	la hermana	Schwester
+0	la foto	Foto
+0	el cine	Kino
+0	limpiar	etw. sauber machen, putzen
+0	hispano/a	spanisch, hispanisch
+0	a veces	manchmal
+0	la ciudad	Stadt
+0	la despedida	Abschied, Verabschiedung
+0	el momento	Moment
+0	abril	April
+0	el se?or	Herr
+0	blanco/a	wei?
+0	antiguo/a	at, antik
+0	el metro	U-Bahn
+0	espontaneo/a	spontan
+0	moderno/a	modern
+0	tarde	sp?t
+0	adi?s	Tsch?ss. Auf Wiedersehen!
+0	el e-mail	E-Mail
+0	indigena	einheimisch, eingeboren
+0	casi	fast
+0	la nieta	Enkelin
+0	el camarero	Kellner
+0	abierto/a	offen, ge?ffnet
+0	generalmente	im Allgemeinen
+0	te toca a ti	du bist dran
+0	la idea	Idee
+0	el caf? con leche	Michkaffee
+0	normalmente	normalerweise
+0	el invitado	Gast m?nnl.
+0	febrero	Februar
+0	simpatico/a	symphatisch
+0	la prisa	Eile
+0	la rueda	Rad
+0	charlar	plaudern
+0	por eso	daher
+0	el desempleado	Arbeitsloser
+0	el ejercicio	?bung
+0	la avenida	Allee
+0	el franc?s	Franz?sisch
+0	hasta la pr?xima	Bis zum n?chsten Mal!
+0	la inmigraci?n	Einwander
+0	el psic?logo	Psychologe
+0	tapar	zudecken
+0	el deportista	Sportler
+0	de manera facil	auf einfache Art und Weise
+0	la escuela	Schule
+0	compartir	etw. teilen
+0	el ni?o	Kind, kleiner Junge
+0	la escultura	Skulptur
+0	el habitante	Einwohner
+0	la despedida	Junggeselle/in
+0	los deberes	Hausaufgaben
+0	joven	jung
+0	el latino	Lateinamerikaner
+0	el agua	Wasser
+0	el lugar de residencia	Wohnort
+0	el cortado	Espresso mit etwas Milch
+0	la representante	Vertreterin
+0	el taller	Werkstatt
+0	argentina	Argentinien
+0	el personaje	Pers?nlichkeit
+0	el coche	Auto
+0	aqui	hier
+0	atractivo/a	attraktiv
+0	el recipiente	Gef??, Beh?lter
+0	ahora	jetzt
+0	la ni?a	Kind, kleines M?dchen
+0	canta	er/sie/es singt, Sie singen
+0	pues	nun, also
+0	el chorizo	Chorizo
+0	la americana	Amerikanerin
+0	la camarera	Kellnerin
+0	el tiempo	Zeit, Wetter
+0	querido/a	liebe/r
+0	la receta	Rezept
+0	claro	klar, nat?rlich
+0	la gamba	Garnele, Krabbe
+0	D?nde	Wo?
+0	el monumento	Denkmal
+0	qu?	was? vor Substantiv: welche/r/s...? was f?r ein..?
+0	al este de	?stlich von
+0	alli	dort
+0	antipatico/a	unsymphatisch
+0	asi	so, auf diese Weise
+0	y	und
+0	la casa	Haus
+0	la cultura	Kultur
+0	el cumplea?os	Geburtstag
+0	el grupo	Gruppe
+0	el mill?n	Million
+0	el idioma	Sprache
+0	hacer	etw. tun, machen
+0	comer	essen
+0	un poco	ein wenig
+0	el teatro	Theater
+0	la entrevista	Interview
+0	chao	Tsch?ss!
+0	la ?pera	Oper
+0	hola	Hallo
+0	la fortificaci?n	Befestigungsanlage
+0	pesado/a	schwer
+0	la cocina	K?che
+0	arabe	arabisch
+0	el zumo	Saft
+0	la escaladora	Bergsteigerin
+0	rapido	schnell
+0	la ensalada	Salat
+0	vale	einverstanden, ok
+0	estar a...kil?metros de	...Kilometer von...entfernt sein
+0	si	wenn
+0	mayo	Mai
+0	la despedida de soltero/a	Junggesellenabschied
+0	perdonar	entschuldigen, verzeihen
+0	la civilizaci?n	Zivilisation, Kultur
+0	el abogado	Rechtsanwalt
+0	tener...a?os	...Jahre alt sein
+0	el m?vil	Handy
+0	pr?ximo/a	n?chste/r/s
+0	se muri?	er/sie/es ist gestorben
+0	hay	es gibt
+0	la amiga	Freundin
+0	la colega	Kollegin
+0	el a?o	Jahr
+0	ense?ar	lehren, beibringen
+0	desear	w?nschen
+0	Francia	Frankreich
+0	la celebraci?n	Feier
+0	el mi?rcoles	Mittwoch
+0	hist?rico/a	historisch
+0	mas	mehr
+0	noviembre	November
+0	la noche	Nacht
+0	hombre	Ey! Mensch!
+0	la politica	Politikerin
+0	cuanto es	Was machst das?
+0	julio	Juli
+0	el hospital	Krankenhaus
+0	hablar	sprechen
+0	cerca de	in der N?he von
+0	la casualidad	Zufall
+0	italiano/a	italienisch
+0	nadar	schwimmen
+0	la mano	Hand
+0	o	oder
+0	la excursi?n	Ausflug
+0	oficial	offiziell
+0	otro/a	andere/r/s
+0	el libro	Buch
+0	Polonia	Polen
+0	el domingo	Sonntag
+0	los espaguetis	Spaghetti
+0	todo/a	alles, ganz, jeder
+0	la vez	Mal
+0	el ferrocarril	Eisenbahn
+0	llegamos	wir kommen, wir kommen an
+0	el profesor	Lehrer
+0	contra	gegen
+0	la actriz	Schauspielerin
+0	el puente	Br?cke
+0	marzo	M?rz
+0	la plaza	Hauptplatz
+0	el escritor	Schriftsteller
+0	importante	wichtig
+0	la procesi?n	Prozession
+0	la suerte	Gl?ck
+0	la tortilla	Tortilla
+0	algo	etwas
+0	el color	Farbe
+0	entre	zwischen, unter
+0	el postre	Nachtisch
+0	la se?ora	Frau
+0	serio/a	ernst, seri?s
+0	el colega	Kollege
+0	la psic?loga	Psychologin
+0	cerrado/a	geschlossen
+0	paciente	geduldig
+0	la mesa	Tisch
+0	la cruz	Kreuz
+0	el periodista	Journalist
+0	el patio	Innenhof, Hinterhof
+0	la ca?a	kleines Glas Fassbier
+0	el saludo	Gru?
+0	el escalador	Bergsteiger
+0	estudiar	lernen, studieren
+0	estar invitado/a	eingeladen sein
+0	don/do?a	respektvolle Anrede
+0	la traductora	?bersetzerin
+0	medio/a	halb
+0	mejor	besser
+0	con	mit
+0	junio	Juni
+0	saludar	gr??en, begr??en
+0	lo siento	es tut mir leid
+0	la raci?n	Portion
+0	viejo/a	alt
+0	c?mo	Wie?
+0	el dentista	Zahnarzt
+0	esto	dies, das
+0	utilizar	benutzen, verwenden
+0	bailar	tanzen
+0	mismo/a	gleiche/r/s
+0	famoso/a	ber?hmt
+0	la pr?xima vez	n?chstes Mal
+0	dia	Tag
+0	la madre	Mutter
+0	colombia	Kolumbien
+0	y de tapa	Was darf es von den Tapas sein?
+0	el americano	Amerikaner
+0	la panadera	B?ckerin
+0	septiembre	September
+0	pasar	verbringen, passieren
+0	el jefe	Chef
+0	la peluquera	Friseurin
+0	grande	gro?
+0	el aeropuerto	Flughafen
+0	amable	freundlich
+0	el arquitecto	Architekt
+0	la tarde	Nachmittag, fr?her Abend
+0	verdad	nicht wahr?
+0	de	aus, von
+0	asi asi	so lala
+0	impresionante	eindrucksvoll
+0	la empanadilla	Empanadilla
+0	la salsa	So?e
+0	toma	er/sie/es nimmt, Sie nehmen
+0	estar	sein
+0	la capital	Hauptstadt
+0	la envidia	Neid
+0	la ronda	Runde
+0	la cafeteria	Caf?
+0	soltero/a	ledig
+0	la oficina	B?ro
+0	el juez	Richter
+0	el pais	Land
+0	hacer la compra	einkaufen
+0	entiendo	ich versteh
+0	el ex novio	Exfreund
+0	cultural	kulturell
+0	la persona	Person
+0	necesito	ich ben?tige, brauche
+0	el int?rprete	Dolmetscher
+0	exigente	anspruchsvoll
+0	el plato	Teller, Gericht
+0	la cena	Abendessen
+0	el lugar	Ort, Stelle

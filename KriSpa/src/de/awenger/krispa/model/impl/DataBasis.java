@@ -50,7 +50,7 @@ public final class DataBasis implements IDataBasis {
         try {
             dic.clear();
             BufferedReader in = null;
-            in = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.ISO_8859_1.name()));
+            in = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8.name()));
             in = new LineNumberReader(new FileReader(f));
             String line;
             while ((line = in.readLine()) != null) {
@@ -85,7 +85,7 @@ public final class DataBasis implements IDataBasis {
         // Save Data to KriSpaData.txt
         BufferedWriter out = null;
         try {
-            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.ISO_8859_1.name()));
+            out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.UTF_8.name()));
             for (Map.Entry<IVocabularyKey, String> eintrag : dic.entrySet()) {
                 String s = eintrag.getKey().getCount() + "\t" + eintrag.getKey().getSpanVal()
                         + "\t" + eintrag.getValue()+ "\n";

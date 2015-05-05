@@ -274,7 +274,6 @@ class MainFrame extends JFrame implements ActionListener {
                                         .addGap(40, 40, 40))))
         );
 
-        this.setResizable(false);
         pack();
         this.jTextFieldSpanishMeaning.requestFocusInWindow();
         this.setLocationRelativeTo(null);
