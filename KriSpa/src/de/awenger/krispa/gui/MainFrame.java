@@ -1,4 +1,4 @@
- package de.awenger.krispa.gui;
+package de.awenger.krispa.gui;
 
 import de.awenger.krispa.controller.IKriSpaController;
 import de.awenger.krispa.controller.impl.StateLearningInProgress_1;
@@ -24,7 +24,7 @@ import javax.swing.ScrollPaneConstants;
 
 /**
  *
- * @author philippschultheiss
+ * @author Adrian Wenger
  */
 class MainFrame extends JFrame implements ActionListener {
 
@@ -207,9 +207,9 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjPanelStage.gridy = 1;
 		constraintsjPanelStage.gridwidth = 1;
 		constraintsjPanelStage.gridheight = 2;
-		constraintsjPanelStage.fill = GridBagConstraints.BOTH;
+		constraintsjPanelStage.fill = GridBagConstraints.HORIZONTAL;
 		// Specifies the internal padding: how much to add to the size of the component
-		constraintsjPanelStage.insets = 20;
+		constraintsjPanelStage.insets = new Insets( 0, 5, 0, 5);
 		// determine where (within the area) to place the component, if smaller than cell
 		constraintsjPanelStage.anchor = GridBagConstraints.CENTER;
 		constraintsjPanelStage.weightx = 1;
@@ -224,7 +224,7 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjLabelGermanWord.gridwidth = 1;
 		constraintsjLabelGermanWord.gridheight = 1;
 		constraintsjLabelGermanWord.fill = GridBagConstraints.BOTH;
-		constraintsjLabelGermanWord.insets = 20;
+		constraintsjLabelGermanWord.insets = new Insets( 0, 5, 0, 5);
 		constraintsjLabelGermanWord.anchor = GridBagConstraints.CENTER;
 		constraintsjLabelGermanWord.weightx = 1;
 		constraintsjLabelGermanWord.weighty = 1;
@@ -237,7 +237,7 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjTextFieldSpanishMeaning.gridwidth = 1;
 		constraintsjTextFieldSpanishMeaning.gridheight = 1;
 		constraintsjTextFieldSpanishMeaning.fill = GridBagConstraints.BOTH;
-		constraintsjTextFieldSpanishMeaning.insets = 20;
+		constraintsjTextFieldSpanishMeaning.insets = new Insets( 0, 5, 0, 5);
 		constraintsjTextFieldSpanishMeaning.anchor = GridBagConstraints.CENTER;
 		constraintsjTextFieldSpanishMeaning.weightx = 1;
 		constraintsjTextFieldSpanishMeaning.weighty = 1;
@@ -250,8 +250,8 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjTextAreaResult.gridy = 1;
 		constraintsjTextAreaResult.gridwidth = 1;
 		constraintsjTextAreaResult.gridheight = 2;
-		constraintsjTextAreaResult.fill = GridBagConstraints.BOTH;
-		constraintsjTextAreaResult.insets = 20;
+		constraintsjTextAreaResult.fill = GridBagConstraints.HORIZONTAL;
+		constraintsjTextAreaResult.insets = new Insets( 0, 5, 0, 5);
 		constraintsjTextAreaResult.anchor = GridBagConstraints.CENTER;
 		constraintsjTextAreaResult.weightx = 1;
 		constraintsjTextAreaResult.weighty = 1;
@@ -264,8 +264,8 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjTextFieldProgress.gridy = 3;
 		constraintsjTextFieldProgress.gridwidth = 1;
 		constraintsjTextFieldProgress.gridheight = 1;
-		constraintsjTextFieldProgress.fill = GridBagConstraints.BOTH;
-		constraintsjTextFieldProgress.insets = 20;
+		constraintsjTextFieldProgress.fill = GridBagConstraints.NONE;
+		constraintsjTextFieldProgress.insets = new Insets( 0, 5, 0, 5);
 		constraintsjTextFieldProgress.anchor = GridBagConstraints.CENTER;
 		constraintsjTextFieldProgress.weightx = 1;
 		constraintsjTextFieldProgress.weighty = 1;
@@ -278,8 +278,8 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjButtonSolve.gridy = 3;
 		constraintsjButtonSolve.gridwidth = 1;
 		constraintsjButtonSolve.gridheight = 1;
-		constraintsjButtonSolve.fill = GridBagConstraints.BOTH;
-		constraintsjButtonSolve.insets = 20;
+		constraintsjButtonSolve.fill = GridBagConstraints.NONE;
+		constraintsjButtonSolve.insets  = new Insets( 0, 5, 0, 5);
 		constraintsjButtonSolve.anchor = GridBagConstraints.CENTER;
 		constraintsjButtonSolve.weightx = 1;
 		constraintsjButtonSolve.weighty = 1;
@@ -292,8 +292,8 @@ class MainFrame extends JFrame implements ActionListener {
 		constraintsjLabelFlagImage.gridy = 3;
 		constraintsjLabelFlagImage.gridwidth = 1;
 		constraintsjLabelFlagImage.gridheight = 1;
-		constraintsjLabelFlagImage.fill = GridBagConstraints.BOTH;
-		constraintsjLabelFlagImage.insets = 20;
+		constraintsjLabelFlagImage.fill = GridBagConstraints.NONE;
+		constraintsjLabelFlagImage.insets  = new Insets( 0, 5, 0, 5);
 		constraintsjLabelFlagImage.anchor = GridBagConstraints.CENTER;
 		constraintsjLabelFlagImage.weightx = 1;
 		constraintsjLabelFlagImage.weighty = 1;
