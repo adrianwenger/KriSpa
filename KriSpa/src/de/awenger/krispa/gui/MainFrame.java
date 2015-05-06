@@ -8,6 +8,8 @@ import de.awenger.krispa.controller.impl.StateLearningInProgress_4;
 import de.awenger.krispa.controller.impl.StateStart;
 import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.model.impl.VocabularyKey;
+import de.awenger.krispa.util.StaticCollections;
+import static de.awenger.krispa.util.StaticCollections.LEARNING_PERFORMED_CORRECTLY;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -479,7 +481,7 @@ class MainFrame extends JFrame implements ActionListener {
     private void solve() {
         // checks if assumed result is correct
         int result = this.controller.getLevensteinDistance(this.jTextFieldSpanishMeaning.getText(), spanishMeaning);
-
+        StaticCollections.LEARNING_PERFORMED_CORRECTLY = true;
         if (result == 0) {
             // words matches exactly
             resultCorrect();
@@ -586,15 +588,16 @@ class MainFrame extends JFrame implements ActionListener {
      * exit Gui.
      */
     private void exit(String question) {
-        int answer = JOptionPane.showConfirmDialog(this, question, "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (answer == JOptionPane.YES_OPTION) {
-            int answer2 = JOptionPane.showConfirmDialog(this, "Do you want to quit with saving?", "Save?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (answer2 == JOptionPane.YES_OPTION) {
-                this.controller.endLearningSession();
-            }
-            dispose();
-            System.exit(0);
+        int answer = JOptionPane.showConfirmDialog(this, "Do you want to quit \b with \b saving?", "Save?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (answer == JOptionPane.YES_OPTION && StaticCollections.LEARNING_PERFORMED_CORRECTLY) {
+            this.controller.endLearningSession();
+            JOptionPane.showMessageDialog(this, "KriSpa progress saved");
+        } else {
+            JOptionPane.showMessageDialog(this, "You closed KriSpa \b without saving");
         }
+        dispose();
+        System.exit(0);
+
     }
 
 }
