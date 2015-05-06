@@ -1,0 +1,694 @@
+bienvenidos	Herzlich Willkommen
+buenos dias	Guten Morgen, Guten Tag
+bueno/a	gut
+dia	Tag
+soy	Ich bin
+de	aus, von
+y	und
+hola	Hallo
+qué tal	Wie geht´s
+buenas tardes	Guten Tag, Guten Abend
+la tarde	Nachmittag, früher Abend
+me llamo	ich heiße
+españa	Spanien
+buenas noches	Guten Abend, Gute Nacht
+la noche	Nacht
+también	auch
+almenia	Deutschland
+todos/as	alle
+argentina	Argentinien
+colombia	Kolumbien
+el actor	Schauspieler
+la actriz	Schauspielerin
+el cine	Kino
+trabaja	er/sie/es arbeitet, Sie arbeiten
+mucho/a	viel
+con	mit
+tiene	er/sie/es hat, Sie haben
+por	für, pro
+la pelicula	Film
+el libro	Buch
+mundo	Welt
+en todo el mundo	auf der ganzen Welt
+en	in, auf
+todo/a	alles, ganz, jeder
+la escultura	Skulptur
+muy	sehr
+grande	groß
+gordo/a	dick
+famoso/a	berühmt
+la profesión	Beruf
+el fútbol	Fußball
+el cantante	Sänger
+la cantante	Sängerin
+canta	er/sie/es singt, Sie singen
+español/a	spanisch
+inglés/esa	englisch
+quién	Wer?
+de dónde	Woher?
+cómo	Wie?
+la fiesta	Feier, Party
+el cumpleaños	Geburtstag
+no	nein, nicht
+si	ja
+verdad	nicht wahr?
+qué	was? vor Substantiv: welche/r/s...? was für ein..?
+la ciudad	Stadt
+la capital	Hauptstadt
+el amigo	Freund
+la amiga	Freundin
+hispanoamérica	Hispanoamerika
+la cultura	Kultur
+mira	Schau mal!
+mirar	sehen, ansehen
+latinoamérica	Lateinamerika
+decubrir	etw. entdecken
+te toca a ti	du bist dran
+el aeropuerto	Flughafen
+el señor	Herr
+la señora	Frau
+mucho gusto	Sehr erfreut!
+igualmente	gleichermaßen, ebenfalls
+austria	Österreich
+suiza	Schweiz
+a	nach, zu
+gracias	danke
+correcto/a	richtig
+falso/a	falsch
+el pais	Land
+el nombre
+el apellido	Nachname
+el cliente	Kunde
+la cliente	Kundin
+importante	wichtig
+el vino	Wein
+la guitarra	Gitarre
+el colega	Kollege
+la colega	Kollegin
+el agua	Wasser
+turquia	Türkei
+la música	Musik
+la cruz	Kreuz
+el centro	Zentrum
+américa	Amerika
+la playa	Strand
+feliz cumpleaños	Herzlichen Glückwunsch zum Geburtstag.
+feliz	glücklich
+el cava	spanischer Sekt
+o	oder
+el chico	Junge
+el chica	Mädchen
+el argentino	Argentinier
+la argentina	Argentinierin
+no?	nicht wahr?
+pero	aber
+el teléfono	Telefon
+el árbol	Baum
+aprender	etw. (er)lernen
+mejor	besser
+el número	Nummer, Zahl
+cultural	kulturell
+hispano/a	spanisch, hispanisch
+la salsa	Soße
+el asado	Braten
+argentino/a	argentinisch
+la isla	Insel
+el mercado	Markt
+indigena	einheimisch, eingeboren
+la comida	Essen, Mittagessen
+exquisito/a	ausgezeichnet, köstlic
+el monumento	Denkmal
+la civilización	Zivilisation, Kultur
+la naturaleza	Natur
+el ejercicio	Übung
+el repaso	Wiederholung
+de tapas	auf Tapastour
+la tapa	Deckel, Tapa
+bien	gut
+estar	sein
+asi asi	so lala
+asi	so, auf diese Weise
+la gente	Leute
+es que	denn, weil
+aqui	hier
+ser verdad	stimmen
+la verdad	Wahrheit
+pues	nun, also
+toma	er/sie/es nimmt, Sie nehmen
+la caña	kleines Glas Fassbier
+entiendo	ich versteh
+hay	es gibt
+bastante	ziemlich
+regular	normal, mittelmäßig, es geht so
+mal	schlecht
+hombre	Ey! Mensch!
+la sorpresa	Überraschung
+como	wie
+siempre	immer
+este/esta	diese/r/s
+el hombre	Mann, Mensch
+la mujer	Frau
+esto	dies, das
+el chorizo	Chorizo
+la tortilla	Tortilla
+la croqueta	Krokette
+el jamón	Schinken
+el pulpo	Krake, Oktupus
+la empanadilla	Empanadilla
+el calmar	Tintenfisch
+la aceituna	Olive
+la gamba	Garnele, Krabbe
+el mejillón	Miesmuschel
+significa	er/sie/es bedeutet
+oiga	Hören Sie! Hallo!
+por favor	bitte
+el camarero	Kellner
+la camarera	Kellnerin
+el vino blanco	Weißwein
+blanco/a	weiß
+el tinto	Rotwein
+y de tapa	Was darf es von den Tapas sein?
+el pincho	Appetithappen
+sé	ich weiß, kann
+para	für, nach
+el vino tinto	Rotwein
+el café	Kaffee
+el zumo	Saft
+la cerveza	Bier
+la ración	Portion
+el boquerón	Sardelle
+pagar	(etw.) bezahlen, zahlen
+hoy	heute
+llegamos	wir kommen, wir kommen an
+tarde	spät
+comer	essen
+ahora	jetzt
+la próxima vez	nächstes Mal
+próximo/a	nächste/r/s
+la vez	Mal
+vale	einverstanden, ok
+cuánto es	Was machst das?
+cuánto/a	wie viel...?
+hasta luego	Bis später!
+adiós	Tschüss. Auf Wiedersehen!
+oye	Hör mal!
+algo	etwas
+después de	nach, hinter
+solo	nur
+el aperitivo	Aperitif. Appetithappen.
+último/a	letze/r/s
+la ronda	Runde
+la plaza	Hauptplatz
+necesito	ich benötige, brauche
+beber	trinken
+la cafeteria	Café
+el cortado	Espresso mit etwas Milch
+el café con leche	Michkaffee
+la leche	Milch
+hasta mañana	Bis morgen!
+hasta	bis
+hasta la próxima	Bis zum nächsten Mal!
+chao	Tschüss!
+qué van a tomar	Was werden Sie nehmen?
+el origen	Ursprung
+tapar	zudecken
+la hora	Stunde, Zeit, Uhrzeit
+la propina	Trinkgeld
+la barra	Stange, Theke
+la mesa	Tisch
+caliente	heiß
+frio/a	kalt
+el minidiccionario	Miniwörterbuch
+el cocinero	Koch
+la cocinera	Köchin
+el escritor	Schriftsteller
+la escritora	Schriftstellerin
+el arquitecto	Architekt
+la arquitecta	Architektin
+el puente	Brücke
+la novela	Roman
+el intérprete	Dolmetscher
+la intérprete	Dolmetscherin
+el conquistador	Eroberer
+la conqui
+la canción	Lied
+el ama de casa	Hausfrau
+el taxista	Taxifahrer
+la taxista	Taxifahrerin
+el vendedor	Verkäufer
+la vendedora	Verkäuferin
+el mécanico	Mechaniker
+la mécanica	Mechanikerin
+el desempleado	Arbeitsloser
+la desempleada	Arbeitslose
+la receta	Rezept
+la estrella	Stern
+más	mehr
+el empleado	Angestellter
+la empleada	Angestellte
+el periodista	Journalist
+la periodista	Journalistin
+el médico	Arzt
+la médica	Ärztin
+el profesor	Lehrer
+la profesora	Lehrerin
+el representante	Vertreter
+la representante	Vertreterin
+el estudiante	Student
+la estudiante	Studentin
+el dentista	Zahnarzt
+la dentista	Zahnärztin
+el deportista	Sportler
+la deportista	Sportlerin
+la cita	Verabredung, Termin
+el enfermero	Krankenpfleger
+la enfermera	Krankenpflegerin
+esperar	warten, hoffen
+el momento	Moment
+per supuesto	selbstverständlich
+el secretario	Sekretär
+la secretaria	Sekretärin
+el taller	Werkstatt
+la oficina	Büro
+don/doña	respektvolle Anrede
+el compañero	Kollege
+la compañera	Kollegin
+mismo/a	gleiche/r/s
+la empresa	Firma
+la fábrica	Fabrik
+el traductor	Übersetzer
+la traductora	Übersetzerin
+el español	Spanisch
+la escuela de idiomas	Sprachenschule
+la escuela	Schule
+el idioma	Sprache
+el lugar de trabajo	Arbeitsstätte
+el lugar	Ort, Stelle
+el trabajo	Arbeit
+la farmacia	Apotheke
+la clinica	Klinik
+la tienda	Laden, Geschäft
+en casa	zu Hause
+la casa	Haus
+el abogado	Rechtsanwalt
+la abogada	Rechtsanwältin
+Dónde	Wo?
+Cómo se dice en español	Wie sagt man...auf Spanisch
+el peluquero	Friseur
+la peluquera	Friseurin
+claro	klar, natürlich
+la perluqueria	Friseur(salon)
+vivir	leben, wohnen
+en	in
+el estadio de fútbol	Fußballstadion
+la ópera	Oper
+el/la fútbolista	Fußballer/in
+el pintor	Maler
+la pintora	Malerin
+Italia	Italien
+cerca de	in der Nähe von
+escribir	(etw.) schreiben
+el periódico	Zeitung
+Francia	Frankreich
+el francés	Französisch
+la universidad	Universität
+Polonia	Polen
+el rey	König
+la reina	Königin
+la calle	Straße
+el hospital	Krankenhaus
+general	allgemein
+el móvil	Handy
+el tiempo	Zeit, Wetter
+el panadero	Bäcker
+la panadera	Bäckerin
+la panaderia	Bäckerei
+estudiar	lernen, studieren
+el inglés	Englisch
+la clase	Klasse, Unterricht
+por las noches	abends, nachts
+el personaje	Persönlichkeit
+la nacionalidad	Nationalität
+la fecha	Datum
+el nacimiento	Geburt
+octubre	Oktober
+el juez	Richter
+la jueza	Richterin
+contra	gegen
+el narcotráfico	Drogenhandel
+marzo	März
+el escalador	Bergsteiger
+la escaladora	Bergsteigerin
+viajar	reisen
+a	nach
+la montaña	Berg
+alto/a	hoch, groß
+la entrevista	Interview
+la revista	Zeitschrift
+el niño	Kind, kleiner Junge	
+la niña	Kind, kleines Mädchen
+febrero	Februar
+el presentador	Moderator
+la presentadora	Moderatorin
+el politico	Politiker
+la politica	Politikerin
+latinoamericano/a	lateinamerikanisch
+diferente	verschieden, unterschiedlich
+la cocina	Küche
+la fundación	Stiftung
+nuevo/a	neu
+el plato	Teller, Gericht
+conocido/a	bekannt
+el dueño	Eigentümer
+al dueña	Eigentümerin
+asimismo	ebenfalls, auch
+enseñar	lehren, beibringen
+cocinar	kochen
+de manera fácil	auf einfache Art und Weise
+barato/a	billig
+snao/a	gesund
+rico/a	reich
+el saludo	Gruß
+el beso	Kuss
+al abrazo	Umarmung
+la mano	Hand
+saludar	grüßen, begrüßen
+enre	zwischenm unter
+perdone	Verzeihung
+perdonar	entschuldigen, verzeihen
+incluso	sogar
+el padre	Vater
+otro/a	andere/r/s
+la madre	Mutter
+la palabra	Wort
+joven	jung
+soltero/a	ledig
+generalmente	im Allgemeinen
+utilizar	benutzen, verwenden
+especialmente	besonders
+a veces	manchmal
+hablar	sprechen
+si	wenn
+seguro/a	sicher
+segundo/a	zweite/r/s
+por ejemplo	zum Beispiel
+el hijo	Sohn
+la hija	Tochter
+cuando	wenn
+usar	benutzen, verwenden
+mayor	größer, älter
+el documento	Dokument
+oficial	offiziell
+jugar	spielen
+la bebida	Getränk
+la despedida	Abschied, Verabschiedung
+el lugar de residencia	Wohnort
+el carril	Schiene
+rápido	schnell
+rodar	rollen
+la rueda	Rad
+el ferrocarril	Eisenbahn
+la culebra	Schlange
+se murió	er/sie/es ist gestorben
+mayo	Mai
+estar invitado/a	eingeladen sein
+el beso	Kuss
+ya	schon
+tener...años	...Jahre alt sein
+el año	Jahr
+felicidades	Herzlichen Glückwunsch
+a ver	mal sehen
+qué	wie..!
+desear	wünschen
+el mes	Monat
+enero	Januar
+abril	April
+junio	Juni
+julio	Juli
+agosto	August
+septiembre	September
+noviembre	November
+diciembre	Dezember
+simpático/a	symphatisch
+guapo/a	hübsch
+lindo/a	hübsch
+conocer	etw./jdn. kennen, kennen lernen
+divertido/a	lustig, witzig
+entonces	dann, also
+hablar	sprechen
+ahi	da, dort
+perdonar	entschuldigen, verzeihen
+el hermano	Bruder
+la hermana	Schwester
+alli	dort
+el novio	fester Freund
+la novia	feste Freundin
+inteligente	intelligent
+serio/a	ernst, seriös
+nada	nichts
+el vecino	Nachbar
+la vecina	Nachbarin
+el pesado	Langweiler
+la pesada	Langweilerin
+aburrido/a	langweilig
+menos mal	zum Glück!
+tonto/a	dumm
+feo/a	hässlich
+interesante	interessant
+antipático/a	unsymphatisch
+un poco	ein wenig
+el jefe	Chef
+la jefa	Chefin
+el saludo	Gruß
+desde	aus, von
+el hijo	Sohn
+la hija	Tochter
+la madre	Mutter
+pequeño/a	klein
+qué va	überhaupt nicht!
+los paders	Eltern
+joven	jung
+el americano	Amerikaner
+la americana	Amerikanerin
+el perro	Hund
+chatear	chatten
+el latino	Lateinamerikaner
+la latina	Lateinamerikanerin
+abierto/a	offen, geöffnet
+formal	formell, höflich
+timido/a	schüchtern, zurückhaltend
+sincero/a	aufrichtig, ehrlich
+espontáneo/a	spontan
+a veces	manchmal
+impaciente	ungeduldig
+la foto	Foto
+solo/a	allein
+el marido	Ehemann
+el padre	Vater
+la persona	Person
+viejo/a	alt
+casado/a	verheiratet
+exigente	anspruchsvoll
+pesado/a	schwer
+malo/a	schlecht, krank
+atractivo/a	attraktiv
+la despedida de soltero/a	Junggesellenabschied
+la despedida	Junggeselle/in
+el jueves	Donnerstag
+el pueblo	Dorf
+la lista	Liste
+el regalo	Geschenk
+la semana	Woche
+la procesión	Prozession
+la independencia	Unabhängigkeit
+ese/esa	diese/r/s
+celebrar	feiern
+como	da, weil
+el santo	Heiliger
+popular	beliebt, populär
+la celebración	Feier
+antes de	vor
+la boda	Hochzeit
+la libertad	Freiheit
+la forma	Form
+la cena	Abendessen
+el disfraz	Verkleidung
+religioso/a	religiös
+recordar	sich an etw. erinnern
+la muerte	Tod
+nacional	national
+familiar	Familien, familiär
+entre	zwischen, unter
+la jirafa	Giraffe
+paciente	geduldig
+los deberes	Hausaufgaben
+la edad	Alter
+amable	freundlich
+por fin	endlich
+el fin	Ende
+hacer	etw. tun, machen
+escuchar	hören, anhören
+descansar	sich ausruhen
+el mensaje	Meldung, SMS
+habar por teléfono	telefonieren
+cocinar	kochen
+creer	glauben
+la sopa	Suppe
+los espaguetis	Spaghetti
+el ex novio	Exfreund
+la verdura	Gemüse
+bonito/a	hübsch
+cariño	Schatz, Liebling
+el dia a dia	Alltag
+primero/a	erste/r/s
+el invitado	Gast männl.
+la invitada	Gast weibl.
+la costa	Küste
+el banco	Bank
+el sábado	Samstag
+leer	lesen
+limpiar	etw. sauber machen, putzen
+rápido	schnell
+hacer la compra	einkaufen
+casi	fast
+nunca	nie
+por la tarde	nachmittags, am Nachmittag
+el deporte	Sport
+por la noche	abends, am Abend
+salir	ausgehen, hinausgehen
+muchas veces	oft
+pasar	verbringen, passieren
+el domingo	Sonntag
+normalmente	normalerweise
+alquilar	etw. mieten, ausleihen
+junto/a	zusammen
+el e-mail	E-Mail
+el fotógrafo	Fotograf
+el fotógrafa	Fotografin
+trabajar por cuenta propia	selbstständig sein
+el estrés	Stress
+la excursión	Ausflug
+el campo	Land, Feld
+donde	wo
+el grupo	Gruppe
+adónde	wohin
+ir	gehen, fahren
+basta	genug, es reicht
+la casualidad	Zufall
+el lunes	Montag
+lo siento	es tut mir leid
+el teatro	Theater
+el martes	Dienstag
+cenar	zu Abend essen
+el miércoles	Mittwoch
+ir de tiendas	einen Einkaufsbummel machen
+ir a casa de 	zu jdm. gehen
+el viernes	Freitag
+el psicólogo	Psychologe
+la psicóloga	Psychologin
+nuevo/a	neu
+el colegio	Schule
+por la mañana	morgens, am Morgen
+desayunar	frühstücken
+sin	ohne
+la prisa	Eile
+el mediodia	Mittag
+preparar	Turnhalle, Fitnessstudio
+navegar en Internet	im Internet surfen
+el jardin	Garten
+la suerte	Glück
+la inmigración	Einwander
+el inmigrante	Einwandererin
+italiano/a	italienisch
+por eso	daher
+la parrilla	Grillrost, Grill
+el patio	Innenhof, Hinterhof
+la cosa	Sache, Ding
+la ensalada	Salat
+el postre	Nachtisch
+algunos/as	einige, manche
+todavia	noch
+antiguo/a	at, antik
+tomar el sol	sich sonnen
+el lado	Seite
+la plaza	Platz
+lleno/a	voll
+verde	grün
+el recipiente	Gefäß, Behälter
+la idea	Idee
+principal	hauptsächlich, Haupt-
+compartir	etw. teilen
+la urbanización	Siedlung
+cerrado/a	geschlossen
+la bicicleta	Fahrrad
+jugar	spielen
+charlar	plaudern
+por qué	warum?
+porque	weil
+todo el mundo	alle
+tranquilo/a	ruhig
+el nieto	Enkel
+la nieta	Enkelin
+querer	lieben, wollen
+un fuerte abrazo	ganz liebe Grüße (im Brief)
+el tráfico	Verkehr
+por ejemplo	zum Beispiel
+si	ob, wenn
+nadar	schwimmen
+el ambiente	Stimmung, Atmosphäre
+la avenida	Allee
+el coche	Auto
+la envidia	Neid
+imaginarse	sich etw. vorstellen
+el sol	Sonne
+el mar	Meer
+pasear	spazieren gehen
+la palmera	Palme
+bailar	tanzen
+qué pasa	was ist los?
+de verdad	wirklich
+la broma	Witz, Scherz
+comentar	kommentieren
+querido/a	liebe/r
+el millón	Million
+el habitante	Einwohner
+la habitante	Einwohnerin
+la atracción turistica	Sehenswürdigkeit
+turistico/a	touristisch
+el edificio	Gebäude
+el sur	Süden
+el centro histórico	Altstadt
+el rio	Fluss
+impresionante	eindrucksvoll
+la torre	Turm
+la época	Epoche
+árabe	arabisch
+moderno/a	modern
+e	und
+industrial	industriell, Industrie-
+hasta pronto	Bis bald.
+el barrio	Viertel
+el color	Farbe
+poco/a	wenig
+estimado/a	sehr geehrte/r
+atentamente	mit freundlichen Grüßen (im Brief)
+la contaminación	Verschmutzung
+al este de	östlich von
+el este	Osten
+estar a...kilómetros de	...Kilometer von...entfernt sein
+oficial	offiziell
+en el norte de	im Norden von
+el norte	Norden
+medio/a	halb
+la fortificación	Befestigungsanlage
+activo/a	aktiv
+el metro	U-Bahn
+el puerto	Hafen
+tipico/a	typisch
+favorito/a	Lieblings-
+histórico/a	historisch
+lejos	weit weg
+el oeste	Westen
+el arte	Kunst
+protegido/a	geschützt
+

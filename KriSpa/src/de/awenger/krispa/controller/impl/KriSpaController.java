@@ -174,7 +174,7 @@ public final class KriSpaController extends Observable
     private void writeBackToDic(Map<IVocabularyKey, String> map) {
         // than save data back
         for (Map.Entry<IVocabularyKey, String> entry : map.entrySet()) {
-            dataBasis.insert(entry.getKey().getCount(), entry.getKey().getSpanVal(), entry.getValue());
+            dataBasis.update(entry.getKey().getCount(), entry.getKey().getSpanVal(), entry.getValue());
         }
     }
 

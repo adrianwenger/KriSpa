@@ -7,14 +7,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.LineNumberReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -22,8 +17,10 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +39,7 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public Map<IVocabularyKey, String> getDic() {
-        return dic;
+        return Collections.unmodifiableMap(this.dic);
     }
 
     @Override
@@ -74,8 +71,8 @@ public final class DataBasis implements IDataBasis {
         DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         String source = f.getPath();
-         String destination = f.getParent().concat(File.separator + "temp" + File.separator
-                +"KriSpaData_").concat(dateFormat.format(cal.getTime()).concat(".txt"));
+        String destination = f.getParent().concat(File.separator + "temp" + File.separator
+                + "KriSpaData_").concat(dateFormat.format(cal.getTime()).concat(".txt"));
         try {
             Files.copy(Paths.get(source), Paths.get(destination), REPLACE_EXISTING);
         } catch (IOException ex) {
@@ -88,7 +85,7 @@ public final class DataBasis implements IDataBasis {
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.UTF_8.name()));
             for (Map.Entry<IVocabularyKey, String> eintrag : dic.entrySet()) {
                 String s = eintrag.getKey().getCount() + "\t" + eintrag.getKey().getSpanVal()
-                        + "\t" + eintrag.getValue()+ "\n";
+                        + "\t" + eintrag.getValue() + "\n";
                 out.write(s);
             }
             out.close();
@@ -98,7 +95,7 @@ public final class DataBasis implements IDataBasis {
     }
 
     @Override
-    public boolean insert(int keyCount, String valueSpanValue, String germVal) {
+    public boolean update(int keyCount, String valueSpanValue, String germVal) {
         // Create VocabularyKey
         IVocabularyKey newKey = new VocabularyKey(keyCount, valueSpanValue);
         // is entry already existing?
@@ -106,15 +103,27 @@ public final class DataBasis implements IDataBasis {
         // remove Key / Value Pair
         if (valExisting) {
             // get corresponding (old) key from value
-            for (Entry<IVocabularyKey, String> ent : dic.entrySet()) {
-                if (ent.getValue().equals(germVal)) {
-                    remove(ent.getKey(), ent.getValue());
-                    if (dic.isEmpty()) {
-                        break;
-                    }
-                }
+            if (dic.containsValue(germVal)) {
+                remove(dic.get, germVal);
             }
+//            for (Entry<IVocabularyKey, String> ent : dic.entrySet()) {
+//                if (ent.getValue().equals(germVal)) {
+//                    remove(ent.getKey(), ent.getValue());
+//                    if (dic.isEmpty()) {
+//                        break;
+//                    }
+//                }
+//            }
         }
+        // add new Entry to dic
+        dic.put(newKey, germVal);
+        return true;
+    }
+
+    @Override
+    public boolean insert(int keyCount, String valueSpanValue, String germVal) {
+        // Create VocabularyKey
+        IVocabularyKey newKey = new VocabularyKey(keyCount, valueSpanValue);
         // add new Entry to dic
         dic.put(newKey, germVal);
         return true;

@@ -35,6 +35,17 @@ public interface IDataBasis {
      * @return
      */
     boolean insert(int keyCount, String valueSpanVal, String germVal);
+    
+    /**
+     * Inserts key/vale pair into dic. If a Entry has changed due to learning progress it first has to be deleted
+     * before getting stored again.
+     *
+     * @param keyCount count (part of VocabularyKey)
+     * @param valueSpanVal spanishValue (part of VocabularyKey)
+     * @param germVal germanValue
+     * @return
+     */
+    boolean update(int keyCount, String valueSpanVal, String germVal);
 
       /**
      * removes key/value pairs from dic. 
