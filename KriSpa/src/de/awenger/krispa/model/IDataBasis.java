@@ -26,7 +26,8 @@ public interface IDataBasis {
     void save(File f);
 
     /**
-     * Inserts key/vale pair into dic.
+     * Inserts key/vale pair into dic. If a Entry has changed due to learning progress it first has to be deleted
+     * before getting stored again.
      *
      * @param keyCount count (part of VocabularyKey)
      * @param valueSpanVal spanishValue (part of VocabularyKey)
@@ -36,7 +37,7 @@ public interface IDataBasis {
     boolean insert(int keyCount, String valueSpanVal, String germVal);
 
       /**
-     * removes key/value pairs from dic.
+     * removes key/value pairs from dic. 
      *
      * @param key key
      * @param value value
