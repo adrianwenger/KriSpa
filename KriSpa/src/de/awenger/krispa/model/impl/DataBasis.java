@@ -99,22 +99,29 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public boolean insert(int keyCount, String valueSpanValue, String germVal) {
-         // Create VocabularyKey
-        IVocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
+        // Create VocabularyKey
+        IVocabularyKey newKey = new VocabularyKey(keyCount, valueSpanValue);
         // is entry already existing?
-       //boolean valExisting = dic.values().contains(germVal);
-        // Eintrag hinzufuegen
-        dic.put(key, germVal);
+        boolean valExisting = dic.values().contains(germVal);
+        // remove Key / Value Pair
+        if (valExisting) {
+            // get corresponding (old) key from value
+            for (Entry<IVocabularyKey, String> ent : dic.entrySet()) {
+                remove(ent.getKey(), ent.getValue());
+            }
+        }
+
+        // add new Entry to dic
+        dic.put(newKey, germVal);
         return true;
+
     }
 
     @Override
-    public boolean remove(String valueSpanValue, int keyCount, String germVal) {
-        // build key
-        IVocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
+    public boolean remove(IVocabularyKey key, String value) {
         // delete from dic
         if (dic.containsKey(key)) {
-            dic.remove(valueSpanValue, germVal);
+            dic.remove(key, value);
             return true;
         }
         return false;
