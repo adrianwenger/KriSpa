@@ -9,7 +9,6 @@ import de.awenger.krispa.controller.impl.StateStart;
 import de.awenger.krispa.model.IVocabularyKey;
 import de.awenger.krispa.model.impl.VocabularyKey;
 import de.awenger.krispa.util.StaticCollections;
-import static de.awenger.krispa.util.StaticCollections.LEARNING_PERFORMED_CORRECTLY;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -338,9 +337,9 @@ class MainFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source.equals(jMenuItemSave)) {
-            exit("KriSpa saved! Do you want to quit?");
+            exit("Do you want to quit?");
         } else if (source.equals(jMenuItemExit)) {
-            exit("Do you want to quit KriSpa?");
+            exit("Do you want to quit?");
         } else if (source.equals(jMenuItemEditSettings)) {
             controller.activate99ers();
         } else if (source.equals(jButtonSolve)) {
@@ -588,12 +587,12 @@ class MainFrame extends JFrame implements ActionListener {
      * exit Gui.
      */
     private void exit(String question) {
-        int answer = JOptionPane.showConfirmDialog(this, "Do you want to quit \b with \b saving?", "Save?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        int answer = JOptionPane.showConfirmDialog(this, question, "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (answer == JOptionPane.YES_OPTION && StaticCollections.LEARNING_PERFORMED_CORRECTLY) {
             this.controller.endLearningSession();
             JOptionPane.showMessageDialog(this, "KriSpa progress saved");
         } else {
-            JOptionPane.showMessageDialog(this, "You closed KriSpa \b without saving");
+            JOptionPane.showMessageDialog(this, "You closed KriSpa without saving");
         }
         dispose();
         System.exit(0);
