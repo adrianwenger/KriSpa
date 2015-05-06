@@ -51,7 +51,6 @@ public final class DataBasis implements IDataBasis {
             dic.clear();
             BufferedReader in = null;
             in = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8.name()));
-            in = new LineNumberReader(new FileReader(f));
             String line;
             while ((line = in.readLine()) != null) {
                 String[] sf = line.split("\t");
@@ -75,7 +74,8 @@ public final class DataBasis implements IDataBasis {
         DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         String source = f.getPath();
-        String destination = f.getParent().concat("/temp/KriSpaData_").concat(dateFormat.format(cal.getTime()).concat(".txt"));
+         String destination = f.getParent().concat(File.separator + "temp" + File.separator
+                +"KriSpaData_").concat(dateFormat.format(cal.getTime()).concat(".txt"));
         try {
             Files.copy(Paths.get(source), Paths.get(destination), REPLACE_EXISTING);
         } catch (IOException ex) {
@@ -99,16 +99,13 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public boolean insert(int keyCount, String valueSpanValue, String germVal) {
-        // Create VocabularyKey
+         // Create VocabularyKey
         IVocabularyKey key = new VocabularyKey(keyCount, valueSpanValue);
         // is entry already existing?
-        boolean valExisting = dic.values().contains(germVal);
-        if (!valExisting) {
-            // Eintrag hinzufuegen
-            dic.put(key, germVal);
-            return true;
-        }
-        return false;
+       //boolean valExisting = dic.values().contains(germVal);
+        // Eintrag hinzufuegen
+        dic.put(key, germVal);
+        return true;
     }
 
     @Override
