@@ -107,14 +107,17 @@ public final class DataBasis implements IDataBasis {
         if (valExisting) {
             // get corresponding (old) key from value
             for (Entry<IVocabularyKey, String> ent : dic.entrySet()) {
-                remove(ent.getKey(), ent.getValue());
+                if (ent.getValue().equals(germVal)) {
+                    remove(ent.getKey(), ent.getValue());
+                    if (dic.isEmpty()) {
+                        break;
+                    }
+                }
             }
         }
-
         // add new Entry to dic
         dic.put(newKey, germVal);
         return true;
-
     }
 
     @Override
