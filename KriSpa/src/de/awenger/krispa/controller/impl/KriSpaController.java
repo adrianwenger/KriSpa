@@ -86,7 +86,7 @@ public final class KriSpaController extends Observable
     @Override
     public void createNewLearningSession() {
         String dir = System.getProperty("user.dir");
-        dataBasis.read(new File(dir + "/KriSpaData.txt"));
+        dataBasis.read(new File(dir + File.separator + "KriSpaData.txt"));
         setCurrentState(new StateStart(this));
         this.currentState.checkIfMapEntrys();
     }
