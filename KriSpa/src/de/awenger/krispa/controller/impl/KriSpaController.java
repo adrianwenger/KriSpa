@@ -163,8 +163,10 @@ public final class KriSpaController extends Observable
 
     @Override
     public void reallocateVoc() {
-        // first clear actula records
-        //dataBasis.getDic().clear();
+         @Override
+    public void reallocateVoc() {
+        // first clear actula records if learning was performed correctly
+        dataBasis.getDic().clear();
         // write divided maps back to dic
         writeBackToDic(vocMapCount0_SaveBack);
         writeBackToDic(vocMapCount1_SaveBack);
