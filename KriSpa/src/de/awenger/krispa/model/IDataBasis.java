@@ -35,15 +35,14 @@ public interface IDataBasis {
      */
     boolean insert(int keyCount, String valueSpanVal, String germVal);
 
-    /**
+      /**
      * removes key/value pairs from dic.
      *
-     * @param valueSpanValue spanishValue
-     * @param keyCount
-     * @param germVal GermanValue value
+     * @param key key
+     * @param value value
      * @return
      */
-    boolean remove(String valueSpanValue, int keyCount, String germVal);
+    boolean remove(IVocabularyKey key, String value);
 
     /**
      * returns created VocabularyMap dic.
