@@ -19,20 +19,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-
 /**
  *
  * @author Adrian Wenger
  */
 class MainFrame extends JFrame implements ActionListener {
-
 
     // import map key/value pairs to gui
     private final List<String> listKeys = new ArrayList<>();
@@ -117,10 +114,9 @@ class MainFrame extends JFrame implements ActionListener {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jLabelLearningInProgress.setText("Learning in Progress...");
+        jPanel1.add(jLabelLearningInProgress, LEFT_ALIGNMENT);
 
         /* Create Stage Panel */
-        jPanelStage.setBackground(new java.awt.Color(255, 255, 255));
-
         jLabelStage1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage1.setText("       Stage1");
         jLabelStage1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -142,7 +138,7 @@ class MainFrame extends JFrame implements ActionListener {
         jLabelStage5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         /* Create Flag Icon */
-        jLabelFlagImage.setIcon(new javax.swing.ImageIcon("/Users/Adi/NetBeansProjects/KrissisSpanischProgramm/KriSpa/images/KriSpa_Backround.png")); // NOI18N
+        jLabelFlagImage.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "/images/KriSpa_Backround.png"));
 
         /* Crate SolveButton */
         jButtonSolve.setText("solve");
@@ -155,8 +151,8 @@ class MainFrame extends JFrame implements ActionListener {
         jTextAreaResult.setEditable(false);
         jTextAreaResult.setRows(12);
         JScrollPane scrollPanel = new JScrollPane(jTextAreaResult);
-        scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         /* create Progress Field */
         jTextFieldProgress.setEditable(false);
@@ -171,8 +167,11 @@ class MainFrame extends JFrame implements ActionListener {
         jMenuEdit.setText("Edit");
 
         jMenuItemSave.setText("save...");
+        jMenuItemSave.addActionListener(this);
         jMenuFile.add(jMenuItemSave);
+        jMenuItemSave.addActionListener(this);
         jMenuItemExit.setText("exit");
+        jMenuItemExit.addActionListener(this);
         jMenuFile.add(jMenuItemExit);
 
         jMenuItemEditSettings.setText("activate Finished Words");
@@ -183,10 +182,10 @@ class MainFrame extends JFrame implements ActionListener {
 
         this.setJMenuBar(jMenuBar);
 
-        /* Create Layout (GridBagLayout) */
+        /* Create Layouts (GridBagLayout) */
         JPanel pane = new JPanel(new GridBagLayout());
 
-        /* Add component jPanel1 */
+        /* Add Layout to jPanel1 */
         GridBagConstraints constraintsjLabel1 = new GridBagConstraints();
         // Column number
         constraintsjLabel1.gridx = 0;
@@ -198,41 +197,46 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjLabel1.gridheight = 1;
         // if display area is larger than the component's requested size, fill horizontal and vertical
         constraintsjLabel1.fill = GridBagConstraints.BOTH;
-        // puts any extra space between its grid of cells and the edges of the Label
-        constraintsjLabel1.weightx = 1;
-        constraintsjLabel1.ipadx = 694;
-        constraintsjLabel1.ipady = 50;
-        constraintsjLabel1.weighty = 1;
+        constraintsjLabel1.ipadx = 500;
+        constraintsjLabel1.ipady = 30;
         pane.add(jPanel1, constraintsjLabel1);
 
-        /* Add Component jPanelStage */
+        /* Add Layout to jPanelStage */
+        // put Elements on jPanelStage
+        jPanelStage.setLayout(new GridBagLayout());
+        GridBagConstraints constraintsjPanelStageElements = new GridBagConstraints();
+        constraintsjPanelStageElements.gridx = 0;
+        constraintsjPanelStageElements.gridy = 0;
+        constraintsjPanelStageElements.ipadx = 30;
+        constraintsjPanelStageElements.ipady = 20;
+        // how much to add to the size of the component (ext. Border)
+        constraintsjPanelStageElements.insets = new Insets(5, 0, 5, 0);
+        // puts any extra space between its grid of cells and the edges of the Label
+        constraintsjPanelStageElements.weighty = 1;
+        jPanelStage.add(jLabelStage1, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 1;
+        jPanelStage.add(jLabelStage2, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 2;
+        jPanelStage.add(jLabelStage3, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 3;
+        jPanelStage.add(jLabelStage4, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 4;
+        jPanelStage.add(jLabelStage5, constraintsjPanelStageElements);
+
+        // Create jPanelStage Layout 
         GridBagConstraints constraintsjPanelStage = new GridBagConstraints();
         constraintsjPanelStage.gridx = 0;
         constraintsjPanelStage.gridy = 1;
         constraintsjPanelStage.gridwidth = 1;
         constraintsjPanelStage.gridheight = 2;
-        constraintsjPanelStage.fill = GridBagConstraints.HORIZONTAL;
-        // Specifies the internal padding: how much to add to the size of the component
-        constraintsjPanelStage.insets = new Insets(0, 5, 0, 5);
+        constraintsjPanelStage.insets = new Insets(1, 1, 1, 1);
         // determine where (within the area) to place the component, if smaller than cell
         constraintsjPanelStage.anchor = GridBagConstraints.CENTER;
-        constraintsjPanelStage.weightx = 1;
-        constraintsjPanelStage.weighty = 1;
-        constraintsjPanelStage.ipadx = 10;
-        constraintsjPanelStage.ipady = 210;
-
-        /* create jPanelStage */
-        jPanelStage.setLayout(new BoxLayout(jPanelStage, BoxLayout.Y_AXIS));
-        jPanelStage.add(jLabelStage1);
-        jPanelStage.S
-        jPanelStage.add(jLabelStage2);
-        jPanelStage.add(jLabelStage3);
-        jPanelStage.add(jLabelStage4);
-        jPanelStage.add(jLabelStage5);
-
+        constraintsjPanelStage.weightx = 0.5;
+        constraintsjPanelStage.weighty = 0.5;
         pane.add(jPanelStage, constraintsjPanelStage);
 
-        /* Add Component jLabelGermanWord */
+        /* Add Layout to jLabelGermanWord */
         GridBagConstraints constraintsjLabelGermanWord = new GridBagConstraints();
         constraintsjLabelGermanWord.gridx = 1;
         constraintsjLabelGermanWord.gridy = 1;
@@ -243,9 +247,11 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjLabelGermanWord.anchor = GridBagConstraints.CENTER;
         constraintsjLabelGermanWord.weightx = 1;
         constraintsjLabelGermanWord.weighty = 1;
+        constraintsjLabelGermanWord.ipadx = 50;
+        constraintsjLabelGermanWord.ipady = 10;
         pane.add(jLabelGermanWord, constraintsjLabelGermanWord);
 
-        /* Add Component jTextFieldSpanishMeaning */
+        /* Add Layout to Component jTextFieldSpanishMeaning */
         GridBagConstraints constraintsjTextFieldSpanishMeaning = new GridBagConstraints();
         constraintsjTextFieldSpanishMeaning.gridx = 1;
         constraintsjTextFieldSpanishMeaning.gridy = 2;
@@ -256,9 +262,11 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextFieldSpanishMeaning.anchor = GridBagConstraints.CENTER;
         constraintsjTextFieldSpanishMeaning.weightx = 1;
         constraintsjTextFieldSpanishMeaning.weighty = 1;
+        constraintsjTextFieldSpanishMeaning.ipadx = 50;
+        constraintsjTextFieldSpanishMeaning.ipady = 10;
         pane.add(jTextFieldSpanishMeaning, constraintsjTextFieldSpanishMeaning);
 
-        /* Add Component jTextAreaResult */
+        /* Add Layout to Component jTextAreaResult (scrollpane contains jTextAreaReslt) */
         GridBagConstraints constraintsjTextAreaResult = new GridBagConstraints();
         constraintsjTextAreaResult.gridx = 2;
         constraintsjTextAreaResult.gridy = 1;
@@ -269,9 +277,11 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextAreaResult.anchor = GridBagConstraints.CENTER;
         constraintsjTextAreaResult.weightx = 1;
         constraintsjTextAreaResult.weighty = 1;
-        pane.add(jTextAreaResult, constraintsjTextAreaResult);
+        constraintsjTextAreaResult.ipadx = 50;
+        constraintsjTextAreaResult.ipady = 50;
+        pane.add(scrollPanel, constraintsjTextAreaResult);
 
-        /* Add Component jTextFieldProgress */
+        /* Add Layout to Component jTextFieldProgress */
         GridBagConstraints constraintsjTextFieldProgress = new GridBagConstraints();
         constraintsjTextFieldProgress.gridx = 0;
         constraintsjTextFieldProgress.gridy = 3;
@@ -279,11 +289,13 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextFieldProgress.gridheight = 1;
         constraintsjTextFieldProgress.insets = new Insets(0, 0, 0, 0);
         constraintsjTextFieldProgress.anchor = GridBagConstraints.CENTER;
-        constraintsjTextFieldProgress.weightx = 1;
-        constraintsjTextFieldProgress.weighty = 1;
+        constraintsjTextFieldProgress.weightx = 0;
+        constraintsjTextFieldProgress.weighty = 0;
+        constraintsjTextFieldProgress.ipadx = 40;
+        constraintsjTextFieldProgress.ipady = 10;
         pane.add(jTextFieldProgress, constraintsjTextFieldProgress);
 
-        /* Add Component jButtonSolve */
+        /* Add Layout to Component jButtonSolve */
         GridBagConstraints constraintsjButtonSolve = new GridBagConstraints();
         constraintsjButtonSolve.gridx = 1;
         constraintsjButtonSolve.gridy = 3;
@@ -294,22 +306,23 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjButtonSolve.anchor = GridBagConstraints.CENTER;
         constraintsjButtonSolve.weightx = 1;
         constraintsjButtonSolve.weighty = 1;
+        constraintsjButtonSolve.ipadx = 50;
+        constraintsjButtonSolve.ipady = 10;
         pane.add(jButtonSolve, constraintsjButtonSolve);
 
-        /* Add Component jLabelFlagImage*/
+        /* Add Layout to Component jLabelFlagImage*/
         GridBagConstraints constraintsjLabelFlagImage = new GridBagConstraints();
         constraintsjLabelFlagImage.gridx = 2;
         constraintsjLabelFlagImage.gridy = 3;
         constraintsjLabelFlagImage.gridwidth = 1;
         constraintsjLabelFlagImage.gridheight = 1;
         constraintsjLabelFlagImage.fill = GridBagConstraints.NONE;
-        constraintsjLabelFlagImage.insets = new Insets(0, 5, 0, 5);
+        constraintsjLabelFlagImage.insets = new Insets(0, 0, 0, 0);
         constraintsjLabelFlagImage.anchor = GridBagConstraints.EAST;
         constraintsjLabelFlagImage.weightx = 1;
         constraintsjLabelFlagImage.weighty = 1;
         pane.add(jLabelFlagImage, constraintsjLabelFlagImage);
 
-        this.setSize(694, 540);
         this.add(pane);
         pack();
         this.jTextFieldSpanishMeaning.requestFocusInWindow();
@@ -320,7 +333,6 @@ class MainFrame extends JFrame implements ActionListener {
     }
 
     @Override
-
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source.equals(jMenuItemSave)) {
@@ -576,7 +588,11 @@ class MainFrame extends JFrame implements ActionListener {
     private void exit(String question) {
         int answer = JOptionPane.showConfirmDialog(this, question, "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (answer == JOptionPane.YES_OPTION) {
-            this.controller.endLearningSession();
+            int answer2 = JOptionPane.showConfirmDialog(this, "Do you want to quit with saving?", "Save?", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (answer2 == JOptionPane.YES_OPTION) {
+                this.controller.endLearningSession();
+            }
+            dispose();
             System.exit(0);
         }
     }
