@@ -104,18 +104,18 @@ class MainFrame extends JFrame implements ActionListener {
 
         /* create field for german words (questions) */
         jLabelGermanWord.setBackground(new java.awt.Color(204, 204, 204));
-        jLabelGermanWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGermanWord.setBorder(javax.swing.BorderFactory.createTitledBorder("German Word"));
+        jLabelGermanWord.setHorizontalAlignment(0);
 
         /* Create Field for spanish Words (answers)*/
-        jTextFieldSpanishMeaning.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldSpanishMeaning.setBorder(javax.swing.BorderFactory.createTitledBorder("Spanish Meaning"));
+        jTextFieldSpanishMeaning.setHorizontalAlignment(0);
 
         /* Create Panel1 */
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jLabelLearningInProgress.setText("Learning in Progress...");
-        jPanel1.add(jLabelLearningInProgress, LEFT_ALIGNMENT);
+        jPanel1.add(jLabelLearningInProgress);
 
         /* Create Stage Panel */
         jLabelStage1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
@@ -149,11 +149,12 @@ class MainFrame extends JFrame implements ActionListener {
         /* Create Result Text Area */
         jTextAreaResult.setBackground(new java.awt.Color(204, 204, 204));
         jTextAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
-        jTextAreaResult.setEditable(false);
+        jTextAreaResult.setEditable(true);
         jTextAreaResult.setRows(12);
         JScrollPane scrollPanel = new JScrollPane(jTextAreaResult);
-        scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
 
         /* create Progress Field */
         jTextFieldProgress.setEditable(false);
@@ -244,12 +245,12 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjLabelGermanWord.gridwidth = 1;
         constraintsjLabelGermanWord.gridheight = 1;
         constraintsjLabelGermanWord.fill = GridBagConstraints.BOTH;
-        constraintsjLabelGermanWord.insets = new Insets(0, 5, 0, 5);
+        constraintsjLabelGermanWord.insets = new Insets(5, 5, 5, 5);
         constraintsjLabelGermanWord.anchor = GridBagConstraints.CENTER;
         constraintsjLabelGermanWord.weightx = 1;
         constraintsjLabelGermanWord.weighty = 1;
         constraintsjLabelGermanWord.ipadx = 50;
-        constraintsjLabelGermanWord.ipady = 10;
+        constraintsjLabelGermanWord.ipady = 50;
         pane.add(jLabelGermanWord, constraintsjLabelGermanWord);
 
         /* Add Layout to Component jTextFieldSpanishMeaning */
@@ -259,12 +260,12 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextFieldSpanishMeaning.gridwidth = 1;
         constraintsjTextFieldSpanishMeaning.gridheight = 1;
         constraintsjTextFieldSpanishMeaning.fill = GridBagConstraints.BOTH;
-        constraintsjTextFieldSpanishMeaning.insets = new Insets(0, 5, 0, 5);
+        constraintsjTextFieldSpanishMeaning.insets = new Insets(5, 5, 5, 5);
         constraintsjTextFieldSpanishMeaning.anchor = GridBagConstraints.CENTER;
         constraintsjTextFieldSpanishMeaning.weightx = 1;
         constraintsjTextFieldSpanishMeaning.weighty = 1;
         constraintsjTextFieldSpanishMeaning.ipadx = 50;
-        constraintsjTextFieldSpanishMeaning.ipady = 10;
+        constraintsjTextFieldSpanishMeaning.ipady = 50;
         pane.add(jTextFieldSpanishMeaning, constraintsjTextFieldSpanishMeaning);
 
         /* Add Layout to Component jTextAreaResult (scrollpane contains jTextAreaReslt) */
@@ -273,13 +274,13 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextAreaResult.gridy = 1;
         constraintsjTextAreaResult.gridwidth = 1;
         constraintsjTextAreaResult.gridheight = 2;
-        constraintsjTextAreaResult.fill = GridBagConstraints.HORIZONTAL;
-        constraintsjTextAreaResult.insets = new Insets(5, 5, 5, 5);
+        constraintsjTextAreaResult.fill = GridBagConstraints.BOTH;
+        constraintsjTextAreaResult.insets = new Insets(10,5,5,5);
         constraintsjTextAreaResult.anchor = GridBagConstraints.CENTER;
-        constraintsjTextAreaResult.weightx = 1;
-        constraintsjTextAreaResult.weighty = 1;
-        constraintsjTextAreaResult.ipadx = 50;
-        constraintsjTextAreaResult.ipady = 50;
+        constraintsjTextAreaResult.weightx = 0.5;
+        constraintsjTextAreaResult.weighty = 0.5;
+        constraintsjTextAreaResult.ipadx = 150;
+        constraintsjTextAreaResult.ipady = 75;
         pane.add(scrollPanel, constraintsjTextAreaResult);
 
         /* Add Layout to Component jTextFieldProgress */
@@ -363,7 +364,7 @@ class MainFrame extends JFrame implements ActionListener {
      * moves to next word pair and sets values to jLabelGermanWord and
      * initializes jTextFieldSpanishMeaning .
      */
-   private void moveToNextWord() {
+    private void moveToNextWord() {
         if (listLength > 1) {
             if (getWords()) {
                 resetFrameForNewWord();
@@ -389,6 +390,7 @@ class MainFrame extends JFrame implements ActionListener {
         increaseProgress();
         filljTextAreaResult();
         jLabelGermanWord.setText(germanMeaning);
+        System.out.println("spanish Word: " + spanishMeaning);
         jTextFieldSpanishMeaning.setText("");
         jTextFieldSpanishMeaning.requestFocus();
     }
@@ -489,6 +491,7 @@ class MainFrame extends JFrame implements ActionListener {
         if (result == 0) {
             // words matches exactly
             resultCorrect();
+       
         } else if (result == 1) {
             // words nearly matches
             resultNearlyCorrect();
@@ -574,10 +577,10 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void filljTextAreaResult() {
         // clears TextArea 
-        jTextAreaResult.setText("");
+        jTextAreaResult.setText(null);
         // fill TextArea
         for (int i = 0; i < arrayTextAreaValuesCount; i++) {
-            this.jTextAreaResult.append(arrayTextAreaValues[i] + "\n");
+            this.jTextAreaResult.append(arrayTextAreaValues[i] + System.getProperty("line.separator"));
             if (result == 0) {
                 jTextAreaResult.setForeground(Color.ORANGE);
             } else if (result == 1) {
