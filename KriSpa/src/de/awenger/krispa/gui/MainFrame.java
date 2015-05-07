@@ -363,29 +363,34 @@ class MainFrame extends JFrame implements ActionListener {
      * moves to next word pair and sets values to jLabelGermanWord and
      * initializes jTextFieldSpanishMeaning .
      */
-    private void moveToNextWord() {
+   private void moveToNextWord() {
         if (listLength > 1) {
             if (getWords()) {
-                increaseProgress();
-                filljTextAreaResult();
-                jLabelGermanWord.setText(germanMeaning);
-                jTextFieldSpanishMeaning.requestFocus();
+                resetFrameForNewWord();
             } else {
                 moveStage();
             }
         } else {
             getMapContent();
             if (getWords()) {
-                increaseProgress();
-                filljTextAreaResult();
-                jLabelGermanWord.setText(germanMeaning);
-                jTextFieldSpanishMeaning.requestFocus();
+                resetFrameForNewWord();
             } else {
                 moveStage();
                 initialize();
             }
 
         }
+    }
+
+    /*
+    * resets the Textfields, TextArea to continue with a new Word
+    */
+    private void resetFrameForNewWord() {
+        increaseProgress();
+        filljTextAreaResult();
+        jLabelGermanWord.setText(germanMeaning);
+        jTextFieldSpanishMeaning.setText("");
+        jTextFieldSpanishMeaning.requestFocus();
     }
 
     /**
