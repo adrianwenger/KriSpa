@@ -84,7 +84,7 @@ public final class DataBasis implements IDataBasis {
             out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), StandardCharsets.UTF_8.name()));
             for (Map.Entry<IVocabularyKey, String> eintrag : dic.entrySet()) {
                 String s = eintrag.getKey().getCount() + "\t" + eintrag.getKey().getSpanVal()
-                        + "\t" + eintrag.getValue() + + System.getProperty("line.separator");
+                        + "\t" + eintrag.getValue() + System.getProperty("line.separator");
                 out.write(s);
             }
             out.close();
