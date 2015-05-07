@@ -68,7 +68,7 @@ public final class DataBasis implements IDataBasis {
     @Override
     public void save(File f) {
         // First copy old KriSpaData.txt to .../temp directory, including Dat/Time Stamp
-        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HHmmss");
         Calendar cal = Calendar.getInstance();
         String source = f.getPath();
         String destination = f.getParent().concat(File.separator + "temp" + File.separator
@@ -96,28 +96,25 @@ public final class DataBasis implements IDataBasis {
 
     @Override
     public boolean update(int keyCount, String valueSpanValue, String germVal) {
-        // Create VocabularyKey
-        IVocabularyKey newKey = new VocabularyKey(keyCount, valueSpanValue);
-        // is entry already existing?
-        boolean valExisting = dic.values().contains(germVal);
-        // remove Key / Value Pair
-        if (valExisting) {
+        boolean valueExisting = dic.containsValue(germVal);
+        // is value already existing? (update of Dic Entry needed) 
+        if (valueExisting) {
             // get corresponding (old) key from value
-            if (dic.containsValue(germVal)) {
-                remove(dic.get, germVal);
+            for (Map.Entry<IVocabularyKey, String> ent : dic.entrySet()) {
+                // if key value pair found stop here to remove old content
+                if (ent.getValue().equals(germVal)) {
+                    // remove key and value pair from dic
+                    remove(ent.getKey(), ent.getValue());
+                    break;
+                }
             }
-//            for (Entry<IVocabularyKey, String> ent : dic.entrySet()) {
-//                if (ent.getValue().equals(germVal)) {
-//                    remove(ent.getKey(), ent.getValue());
-//                    if (dic.isEmpty()) {
-//                        break;
-//                    }
-//                }
-//            }
+            // Create new VocabularyKey
+            IVocabularyKey newKey = new VocabularyKey(keyCount, valueSpanValue);
+            // add new Entry to dic
+            dic.put(newKey, germVal);
+            return true;
         }
-        // add new Entry to dic
-        dic.put(newKey, germVal);
-        return true;
+        return false;
     }
 
     @Override
