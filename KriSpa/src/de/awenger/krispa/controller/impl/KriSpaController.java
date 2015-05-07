@@ -207,6 +207,15 @@ public final class KriSpaController extends Observable
 
     @Override
     public int getLevensteinDistance(String a, String b) {
+        // if size of the Words are to small to use Levestein distance, just check direct equality
+        if ((a.length() <= 1) || (b.length() <= 1) ) {
+            if(a.equals(b)) {
+                return 0;
+            }
+            return 2;
+        }
+        // otherwise use get Levenstein distance    
+            
         int result = StringUtils.getLevenshteinDistance(a, b);
 
         if (result > 2) {
