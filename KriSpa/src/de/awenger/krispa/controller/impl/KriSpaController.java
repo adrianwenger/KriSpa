@@ -163,12 +163,22 @@ public final class KriSpaController extends Observable
 
     @Override
     public void reallocateVoc() {
-        // write divided maps back to dic
-        writeBackToDic(vocMapCount0_SaveBack);
-        writeBackToDic(vocMapCount1_SaveBack);
-        writeBackToDic(vocMapCount2_SaveBack);
-        writeBackToDic(vocMapCount3_SaveBack);
-        writeBackToDic(vocMapCount4_SaveBack);
+         // write divided maps back to dic
+        if (!vocMapCount0_SaveBack.isEmpty()) {
+            writeBackToDic(vocMapCount0_SaveBack);
+        }
+        if (!vocMapCount1_SaveBack.isEmpty()) {
+            writeBackToDic(vocMapCount1_SaveBack);
+        }
+        if (!vocMapCount2_SaveBack.isEmpty()) {
+            writeBackToDic(vocMapCount2_SaveBack);
+        }
+        if (!vocMapCount3_SaveBack.isEmpty()) {
+            writeBackToDic(vocMapCount3_SaveBack);
+        }
+        if (!vocMapCount4_SaveBack.isEmpty()) {
+            writeBackToDic(vocMapCount4_SaveBack);
+        }
     }
 
     private void writeBackToDic(Map<IVocabularyKey, String> map) {
