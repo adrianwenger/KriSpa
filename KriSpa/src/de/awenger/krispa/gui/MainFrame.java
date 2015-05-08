@@ -149,7 +149,7 @@ class MainFrame extends JFrame implements ActionListener {
         /* Create Result Text Area */
         jTextAreaResult.setBackground(new java.awt.Color(204, 204, 204));
         jTextAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
-        jTextAreaResult.setEditable(true);
+        jTextAreaResult.setEditable(false);
         jTextAreaResult.setRows(12);
         JScrollPane scrollPanel = new JScrollPane(jTextAreaResult);
         scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -199,7 +199,7 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjLabel1.gridheight = 1;
         // if display area is larger than the component's requested size, fill horizontal and vertical
         constraintsjLabel1.fill = GridBagConstraints.BOTH;
-        constraintsjLabel1.ipadx = 500;
+        constraintsjLabel1.ipadx = 600;
         constraintsjLabel1.ipady = 30;
         pane.add(jPanel1, constraintsjLabel1);
 
@@ -234,8 +234,7 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjPanelStage.insets = new Insets(1, 1, 1, 1);
         // determine where (within the area) to place the component, if smaller than cell
         constraintsjPanelStage.anchor = GridBagConstraints.CENTER;
-        constraintsjPanelStage.weightx = 0.5;
-        constraintsjPanelStage.weighty = 0.5;
+        constraintsjPanelStage.ipadx = 50;
         pane.add(jPanelStage, constraintsjPanelStage);
 
         /* Add Layout to jLabelGermanWord */
@@ -250,7 +249,7 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjLabelGermanWord.weightx = 1;
         constraintsjLabelGermanWord.weighty = 1;
         constraintsjLabelGermanWord.ipadx = 50;
-        constraintsjLabelGermanWord.ipady = 50;
+        constraintsjLabelGermanWord.ipady = 20;
         pane.add(jLabelGermanWord, constraintsjLabelGermanWord);
 
         /* Add Layout to Component jTextFieldSpanishMeaning */
@@ -265,7 +264,7 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextFieldSpanishMeaning.weightx = 1;
         constraintsjTextFieldSpanishMeaning.weighty = 1;
         constraintsjTextFieldSpanishMeaning.ipadx = 50;
-        constraintsjTextFieldSpanishMeaning.ipady = 50;
+        constraintsjTextFieldSpanishMeaning.ipady = 20;
         pane.add(jTextFieldSpanishMeaning, constraintsjTextFieldSpanishMeaning);
 
         /* Add Layout to Component jTextAreaResult (scrollpane contains jTextAreaReslt) */
@@ -277,9 +276,9 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextAreaResult.fill = GridBagConstraints.BOTH;
         constraintsjTextAreaResult.insets = new Insets(10,5,5,5);
         constraintsjTextAreaResult.anchor = GridBagConstraints.CENTER;
-        constraintsjTextAreaResult.weightx = 0.5;
-        constraintsjTextAreaResult.weighty = 0.5;
-        constraintsjTextAreaResult.ipadx = 150;
+        constraintsjTextAreaResult.weightx = 0.3;
+        constraintsjTextAreaResult.weighty = 0.3;
+        constraintsjTextAreaResult.ipadx = 100;
         constraintsjTextAreaResult.ipady = 75;
         pane.add(scrollPanel, constraintsjTextAreaResult);
 
@@ -289,10 +288,7 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjTextFieldProgress.gridy = 3;
         constraintsjTextFieldProgress.gridwidth = 1;
         constraintsjTextFieldProgress.gridheight = 1;
-        constraintsjTextFieldProgress.insets = new Insets(0, 0, 0, 0);
         constraintsjTextFieldProgress.anchor = GridBagConstraints.CENTER;
-        constraintsjTextFieldProgress.weightx = 0;
-        constraintsjTextFieldProgress.weighty = 0;
         constraintsjTextFieldProgress.ipadx = 40;
         constraintsjTextFieldProgress.ipady = 10;
         pane.add(jTextFieldProgress, constraintsjTextFieldProgress);
@@ -306,8 +302,6 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjButtonSolve.fill = GridBagConstraints.NONE;
         constraintsjButtonSolve.insets = new Insets(0, 5, 0, 5);
         constraintsjButtonSolve.anchor = GridBagConstraints.CENTER;
-        constraintsjButtonSolve.weightx = 1;
-        constraintsjButtonSolve.weighty = 1;
         constraintsjButtonSolve.ipadx = 50;
         constraintsjButtonSolve.ipady = 10;
         pane.add(jButtonSolve, constraintsjButtonSolve);
@@ -319,10 +313,7 @@ class MainFrame extends JFrame implements ActionListener {
         constraintsjLabelFlagImage.gridwidth = 1;
         constraintsjLabelFlagImage.gridheight = 1;
         constraintsjLabelFlagImage.fill = GridBagConstraints.NONE;
-        constraintsjLabelFlagImage.insets = new Insets(0, 0, 0, 0);
         constraintsjLabelFlagImage.anchor = GridBagConstraints.EAST;
-        constraintsjLabelFlagImage.weightx = 1;
-        constraintsjLabelFlagImage.weighty = 1;
         pane.add(jLabelFlagImage, constraintsjLabelFlagImage);
 
         this.add(pane);
