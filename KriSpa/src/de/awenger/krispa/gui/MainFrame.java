@@ -68,6 +68,7 @@ class MainFrame extends JFrame implements ActionListener {
     private String spanishMeaning;
     private int progressCount = 0;
     private int result;
+    private int keyCount;
     // End of variables declaration
 
     public MainFrame(IKriSpaController controller) {
@@ -352,8 +353,7 @@ class MainFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * moves to next word pair and sets values to jLabelGermanWord and
-     * initializes jTextFieldSpanishMeaning .
+     * moves to next word pair.
      */
     private void moveToNextWord() {
         if (listLength > 1) {
@@ -384,6 +384,7 @@ class MainFrame extends JFrame implements ActionListener {
         System.out.println("spanish Word: " + spanishMeaning);
         jTextFieldSpanishMeaning.setText("");
         jTextFieldSpanishMeaning.requestFocus();
+        //SwingUtilities.updateComponentTreeUI(this);
     }
 
     /**
@@ -395,6 +396,7 @@ class MainFrame extends JFrame implements ActionListener {
                 listKeys.add(key);
                 listValues.add(controller.getMap().get(key));
             }
+            keyCount = listKeys.size();
             listLength = listKeys.size();
             this.controller.getMap().clear();
             arrayTextAreaValues = new String[listLength];
@@ -498,7 +500,7 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void increaseProgress() {
         progressCount++;
-        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + "20");
+        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + keyCount);
     }
 
     /**

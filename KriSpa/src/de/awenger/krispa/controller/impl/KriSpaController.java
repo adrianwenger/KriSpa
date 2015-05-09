@@ -142,7 +142,7 @@ public final class KriSpaController extends Observable
         if (map.isEmpty()) {
             return null;
         } else {
-             //initialize words for specific ILearningSessionState
+            //initialize words for specific ILearningSessionState
             List<String> keys = new ArrayList<>(map.keySet());
             Map<String, String> map1 = new TreeMap();
             // add x words to map1 
@@ -155,6 +155,7 @@ public final class KriSpaController extends Observable
                 String value = map.get(randomKey);
                 map1.put(randomKey, value);
                 map.remove(randomKey);
+                keys.remove(randomKey);
             }
             // returns map1 with x random key/value pairs
             return map1;
@@ -163,7 +164,7 @@ public final class KriSpaController extends Observable
 
     @Override
     public void reallocateVoc() {
-         // write divided maps back to dic
+        // write divided maps back to dic
         if (!vocMapCount0_SaveBack.isEmpty()) {
             writeBackToDic(vocMapCount0_SaveBack);
         }
@@ -208,14 +209,14 @@ public final class KriSpaController extends Observable
     @Override
     public int getLevensteinDistance(String a, String b) {
         // if size of the Words are to small to use Levestein distance, just check direct equality
-        if ((a.length() <= 1) || (b.length() <= 1) ) {
-            if(a.equals(b)) {
+        if ((a.length() <= 1) || (b.length() <= 1)) {
+            if (a.equals(b)) {
                 return 0;
             }
             return 2;
         }
         // otherwise use get Levenstein distance    
-            
+
         int result = StringUtils.getLevenshteinDistance(a, b);
 
         if (result > 2) {
@@ -290,7 +291,7 @@ public final class KriSpaController extends Observable
             return this.vocMapCount4;
         }
     }
-    
+
     @Override
     public void activate99ers() {
         System.out.println("not implemented at the moment");
