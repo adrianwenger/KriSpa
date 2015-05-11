@@ -1,14 +1,18 @@
-package de.awenger.krispa.gui;
+package de.adrianwenger.krispa.gui;
 
-import de.awenger.krispa.controller.IKriSpaController;
-import de.awenger.krispa.controller.impl.StateLearningInProgress_1;
-import de.awenger.krispa.controller.impl.StateLearningInProgress_2;
-import de.awenger.krispa.controller.impl.StateLearningInProgress_3;
-import de.awenger.krispa.controller.impl.StateLearningInProgress_4;
-import de.awenger.krispa.controller.impl.StateStart;
-import de.awenger.krispa.model.IVocabularyKey;
-import de.awenger.krispa.model.impl.VocabularyKey;
+import de.adrianwenger.krispa.controller.IKriSpaController;
+import de.adrianwenger.krispa.controller.impl.StateLearningInProgress_1;
+import de.adrianwenger.krispa.controller.impl.StateLearningInProgress_2;
+import de.adrianwenger.krispa.controller.impl.StateLearningInProgress_3;
+import de.adrianwenger.krispa.controller.impl.StateLearningInProgress_4;
+import de.adrianwenger.krispa.controller.impl.StateStart;
+import de.adrianwenger.krispa.model.IVocabularyKey;
+import de.adrianwenger.krispa.model.impl.VocabularyKey;
+import de.adrianwenger.krispa.util.StaticCollections;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,16 +22,15 @@ import java.util.Map;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
-
 /**
  *
- * @author philippschultheiss
+ * @author Adrian Wenger
  */
 class MainFrame extends JFrame implements ActionListener {
-
 
     // import map key/value pairs to gui
     private final List<String> listKeys = new ArrayList<>();
@@ -65,6 +68,7 @@ class MainFrame extends JFrame implements ActionListener {
     private String spanishMeaning;
     private int progressCount = 0;
     private int result;
+    private int keyCount;
     // End of variables declaration
 
     public MainFrame(IKriSpaController controller) {
@@ -95,44 +99,29 @@ class MainFrame extends JFrame implements ActionListener {
         jMenuItemExit = new javax.swing.JMenuItem();
         jMenuItemEditSettings = new javax.swing.JMenuItem();
 
+        /* default settings for this frame */
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("KriSpa -- Vocabulary Platform");
 
+        /* create field for german words (questions) */
         jLabelGermanWord.setBackground(new java.awt.Color(204, 204, 204));
-        jLabelGermanWord.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelGermanWord.setBorder(javax.swing.BorderFactory.createTitledBorder("German Word"));
+        jLabelGermanWord.setHorizontalAlignment(0);
 
-        jTextFieldSpanishMeaning.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        /* Create Field for spanish Words (answers)*/
         jTextFieldSpanishMeaning.setBorder(javax.swing.BorderFactory.createTitledBorder("Spanish Meaning"));
+        jTextFieldSpanishMeaning.setHorizontalAlignment(0);
 
+        /* Create Panel1 */
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
         jLabelLearningInProgress.setText("Learning in Progress...");
+        jPanel1.add(jLabelLearningInProgress);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelLearningInProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelLearningInProgress)
-                        .addGap(26, 26, 26))
-        );
-
-        jPanelStage.setBackground(new java.awt.Color(255, 255, 255));
-
+        /* Create Stage Panel */
         jLabelStage1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage1.setText("       Stage1");
         jLabelStage1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        //jLabelStage1.setBackground(Color.BLUE);
 
         jLabelStage2.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelStage2.setText("       Stage2");
@@ -150,42 +139,15 @@ class MainFrame extends JFrame implements ActionListener {
         jLabelStage5.setText("       Stage5");
         jLabelStage5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanelStageLayout = new javax.swing.GroupLayout(jPanelStage);
-        jPanelStage.setLayout(jPanelStageLayout);
-        jPanelStageLayout.setHorizontalGroup(
-                jPanelStageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelStageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelStageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelStage1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelStage2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelStage3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelStage4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelStage5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelStageLayout.setVerticalGroup(
-                jPanelStageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelStageLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelStage1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelStage2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelStage3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelStage4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelStage5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        /* Create Flag Icon */
+        jLabelFlagImage.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "/images/KriSpa_Backround.png"));
 
-        jLabelFlagImage.setIcon(new javax.swing.ImageIcon("/Users/Adi/NetBeansProjects/KrissisSpanischProgramm/KriSpa/images/KriSpa_Backround.png")); // NOI18N
-
+        /* Crate SolveButton */
         jButtonSolve.setText("solve");
         jButtonSolve.addActionListener(this);
         this.getRootPane().setDefaultButton(jButtonSolve);
 
+        /* Create Result Text Area */
         jTextAreaResult.setBackground(new java.awt.Color(204, 204, 204));
         jTextAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder("results"));
         jTextAreaResult.setEditable(false);
@@ -193,7 +155,9 @@ class MainFrame extends JFrame implements ActionListener {
         JScrollPane scrollPanel = new JScrollPane(jTextAreaResult);
         scrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
 
+        /* create Progress Field */
         jTextFieldProgress.setEditable(false);
         jTextFieldProgress.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         jTextFieldProgress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -201,79 +165,159 @@ class MainFrame extends JFrame implements ActionListener {
         jTextFieldProgress.setAutoscrolls(false);
         jTextFieldProgress.setBorder(javax.swing.BorderFactory.createTitledBorder("progress"));
 
+        /* Create Menu Items*/
         jMenuFile.setText("File");
         jMenuEdit.setText("Edit");
 
         jMenuItemSave.setText("save...");
+        jMenuItemSave.addActionListener(this);
         jMenuFile.add(jMenuItemSave);
-
+        jMenuItemSave.addActionListener(this);
         jMenuItemExit.setText("exit");
+        jMenuItemExit.addActionListener(this);
         jMenuFile.add(jMenuItemExit);
 
+        jMenuItemEditSettings.setText("activate Finished Words");
         jMenuEdit.add(jMenuItemEditSettings);
 
         jMenuBar.add(jMenuFile);
         jMenuBar.add(jMenuEdit);
 
-        setJMenuBar(jMenuBar);
+        this.setJMenuBar(jMenuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addGap(33, 33, 33)
-                                                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addGap(55, 55, 55)
-                                                        .addComponent(jTextFieldProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                                                                .addComponent(jLabelGermanWord, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                        .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(45, 45, 45)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabelFlagImage, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPanelStage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(81, 81, 81))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabelGermanWord, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jTextFieldSpanishMeaning, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(scrollPanel))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabelFlagImage))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonSolve, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40))))
-        );
+        /* Create Layouts (GridBagLayout) */
+        JPanel pane = new JPanel(new GridBagLayout());
 
+        /* Add Layout to jPanel1 */
+        GridBagConstraints constraintsjLabel1 = new GridBagConstraints();
+        // Column number
+        constraintsjLabel1.gridx = 0;
+        // Row number
+        constraintsjLabel1.gridy = 0;
+        // number of columns ( number of columns the component uses)
+        constraintsjLabel1.gridwidth = 3;
+        // number of rows ( number of rows the component uses)
+        constraintsjLabel1.gridheight = 1;
+        // if display area is larger than the component's requested size, fill horizontal and vertical
+        constraintsjLabel1.fill = GridBagConstraints.BOTH;
+        constraintsjLabel1.ipadx = 600;
+        constraintsjLabel1.ipady = 30;
+        pane.add(jPanel1, constraintsjLabel1);
+
+        /* Add Layout to jPanelStage */
+        // put Elements on jPanelStage
+        jPanelStage.setLayout(new GridBagLayout());
+        GridBagConstraints constraintsjPanelStageElements = new GridBagConstraints();
+        constraintsjPanelStageElements.gridx = 0;
+        constraintsjPanelStageElements.gridy = 0;
+        constraintsjPanelStageElements.ipadx = 30;
+        constraintsjPanelStageElements.ipady = 20;
+        // how much to add to the size of the component (ext. Border)
+        constraintsjPanelStageElements.insets = new Insets(5, 0, 5, 0);
+        // puts any extra space between its grid of cells and the edges of the Label
+        constraintsjPanelStageElements.weighty = 1;
+        jPanelStage.add(jLabelStage1, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 1;
+        jPanelStage.add(jLabelStage2, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 2;
+        jPanelStage.add(jLabelStage3, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 3;
+        jPanelStage.add(jLabelStage4, constraintsjPanelStageElements);
+        constraintsjPanelStageElements.gridy = 4;
+        jPanelStage.add(jLabelStage5, constraintsjPanelStageElements);
+
+        // Create jPanelStage Layout 
+        GridBagConstraints constraintsjPanelStage = new GridBagConstraints();
+        constraintsjPanelStage.gridx = 0;
+        constraintsjPanelStage.gridy = 1;
+        constraintsjPanelStage.gridwidth = 1;
+        constraintsjPanelStage.gridheight = 2;
+        constraintsjPanelStage.insets = new Insets(1, 1, 1, 1);
+        // determine where (within the area) to place the component, if smaller than cell
+        constraintsjPanelStage.anchor = GridBagConstraints.CENTER;
+        constraintsjPanelStage.ipadx = 50;
+        pane.add(jPanelStage, constraintsjPanelStage);
+
+        /* Add Layout to jLabelGermanWord */
+        GridBagConstraints constraintsjLabelGermanWord = new GridBagConstraints();
+        constraintsjLabelGermanWord.gridx = 1;
+        constraintsjLabelGermanWord.gridy = 1;
+        constraintsjLabelGermanWord.gridwidth = 1;
+        constraintsjLabelGermanWord.gridheight = 1;
+        constraintsjLabelGermanWord.fill = GridBagConstraints.BOTH;
+        constraintsjLabelGermanWord.insets = new Insets(5, 5, 5, 5);
+        constraintsjLabelGermanWord.anchor = GridBagConstraints.CENTER;
+        constraintsjLabelGermanWord.weightx = 1;
+        constraintsjLabelGermanWord.weighty = 1;
+        constraintsjLabelGermanWord.ipadx = 50;
+        constraintsjLabelGermanWord.ipady = 20;
+        pane.add(jLabelGermanWord, constraintsjLabelGermanWord);
+
+        /* Add Layout to Component jTextFieldSpanishMeaning */
+        GridBagConstraints constraintsjTextFieldSpanishMeaning = new GridBagConstraints();
+        constraintsjTextFieldSpanishMeaning.gridx = 1;
+        constraintsjTextFieldSpanishMeaning.gridy = 2;
+        constraintsjTextFieldSpanishMeaning.gridwidth = 1;
+        constraintsjTextFieldSpanishMeaning.gridheight = 1;
+        constraintsjTextFieldSpanishMeaning.fill = GridBagConstraints.BOTH;
+        constraintsjTextFieldSpanishMeaning.insets = new Insets(5, 5, 5, 5);
+        constraintsjTextFieldSpanishMeaning.anchor = GridBagConstraints.CENTER;
+        constraintsjTextFieldSpanishMeaning.weightx = 1;
+        constraintsjTextFieldSpanishMeaning.weighty = 1;
+        constraintsjTextFieldSpanishMeaning.ipadx = 50;
+        constraintsjTextFieldSpanishMeaning.ipady = 20;
+        pane.add(jTextFieldSpanishMeaning, constraintsjTextFieldSpanishMeaning);
+
+        /* Add Layout to Component jTextAreaResult (scrollpane contains jTextAreaReslt) */
+        GridBagConstraints constraintsjTextAreaResult = new GridBagConstraints();
+        constraintsjTextAreaResult.gridx = 2;
+        constraintsjTextAreaResult.gridy = 1;
+        constraintsjTextAreaResult.gridwidth = 1;
+        constraintsjTextAreaResult.gridheight = 2;
+        constraintsjTextAreaResult.fill = GridBagConstraints.BOTH;
+        constraintsjTextAreaResult.insets = new Insets(10,5,5,5);
+        constraintsjTextAreaResult.anchor = GridBagConstraints.CENTER;
+        constraintsjTextAreaResult.weightx = 0.3;
+        constraintsjTextAreaResult.weighty = 0.3;
+        constraintsjTextAreaResult.ipadx = 100;
+        constraintsjTextAreaResult.ipady = 75;
+        pane.add(scrollPanel, constraintsjTextAreaResult);
+
+        /* Add Layout to Component jTextFieldProgress */
+        GridBagConstraints constraintsjTextFieldProgress = new GridBagConstraints();
+        constraintsjTextFieldProgress.gridx = 0;
+        constraintsjTextFieldProgress.gridy = 3;
+        constraintsjTextFieldProgress.gridwidth = 1;
+        constraintsjTextFieldProgress.gridheight = 1;
+        constraintsjTextFieldProgress.anchor = GridBagConstraints.CENTER;
+        constraintsjTextFieldProgress.ipadx = 40;
+        constraintsjTextFieldProgress.ipady = 10;
+        pane.add(jTextFieldProgress, constraintsjTextFieldProgress);
+
+        /* Add Layout to Component jButtonSolve */
+        GridBagConstraints constraintsjButtonSolve = new GridBagConstraints();
+        constraintsjButtonSolve.gridx = 1;
+        constraintsjButtonSolve.gridy = 3;
+        constraintsjButtonSolve.gridwidth = 1;
+        constraintsjButtonSolve.gridheight = 1;
+        constraintsjButtonSolve.fill = GridBagConstraints.NONE;
+        constraintsjButtonSolve.insets = new Insets(0, 5, 0, 5);
+        constraintsjButtonSolve.anchor = GridBagConstraints.CENTER;
+        constraintsjButtonSolve.ipadx = 50;
+        constraintsjButtonSolve.ipady = 10;
+        pane.add(jButtonSolve, constraintsjButtonSolve);
+
+        /* Add Layout to Component jLabelFlagImage*/
+        GridBagConstraints constraintsjLabelFlagImage = new GridBagConstraints();
+        constraintsjLabelFlagImage.gridx = 2;
+        constraintsjLabelFlagImage.gridy = 3;
+        constraintsjLabelFlagImage.gridwidth = 1;
+        constraintsjLabelFlagImage.gridheight = 1;
+        constraintsjLabelFlagImage.fill = GridBagConstraints.NONE;
+        constraintsjLabelFlagImage.anchor = GridBagConstraints.EAST;
+        pane.add(jLabelFlagImage, constraintsjLabelFlagImage);
+
+        this.add(pane);
         pack();
         this.jTextFieldSpanishMeaning.requestFocusInWindow();
         this.setLocationRelativeTo(null);
@@ -283,13 +327,12 @@ class MainFrame extends JFrame implements ActionListener {
     }
 
     @Override
-
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source.equals(jMenuItemSave)) {
-            exit("KriSpa saved! Do you want to quit?");
+            exit("Do you want to quit?");
         } else if (source.equals(jMenuItemExit)) {
-            exit("Do you want to quit KriSpa?");
+            exit("Do you want to quit?");
         } else if (source.equals(jMenuItemEditSettings)) {
             controller.activate99ers();
         } else if (source.equals(jButtonSolve)) {
@@ -302,9 +345,6 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void initialize() {
         try {
-//            if (!(controller.getCurrentState() instanceof StateLearningInProgress_4) || stageCount == 1) {
-//                listLength = 1;
-//            }
             moveToNextWord();
         } catch (Exception ex) {
             moveStage();
@@ -313,32 +353,38 @@ class MainFrame extends JFrame implements ActionListener {
     }
 
     /**
-     * moves to next word pair and sets values to jLabelGermanWord and
-     * initializes jTextFieldSpanishMeaning .
+     * moves to next word pair.
      */
     private void moveToNextWord() {
         if (listLength > 1) {
             if (getWords()) {
-                increaseProgress();
-                filljTextAreaResult();
-                jLabelGermanWord.setText(germanMeaning);
-                jTextFieldSpanishMeaning.requestFocus();
+                resetFrameForNewWord();
             } else {
                 moveStage();
             }
         } else {
             getMapContent();
             if (getWords()) {
-                increaseProgress();
-                filljTextAreaResult();
-                jLabelGermanWord.setText(germanMeaning);
-                jTextFieldSpanishMeaning.requestFocus();
+                resetFrameForNewWord();
             } else {
                 moveStage();
                 initialize();
             }
 
         }
+    }
+
+    /*
+    * resets the Textfields, TextArea to continue with a new Word
+    */
+    private void resetFrameForNewWord() {
+        increaseProgress();
+        filljTextAreaResult();
+        jLabelGermanWord.setText(germanMeaning);
+        System.out.println("spanish Word: " + spanishMeaning);
+        jTextFieldSpanishMeaning.setText("");
+        jTextFieldSpanishMeaning.requestFocus();
+        //SwingUtilities.updateComponentTreeUI(this);
     }
 
     /**
@@ -350,6 +396,7 @@ class MainFrame extends JFrame implements ActionListener {
                 listKeys.add(key);
                 listValues.add(controller.getMap().get(key));
             }
+            keyCount = listKeys.size();
             listLength = listKeys.size();
             this.controller.getMap().clear();
             arrayTextAreaValues = new String[listLength];
@@ -433,10 +480,11 @@ class MainFrame extends JFrame implements ActionListener {
     private void solve() {
         // checks if assumed result is correct
         int result = this.controller.getLevensteinDistance(this.jTextFieldSpanishMeaning.getText(), spanishMeaning);
-
+        StaticCollections.LEARNING_PERFORMED_CORRECTLY = true;
         if (result == 0) {
             // words matches exactly
             resultCorrect();
+       
         } else if (result == 1) {
             // words nearly matches
             resultNearlyCorrect();
@@ -452,7 +500,7 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void increaseProgress() {
         progressCount++;
-        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + "20");
+        this.jTextFieldProgress.setText(Integer.toString(progressCount) + "/" + keyCount);
     }
 
     /**
@@ -522,10 +570,10 @@ class MainFrame extends JFrame implements ActionListener {
      */
     private void filljTextAreaResult() {
         // clears TextArea 
-        jTextAreaResult.setText("");
+        jTextAreaResult.setText(null);
         // fill TextArea
         for (int i = 0; i < arrayTextAreaValuesCount; i++) {
-            this.jTextAreaResult.append(arrayTextAreaValues[i] + "\n");
+            this.jTextAreaResult.append(arrayTextAreaValues[i] + System.getProperty("line.separator"));
             if (result == 0) {
                 jTextAreaResult.setForeground(Color.ORANGE);
             } else if (result == 1) {
@@ -540,11 +588,16 @@ class MainFrame extends JFrame implements ActionListener {
      * exit Gui.
      */
     private void exit(String question) {
-        int answer = JOptionPane.showConfirmDialog(this, question, "Quit KriSpa", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (answer == JOptionPane.YES_OPTION) {
+        int answer = JOptionPane.showConfirmDialog(this, question, "Exit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (answer == JOptionPane.YES_OPTION && StaticCollections.LEARNING_PERFORMED_CORRECTLY) {
             this.controller.endLearningSession();
-            System.exit(0);
+            JOptionPane.showMessageDialog(this, "KriSpa progress saved");
+        } else {
+            JOptionPane.showMessageDialog(this, "You closed KriSpa without saving");
         }
+        dispose();
+        System.exit(0);
+
     }
 
 }
