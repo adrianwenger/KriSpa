@@ -27,6 +27,7 @@
                <groupId>org.apache.commons</groupId>
                <artifactId>lang</artifactId>
                <version>3.4</version>
+               <type>jar</type>
           </dependency>
      </dependencies>
 </project>

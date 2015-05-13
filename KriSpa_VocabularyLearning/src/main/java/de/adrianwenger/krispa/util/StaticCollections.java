@@ -10,6 +10,7 @@ public final class StaticCollections {
     }
    /* Information if user startet learning correctly or not*/
     public static boolean LEARNING_PERFORMED_CORRECTLY = false;
+    public static int VOCABULARYAMOUNT = 50;
 //    public static final int PLAYING_FRAME_WIDTH = 1000;
 //    public static final int PLAYING_FRAME_HEIGHT = 500;
 //    public static final int INFO_LABEL_WIDTH = 300;

@@ -5,6 +5,7 @@ import de.adrianwenger.krispa.controller.ILearningSessionState;
 import de.adrianwenger.krispa.model.IDataBasis;
 import de.adrianwenger.krispa.model.IVocabularyKey;
 import de.adrianwenger.krispa.model.impl.DataBasis;
+import de.adrianwenger.krispa.util.StaticCollections;
 import de.adrianwenger.krispa.util.observer.Observable;
 import java.io.File;
 import java.util.ArrayList;
@@ -146,7 +147,7 @@ public final class KriSpaController extends Observable
             List<String> keys = new ArrayList<>(map.keySet());
             Map<String, String> map1 = new TreeMap();
             // add x words to map1 
-            int x = 20;
+            int x = StaticCollections.VOCABULARYAMOUNT;
             if (map.size() < x) {
                 x = map.size();
             }
