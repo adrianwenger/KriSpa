@@ -484,7 +484,6 @@ class MainFrame extends JFrame implements ActionListener {
         if (result == 0) {
             // words matches exactly
             resultCorrect();
-       
         } else if (result == 1) {
             // words nearly matches
             resultNearlyCorrect();
